@@ -58,13 +58,14 @@ body {
     text-align: center;
 }*/
 #jumbo h1{
-    color: white;
+    color: rgb(185, 223, 255);
     font-size: 45px;
     padding-top: 30px;
     line-height: 1.6em;
+    font-style: italic;
 }
 #jumbo h1:hover{
-    color: black;
+    color: rgb(45, 156, 73);
     font-size: 45px;
     padding-top: 30px;
     line-height: 1.6em;
