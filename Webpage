@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Hallo Welt Course</title>
+</head>
+<body>
+    <button id="mybutton">Click me</button>
+    <ul id='list'>
+        <li class="list-item"> Item 1 </li>
+        <li class="list-item"> Item 2 </li>
+        <li class="list-item"> Item 3 </li>
+    </ul>
+    <script src='main.js'> 
+    </script>
+</body>
+</html>
