@@ -239,13 +239,3 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 
 
 /* added stiles */
-.dice {
-    width: 50px;
-    height: 50px;
-    border: 1px solid black;
-    display: inline-block;
-    margin-right: 10px;
-    background-color: white;
-    text-align: center;
-    line-height: 50px;
-}
