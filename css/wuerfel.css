@@ -1,30 +1,47 @@
-.wrapper {
-    height: 250px;
-    perspective: 700px;
-    -webkit-perspective: 700px;
-    display: flex;
+ .wrapper {
+    height: 150px;
+    /* perspective: 700px;
+    -webkit-perspective: 700px; */
+    display: flex; 
     justify-content: center;
     align-items: center;
     width: 100%;
-    font-family: arial, sans-serif;
+} 
+.dices {
+    /* max-width: 300px; */
+    display: grid;
+    grid-gap: 10px;
+    display: flex;
 }
 
-.cube {
+.dice { /* cube */
     width: 100px;
     height: 100px;
-    transform-style: preserve-3d;
-    transform: rotateX(45deg) rotateY(-45deg);
+    /* transform-style: preserve-3d;
+    transform: rotateX(45deg) rotateY(-45deg); */
     transition: transform 2s ease-in-out; /* Animationseffekt */
 
-    /* border: 2px solid rgb(91, 91, 91);
+    border: 2px solid rgb(91, 91, 91);
     border-radius: 10%;
     aspect-ratio: 1/1;
     display: grid;
     grid-template-columns: repeat(3,1fr);
     background: radial-gradient(circle,rgba(255,255,255,1) 0%, rgba(249,249,249,1) 34%, rgba(218,218,218,1) 68%, rgba(134,134,134,1) 95%,rgba(0,0,0,1) 98%);
-    box-shadow: 10px 10px 25px -4px #000;*/
+    box-shadow: 10px 10px 25px -4px #000;
 } 
 
+.dice .ninth .circle {
+    background-color: #000;
+    height:         60%;
+    border-radius: 100%;
+    margin:         20%;
+}
+
+.dice .ninth .none {
+    display: none;
+}
+
+/* 
 .cube > div {
     position: absolute;
     width: 120px;
@@ -44,7 +61,7 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     background: radial-gradient(circle,rgba(255,255,255,1) 0%, rgba(249,249,249,1) 34%, rgba(218,218,218,1) 68%, rgba(134,134,134,1) 95%,rgba(0,0,0,1) 98%);
-    /* box-shadow: 10px 10px 25px -4px #000; */
+    /* box-shadow: 10px 10px 25px -4px #000; 
 }
 .cube div:nth-child(1)::before {
     content: '';width: 100%;height: 35%;border-radius: 100%;background-color: black;margin: 100%;
@@ -58,7 +75,7 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     background: radial-gradient(circle,rgba(255,255,255,1) 0%, rgba(249,249,249,1) 34%, rgba(218,218,218,1) 68%, rgba(134,134,134,1) 95%,rgba(0,0,0,1) 98%);
-    /* box-shadow: 10px 10px 25px -4px #000; */
+    /* box-shadow: 10px 10px 25px -4px #000; 
 }
 .cube div:nth-child(2)::before {
     content: '';width: 100%;height: 35%;border-radius: 100%;background-color: black;margin: 20%;
@@ -80,7 +97,7 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     background: radial-gradient(circle,rgba(255,255,255,1) 0%, rgba(249,249,249,1) 34%, rgba(218,218,218,1) 68%, rgba(134,134,134,1) 95%,rgba(0,0,0,1) 98%);
-    /* box-shadow: 10px 10px 25px -4px #000; */
+    /* box-shadow: 10px 10px 25px -4px #000; 
 }
 
 .cube div:nth-child(4) {
@@ -91,7 +108,7 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     background: radial-gradient(circle,rgba(255,255,255,1) 0%, rgba(249,249,249,1) 34%, rgba(218,218,218,1) 68%, rgba(134,134,134,1) 95%,rgba(0,0,0,1) 98%);
-    /* box-shadow: 10px 10px 25px -4px #000; */
+    /* box-shadow: 10px 10px 25px -4px #000; 
 }
 
 .cube div:nth-child(5) {
@@ -102,7 +119,7 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     background: radial-gradient(circle,rgba(255,255,255,1) 0%, rgba(249,249,249,1) 34%, rgba(218,218,218,1) 68%, rgba(134,134,134,1) 95%,rgba(0,0,0,1) 98%);
-    /* box-shadow: 10px 10px 25px -4px #000; */
+    /* box-shadow: 10px 10px 25px -4px #000; 
 }
 
 .cube div:nth-child(6) {
@@ -113,7 +130,7 @@
     display: grid;
     grid-template-columns: repeat(3,1fr);
     background: radial-gradient(circle,rgba(255,255,255,1) 0%, rgba(249,249,249,1) 34%, rgba(218,218,218,1) 68%, rgba(134,134,134,1) 95%,rgba(0,0,0,1) 98%);
-   /*  box-shadow: 10px 10px 25px -4px #000; */
+   /*  box-shadow: 10px 10px 25px -4px #000; 
 }
 
 .dice .ninth .circle{
@@ -126,3 +143,4 @@
     color: #000!important;
     
 }
+*/

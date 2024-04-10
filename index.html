@@ -242,10 +242,10 @@ body, html {
   </div>
 </div>
 
-<div class="w3-container" style="padding:128px 16px" id="team">
+<!-- <div class="w3-container" style="padding:128px 16px" id="team">
   <h3 class="w3-center">Würfeln</h3>
 
-  <div class="wrapper">
+  <div class="wrapper" id="roll">
     <div class="cube" id="cube">
         <div class="face">1</div>
         <div class="face">2</div>
@@ -256,8 +256,23 @@ body, html {
     </div>
 </div>
 <script src="js/wuerfeln.js"></script>
-</div>
+</div> -->
 
+<!-- <button id="addDiceBtn"> Würfel hinzufügen</button>
+<button id="removeDiceBtn"> Würfel entfernen</button> -->
+
+<div class="wrapper" id="roll">
+  <div class="dices">
+    <div id="dice_1"></div>
+    <div id="dice_2"></div>
+    <div id="dice_3"></div>
+    <div id="dice_4"></div>
+    <div id="dice_5"></div>
+  </div>
+
+</div>
+<script src="js/dice.js"></script>
+<script src="js/wuerfeln.js"></script>
 
 
 
@@ -418,7 +433,7 @@ body, html {
         </button>
       </p>
     </form>
-    <!-- Image of location/map -->
+    Image of location/map 
     <img src="/w3images/map.jpg" class="w3-image w3-greyscale" style="width:100%;margin-top:48px">
   </div>
 </div> -->
