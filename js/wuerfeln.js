@@ -1,20 +1,23 @@
-const d1container = document.getElementById("dice_1");
+const d1container = document.getElementById("dice_1"); 
 const d2container = document.getElementById('dice_2');
 const d3container = document.getElementById("dice_3");
 const d4container = document.getElementById('dice_4');
 const d5container = document.getElementById('dice_5');
+const d6container = document.getElementById('dice_6');
 
 const dice1 = new Dice(d1container);
 const dice2 = new Dice(d2container); 
 const dice3 = new Dice(d3container);
 const dice4 = new Dice(d4container); 
 const dice5 = new Dice(d5container);
+const dice6 = new Dice(d6container);
 
 dice1.roll();
 dice2.roll();
 dice3.roll();
 dice4.roll();
 dice5.roll();
+dice6.roll();
 
 
 function addDice() {
