@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
     dice3.roll();
     dice4.roll();
     dice5.roll();
+    dice6.roll();
   });
 });
 
