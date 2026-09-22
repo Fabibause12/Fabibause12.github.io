@@ -1,14 +1,20 @@
 {
-  "generated": "2026-09-22T18:29:49Z",
+  "generated": "2026-09-22T18:31:01Z",
   "count": 3,
   "plants": [
     {
       "slug": "Bogenhanf",
       "title": "Bogenhanf",
-      "subtitle": "",
-      "latin": "",
-      "meta": {},
-      "text": "",
+      "subtitle": "Die Pflanze für alle, die Pflanzen regelmäßig vergessen.",
+      "latin": "Dracaena trifasciata",
+      "meta": {
+        "Licht": "Von hell bis schattig – nimmt fast jeden Platz",
+        "Gießen": "Alle zwei bis drei Wochen, im Winter noch seltener",
+        "Standort": "Zimmertemperatur, nicht unter 10 Grad",
+        "Haustiere": "Für Katzen und Hunde leicht giftig",
+        "Ableger": "Ja, durch Teilen des Wurzelstocks oder als Blattsteckling"
+      },
+      "text": "Der Bogenhanf ist die genügsamste Pflanze, die ich habe. Er steht auch in einer\ndunklen Ecke noch gut da, braucht kaum Wasser und wächst einfach langsam vor sich\nhin. Früher hieß er Sansevieria, botanisch gehört er inzwischen zu den Drachenbäumen.\n\nUmbringen kann man ihn eigentlich nur auf eine Art: zu viel gießen. Steht er\ndauerhaft nass, fault der Wurzelstock von unten weg. Lieber eine Woche zu spät\nals einen Tag zu früh.\n\nVermehren geht auf zwei Wegen: den Wurzelstock beim Umtopfen teilen, oder ein\nBlatt in Stücke schneiden und antrocknen lassen, bevor es in die Erde kommt. Der\nzweite Weg dauert länger, dafür bekommt man aus einem Blatt mehrere Pflanzen.",
       "images": [
         "Pflanzen/Bogenhanf/IMG_0372.jpg",
         "Pflanzen/Bogenhanf/IMG_0373.jpg"
