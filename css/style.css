@@ -877,3 +877,11 @@ body.no-scroll { overflow: hidden; }
 .cv-card-2 { margin-top: 1.1rem; }
 .cv-card-2 p { font-size: .95rem; margin: 0 0 .6rem; }
 .cv-card-2 p:last-child { margin-bottom: 0; }
+
+.brand .logo {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 6px;
+  object-fit: cover;
+}
