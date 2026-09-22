@@ -1,0 +1,40 @@
+{
+  "generated": "2026-09-22T14:29:05Z",
+  "count": 2,
+  "plants": [
+    {
+      "slug": "Efeutute",
+      "title": "Efeutute",
+      "subtitle": "Wächst überall, auch da, wo sie nicht soll.",
+      "latin": "Epipremnum aureum",
+      "meta": {
+        "Licht": "Halbschattig bis hell, verträgt auch dunkle Ecken",
+        "Gießen": "Alle 7 bis 10 Tage, lieber zu wenig als zu viel",
+        "Ableger": "Ja, jederzeit - ein Stück Ranke im Wasserglas reicht"
+      },
+      "text": "Die Efeutute ist die Pflanze für alle, die eigentlich keine Pflanzen können.\nSie wächst in fast jedem Licht, verzeiht Trockenheit und bildet aus jedem\nabgeschnittenen Stück wieder eine neue Pflanze.\n\nBei mir hängt sie vom Regal und hat inzwischen den halben Raum erobert.\nGenau deshalb habe ich immer Ableger übrig.",
+      "images": [],
+      "imageCount": 0
+    },
+    {
+      "slug": "Monstera",
+      "title": "Monstera",
+      "subtitle": "Das Fensterblatt, das jeden Raum größer aussehen lässt.",
+      "latin": "Monstera deliciosa",
+      "meta": {
+        "Licht": "Hell, aber kein direktes Sonnenlicht",
+        "Gießen": "Einmal pro Woche, Erde vorher antrocknen lassen",
+        "Standort": "Zimmertemperatur, keine Zugluft",
+        "Haustiere": "Für Katzen und Hunde leicht giftig",
+        "Ableger": "Ja, per Kopfsteckling im Wasserglas"
+      },
+      "text": "Die Monstera ist die unkomplizierteste Mitbewohnerin, die ich habe. Sie verzeiht es,\nwenn man mal eine Woche vergisst zu gießen, und beschwert sich nur mit hängenden\nBlättern - nach dem nächsten Guss steht sie wieder da, als wäre nichts gewesen.\n\nAbleger sind einfach: Ich schneide ein Stück Stamm direkt unter einer Luftwurzel ab,\nstelle es für zwei bis drei Wochen ins Wasserglas, und sobald die Wurzeln zwei\nZentimeter lang sind, kommt es in normale Blumenerde.\n\nWenn du eine willst, sag einfach Bescheid - Nachschub ist reichlich vorhanden.",
+      "images": [
+        "Pflanzen/Monstera/1.svg",
+        "Pflanzen/Monstera/2.svg",
+        "Pflanzen/Monstera/3.svg"
+      ],
+      "imageCount": 3
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+name: Pflanzenliste aktualisieren
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Pflanzen/**'
+      - 'tools/build_pflanzen.py'
+      - '.github/workflows/pflanzen.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pflanzenliste
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: pflanzen.json erzeugen
+        run: python tools/build_pflanzen.py
+
+      - name: Änderung committen
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Pflanzen/pflanzen.json
+          if git diff --staged --quiet; then
+            echo "pflanzen.json ist schon aktuell"
+          else
+            git commit -m "Pflanzenliste automatisch aktualisiert"
+            git push
+          fi
