@@ -55,8 +55,25 @@ im Ordner reicht.
 * Erlaubt sind `.jpg`, `.jpeg`, `.png`, `.webp`, `.gif`, `.avif`, `.svg`
 * Die Reihenfolge ist die der Dateinamen – `1.jpg`, `2.jpg`, `10.jpg` wird richtig sortiert
 * Das **erste** Bild ist das Titelbild auf der Übersicht
-* Bitte vorher verkleinern (max. ca. 2000 px breit, unter 1 MB), sonst lädt die
-  Seite auf dem Handy ewig
+
+### iPhone-Fotos (.heic)
+
+Browser können HEIC nicht anzeigen – Chrome und Firefox zeigen schlicht nichts.
+Du musst dich aber um nichts kümmern: Beim Bauen wird aus jeder `.heic` automatisch
+eine `.jpg` erzeugt, auf maximal 2000 px verkleinert und gedreht, falls das Foto
+im Hochformat aufgenommen wurde.
+
+Die Original-HEICs bleiben in deinem Ordner liegen, wandern aber wegen ihrer Größe
+**nicht** mit ins Repo (siehe `.gitignore`). Du kannst sie nach dem Bauen löschen
+oder liegen lassen, wie du magst.
+
+### Ordner, die ignoriert werden
+
+* alles, was mit `_` oder `.` anfängt
+* die Namen `Vorlage`, `Template`, `Beispiel` und `Muster`
+
+Dort kannst du dir also in Ruhe eine Blaupause zum Kopieren hinlegen, ohne dass
+sie auf der Seite auftaucht.
 
 ## Liste aktualisieren
 

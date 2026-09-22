@@ -24,6 +24,9 @@ PFLANZEN_DIR = ROOT / "Pflanzen"
 OUT_FILE = PFLANZEN_DIR / "pflanzen.json"
 
 IMAGE_EXT = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif", ".bmp", ".svg"}
+HEIC_EXT = {".heic", ".heif"}
+IGNORIEREN = {"vorlage", "template", "beispiel", "muster"}
+MAX_KANTE = 2000
 TEXT_PRIO = ["text.txt", "info.txt", "beschreibung.txt", "pflanze.txt"]
 BIG_IMAGE_WARN = 3 * 1024 * 1024
 
@@ -87,7 +90,42 @@ def find_text_file(folder: Path):
     return txts[0]
 
 
+def wandle_heic(folder: Path, warnings: list):
+    """iPhone-Fotos (.heic) in .jpg umwandeln - Browser koennen HEIC nicht anzeigen."""
+    heics = [p for p in folder.iterdir()
+             if p.is_file() and p.suffix.lower() in HEIC_EXT and not p.name.startswith(".")]
+    if not heics:
+        return
+
+    try:
+        from PIL import Image, ImageOps
+        import pillow_heif
+        pillow_heif.register_heif_opener()
+    except ImportError:
+        warnings.append("%s: %d HEIC-Datei(en) gefunden, aber pillow-heif fehlt "
+                        "(pip install pillow-heif). Browser koennen HEIC nicht anzeigen!"
+                        % (folder.name, len(heics)))
+        return
+
+    for quelle in heics:
+        ziel = quelle.with_suffix(".jpg")
+        if ziel.exists() and ziel.stat().st_mtime >= quelle.stat().st_mtime:
+            continue
+        try:
+            with Image.open(quelle) as im:
+                im = ImageOps.exif_transpose(im).convert("RGB")
+                im.thumbnail((MAX_KANTE, MAX_KANTE), Image.LANCZOS)
+                im.save(ziel, "JPEG", quality=82, optimize=True, progressive=True)
+            print("  ~ %s -> %s (%.1f MB -> %.1f MB)"
+                  % (quelle.name, ziel.name,
+                     quelle.stat().st_size / 1048576, ziel.stat().st_size / 1048576))
+        except Exception as ex:
+            warnings.append("%s/%s: Umwandlung fehlgeschlagen (%s)" % (folder.name, quelle.name, ex))
+
+
 def collect(folder: Path, warnings: list):
+    wandle_heic(folder, warnings)
+
     images = sorted(
         [p for p in folder.iterdir()
          if p.is_file() and p.suffix.lower() in IMAGE_EXT and not p.name.startswith(".")],
@@ -130,8 +168,13 @@ def main():
 
     if PFLANZEN_DIR.is_dir():
         folders = sorted([p for p in PFLANZEN_DIR.iterdir()
-                          if p.is_dir() and not p.name.startswith((".", "_"))],
+                          if p.is_dir()
+                          and not p.name.startswith((".", "_"))
+                          and p.name.lower() not in IGNORIEREN],
                          key=lambda p: natural_key(p.name))
+        for p in sorted(PFLANZEN_DIR.iterdir()):
+            if p.is_dir() and (p.name.startswith("_") or p.name.lower() in IGNORIEREN):
+                print("  (uebersprungen: %s)" % p.name)
         for folder in folders:
             plants.append(collect(folder, warnings))
     else:

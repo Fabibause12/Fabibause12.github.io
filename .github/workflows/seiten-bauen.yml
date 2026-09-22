@@ -1,23 +1,24 @@
-name: Pflanzenliste aktualisieren
+name: Seiten aktualisieren
 
 on:
   push:
     branches: [main]
     paths:
       - 'Pflanzen/**'
-      - 'tools/build_pflanzen.py'
-      - '.github/workflows/pflanzen.yml'
+      - 'Werdegang/**'
+      - 'tools/**'
+      - '.github/workflows/seiten-bauen.yml'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: pflanzenliste
+  group: seiten-bauen
   cancel-in-progress: true
 
 jobs:
-  build:
+  bauen:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -26,17 +27,23 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: pflanzen.json erzeugen
+      - name: Bildwerkzeuge installieren
+        run: pip install --quiet Pillow pillow-heif
+
+      - name: Pflanzenliste erzeugen
         run: python tools/build_pflanzen.py
 
-      - name: Änderung committen
+      - name: Werdegang-Seite erzeugen
+        run: python tools/build_werdegang.py
+
+      - name: Änderungen committen
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add Pflanzen/pflanzen.json
+          git add Pflanzen werdegang.html
           if git diff --staged --quiet; then
-            echo "pflanzen.json ist schon aktuell"
+            echo "Alles schon aktuell"
           else
-            git commit -m "Pflanzenliste automatisch aktualisiert"
+            git commit -m "Seiten automatisch neu gebaut"
             git push
           fi
