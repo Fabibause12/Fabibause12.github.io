@@ -1,7 +1,20 @@
 {
-  "generated": "2026-09-22T14:49:29Z",
-  "count": 2,
+  "generated": "2026-09-22T18:29:49Z",
+  "count": 3,
   "plants": [
+    {
+      "slug": "Bogenhanf",
+      "title": "Bogenhanf",
+      "subtitle": "",
+      "latin": "",
+      "meta": {},
+      "text": "",
+      "images": [
+        "Pflanzen/Bogenhanf/IMG_0372.jpg",
+        "Pflanzen/Bogenhanf/IMG_0373.jpg"
+      ],
+      "imageCount": 2
+    },
     {
       "slug": "Efeutute",
       "title": "Efeutute",
@@ -30,11 +43,10 @@
       },
       "text": "Die Monstera ist die unkomplizierteste Mitbewohnerin, die ich habe. Sie verzeiht es,\nwenn man mal eine Woche vergisst zu gießen, und beschwert sich nur mit hängenden\nBlättern - nach dem nächsten Guss steht sie wieder da, als wäre nichts gewesen.\n\nAbleger sind einfach: Ich schneide ein Stück Stamm direkt unter einer Luftwurzel ab,\nstelle es für zwei bis drei Wochen ins Wasserglas, und sobald die Wurzeln zwei\nZentimeter lang sind, kommt es in normale Blumenerde.\n\nWenn du eine willst, sag einfach Bescheid - Nachschub ist reichlich vorhanden.",
       "images": [
-        "Pflanzen/Monstera/1.svg",
-        "Pflanzen/Monstera/2.svg",
-        "Pflanzen/Monstera/3.svg"
+        "Pflanzen/Monstera/IMG_0370.jpg",
+        "Pflanzen/Monstera/IMG_0371.jpg"
       ],
-      "imageCount": 3
+      "imageCount": 2
     }
   ]
 }

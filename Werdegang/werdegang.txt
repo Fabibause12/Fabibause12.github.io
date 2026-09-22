@@ -1,0 +1,115 @@
+// ======================================================================
+//  Quelle für die Werdegang-Seite.
+//  Ändere hier den Text – werdegang.html wird daraus neu gebaut.
+//
+//  Regeln:
+//    # Abschnitt      fest: Einleitung, Stationen, Infokasten,
+//                     Kenntnisse, Schluss
+//    ## Eintrag       bei Stationen:  ## Zeitraum | Titel
+//    Wo: ...          kleine graue Zeile unter dem Titel
+//    Aktuell: ja      füllt den Punkt auf der Zeitleiste
+//    - ...            Stichpunkt
+//    alles andere     normaler Text, Leerzeile = neuer Absatz
+//    Zeilen mit // werden ignoriert
+//
+//  Danach:  python tools/build_werdegang.py
+//  Auf GitHub passiert das nach dem Hochladen von allein.
+// ======================================================================
+
+
+# Einleitung
+
+## Was ich fachlich mache
+
+Experimentalphysiker mit Schwerpunkt Elektronen Optik. Ich forsche an der Kontrolle freier Elektronen durch
+chipbasierte Elektrodenstrukturen – ein Thema, das mich seit der Bachelorarbeit
+begleitet. Der Weg geht bei mir von der Simulation über das Layout auf dem Chip
+und die Fertigung bis zur Messung im Elektronenmikroskop. Danach möchte ich im
+Bereich Halbleiter- und Quantenbauelemente promovieren.
+
+
+# Stationen
+
+## 2023 – 2026 | Master Physik
+Wo: Universität · Abschluss Ende 2026
+Aktuell: ja
+Schwerpunkte in Attosekundenphysik, Advanced Theoretical und Advanced
+Experimental Physics, Complex Systems II und III, dazu ein Seminar zu
+Quantenkommunikation und eine Vorlesung Neutrinophysik.
+
+Als fachfremdes Wahlfach: Anatomie und Physiologie für Nichtmediziner.
+
+## 2025 – 2026 | Masterarbeit: Elektronenführung auf dem Chip
+Wo: Lehrstuhl für Laserphysik
+- Bausteine für ein Quanten-Elektronenmikroskop: eine Weiche und ein Ringresonator für Mehrfachdurchgangs-Messungen
+- FEM-Simulation planarer Elektrodengeometrien; eine neue elliptische Form verbessert das Führungspotential deutlich
+- Layout per Skript erzeugt, als Platine gefertigt, gebondet und gegen das Design abgeglichen
+- 3D-gedruckte helikale Elektroden mit chemischer Kupferbeschichtung
+- Ein neu identifiziertes Führungsregime erstmals vermessen und in Teilchenbahn-Simulationen reproduziert
+
+## 2025 – 2026 | Tutor im Physik-Department
+Wo: Universität
+Festkörperphysik für Nebenfächler, Rechenmethoden der Physik I und II,
+Grundpraktikum für Medizinerinnen.
+
+## 2023 – 2025 | Studentischer wissenschaftlicher Mitarbeiter
+Wo: Lehrstuhl für Laserphysik
+- Betrieb und Wartung eines Rasterelektronenmikroskops, Hoch- und Ultrahochvakuum
+- Ätzen von Feldemissionsspitzen, Aufbau eine Simulations pipeline 
+
+## 2023 | Bachelorarbeit: auto-ponderomotorische S-Kurve
+Wo: Lehrstuhl für Laserphysik
+- Simulation und Messung des ersten Stabilitätsbereichs einer auto-ponderomotorischen S-Kurve mit interner Energievariation
+- Der Einstieg in das Thema, das ich in der Masterarbeit weitergeführt habe
+
+## 2021 – 2023 | Werkstudent
+Wo: Technologiekonzern, Bereich Hochspannungs-Gleichstromübertragung
+- Betreuung einer Simulations-Rechnerinstanz für neue Anlagen und Abarbeitung der Simulationsprojekte
+- Weiterentwicklung der bestehenden MATLAB-Skripte für die Simulationsabläufe
+
+## 2019 – 2024 | Bachelor Physik
+Wo: Universität
+Neben dem Pflichtprogramm: Elektronikpraktikum, Fortgeschrittenenpraktikum,
+Allgemeine Relativitätstheorie, Statistische Physik, ein Seminar zu Physik in
+der Medizin sowie Datenverarbeitung in der Physik, systemnahe Programmierung
+in C und ein Kurs zum wissenschaftlichen Schreiben mit LaTeX.
+
+## bis 2019 | Abitur
+Wo: Gymnasium · Auslandshalbjahr in Irland
+
+
+# Infokasten
+
+## Wissenschaftliches
+- Manuskript als Koautor in Vorbereitung
+- Patentanmeldung zur electronen führung mit 3 dimensionalen strukturen
+
+## Nebenbei
+Ehrenamtlich als Reisebegleiter für Menschen mit Behinderung unterwegs.
+
+Ansonsten: Imkerei, Bouldern, Kraftsport – und die Pflanzen, die hier ihren
+eigenen Reiter haben.
+
+
+# Kenntnisse
+
+## Programmierung
+Python, MATLAB, Java, C, C#, LaTeX
+
+## Simulation
+COMSOL Multiphysics, Elektrostatik, Teilchenbahnen, FEM
+
+## Labor
+Rasterelektronenmikroskop, Ultrahochvakuum, Hochspannung, Spitzenätzen, Wire-Bonding
+
+## Design und Fertigung
+Chip- und PCB-Design, KiCad, Gerber, Autodesk Inventor, MSLA-3D-Druck, Chemische Beschichtung
+
+## Sprachen
+Deutsch (Muttersprache), Englisch (fließend)
+
+
+# Schluss
+
+Das ist die Kurzfassung. Vollständiger Lebenslauf, Noten und Zeugnisse auf
+Anfrage.

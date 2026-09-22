@@ -1,0 +1,6 @@
+# Original-Fotos vom iPhone: werden beim Bauen in .jpg umgewandelt.
+# Die grossen HEIC-Dateien muessen nicht mit ins Repo.
+*.heic
+*.HEIC
+*.heif
+*.HEIF
