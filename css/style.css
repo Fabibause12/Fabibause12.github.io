@@ -296,7 +296,7 @@ h3 { font-size: 1.2rem; margin: 0 0 .4em; }
   gap: clamp(1.5rem, 4vw, 3.5rem);
   align-items: start;
 }
-@media (max-width: 820px) { .split { grid-template-columns: 1fr; } }
+@media (max-width: 820px) { .split { grid-template-columns: minmax(0, 1fr); } }
 
 .card {
   background: var(--surface);
@@ -572,9 +572,10 @@ h3 { font-size: 1.2rem; margin: 0 0 .4em; }
   gap: clamp(1.5rem, 4vw, 3rem);
   align-items: start;
 }
-@media (max-width: 860px) { .detail { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .detail { grid-template-columns: minmax(0, 1fr); } }
+.detail > * { min-width: 0; }
 
-.gallery { position: sticky; top: 80px; }
+.gallery { position: sticky; top: 80px; min-width: 0; }
 @media (max-width: 860px) { .gallery { position: static; } }
 
 .stage {
@@ -633,6 +634,7 @@ h3 { font-size: 1.2rem; margin: 0 0 .4em; }
 
 .thumbs {
   display: flex;
+  max-width: 100%;
   gap: .55rem;
   margin-top: .8rem;
   overflow-x: auto;
@@ -1552,7 +1554,7 @@ body.wuerfel {
 /* ---------- Teaser-Bilder auf der Startseite ---------- */
 
 .split.bild-links { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); }
-@media (max-width: 820px) { .split.bild-links { grid-template-columns: 1fr; } }
+@media (max-width: 820px) { .split.bild-links { grid-template-columns: minmax(0, 1fr); } }
 
 /* Hochformat im Querformat-Rahmen zeigen, ohne die Datei anzufassen. */
 .polaroid.quer img {
