@@ -660,11 +660,34 @@
     return bZaehler[k] || { wuerfe: 0, summe: 0, zahlen: {} };
   }
 
+  function rund(zahl) { return Math.round(zahl * 100) / 100; }
+
+  /* Weiche Kurve durch alle Punkte (Catmull-Rom als Bezier geschrieben). */
+  function kurvenPfad(punkte) {
+    if (!punkte.length) return "";
+    if (punkte.length === 1) return "M " + rund(punkte[0][0]) + " " + rund(punkte[0][1]);
+
+    function halt(y) { return rund(Math.max(0, Math.min(100, y))); }
+
+    var d = "M " + rund(punkte[0][0]) + " " + rund(punkte[0][1]);
+    for (var i = 0; i < punkte.length - 1; i++) {
+      var p0 = punkte[i - 1] || punkte[i];
+      var p1 = punkte[i];
+      var p2 = punkte[i + 1];
+      var p3 = punkte[i + 2] || p2;
+      d += " C " + rund(p1[0] + (p2[0] - p0[0]) / 6) + " " + halt(p1[1] + (p2[1] - p0[1]) / 6) +
+           ", " + rund(p2[0] - (p3[0] - p1[0]) / 6) + " " + halt(p2[1] - (p3[1] - p1[1]) / 6) +
+           ", " + rund(p2[0]) + " " + rund(p2[1]);
+    }
+    return d;
+  }
+
   function bZeichneVerteilung() {
     var e = bEinstellung();
     var theorie = bVerteilung(e.anzahl, e.seiten);
     var stand = bStand(e.anzahl, e.seiten, false);
     var min = e.anzahl, max = e.anzahl * e.seiten;
+    var spalten = max - min + 1;
     var hoechster = 0, s, ist;
 
     for (s = min; s <= max; s++) {
@@ -673,24 +696,37 @@
     }
 
     /* Bei vielen Summen nur jede fuenfte beschriften, sonst klebt alles aneinander. */
-    var schritt = (max - min + 1) > 24 ? 5 : 1;
+    var schritt = spalten > 24 ? 5 : 1;
+    var punkte = [];
     var html = "";
 
     for (s = min; s <= max; s++) {
+      var spalte = s - min;
       var t = theorie[s];
       ist = stand.wuerfe ? (stand.zahlen[s] || 0) / stand.wuerfe : 0;
+      punkte.push([spalte + 0.5, 100 - (t / hoechster) * 100]);
+
       var titel = "Summe " + s + ": theoretisch " + prozent(t) +
         (stand.wuerfe ? ", gewürfelt " + prozent(ist) + " (" + (stand.zahlen[s] || 0) + " mal)" : "");
-      var beschriftung = ((s - min) % schritt === 0 || s === max) ? s : "";
+      var beschriftung = (spalte % schritt === 0 || s === max) ? s : "";
       html += '<div class="saeule" title="' + titel + '">' +
         '<div class="balken">' +
-        '<span class="theorie" style="height:' + (t / hoechster * 100).toFixed(1) + '%"></span>' +
-        '<span class="ist" style="height:' + (ist / hoechster * 100).toFixed(1) + '%"></span>' +
+        (ist > 0 ? '<span class="ist" style="height:' + (ist / hoechster * 100).toFixed(1) + '%"></span>' : "") +
         "</div>" +
         '<span class="zahl">' + beschriftung + "</span></div>";
     }
 
-    el("#bChart").innerHTML = html;
+    var kurve = kurvenPfad(punkte);
+    var boden = " L " + rund(spalten - 0.5) + " 100 L 0.5 100 Z";
+
+    el("#bChart").innerHTML =
+      '<div class="plot">' +
+      '<svg class="kurve" viewBox="0 0 ' + spalten + ' 100" preserveAspectRatio="none" aria-hidden="true">' +
+      '<path class="flaeche" d="' + kurve + boden + '"/>' +
+      '<path class="linie" d="' + kurve + '" vector-effect="non-scaling-stroke"/>' +
+      "</svg>" +
+      '<div class="saeulen">' + html + "</div>" +
+      "</div>";
 
     var erwartung = e.anzahl * (e.seiten + 1) / 2;
     var aufbau = e.anzahl + " × W" + e.seiten;
