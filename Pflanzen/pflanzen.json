@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-23T08:29:04Z",
+  "generated": "2026-09-23T08:31:42Z",
   "count": 3,
   "plants": [
     {
@@ -32,8 +32,10 @@
         "Ableger": "Ja, jederzeit - ein Stück Ranke im Wasserglas reicht"
       },
       "text": "Die Efeutute ist die Pflanze für alle, die eigentlich keine Pflanzen können.\nSie wächst in fast jedem Licht, verzeiht Trockenheit und bildet aus jedem\nabgeschnittenen Stück wieder eine neue Pflanze.\n\nBei mir hängt sie vom Regal und hat inzwischen den halben Raum erobert.\nGenau deshalb habe ich immer Ableger übrig.",
-      "images": [],
-      "imageCount": 0
+      "images": [
+        "Pflanzen/Efeutute/IMG_0374.jpg"
+      ],
+      "imageCount": 1
     },
     {
       "slug": "Monstera",
