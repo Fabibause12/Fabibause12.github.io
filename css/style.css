@@ -1560,3 +1560,10 @@ body.wuerfel {
   object-fit: cover;
   object-position: center 10%;
 }
+
+/* ---------- Impressum ---------- */
+
+.impressum { max-width: 62ch; }
+.impressum h2 { font-size: 1.15rem; margin: 2rem 0 .4rem; }
+.impressum h2:first-child { margin-top: 0; }
+.impressum p { margin: 0 0 .9rem; }
