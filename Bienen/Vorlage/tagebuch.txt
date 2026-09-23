@@ -1,0 +1,5 @@
+# Eine Durchsicht pro Zeile:  Datum | Was war
+# Zeilen mit # werden nicht angezeigt. Sortiert wird automatisch, neueste zuerst.
+
+01.05.2026 | Wetter, was du vorgefunden hast, was du gemacht hast – ein Satz reicht.
+08.05.2026 | Gefüttert, Windel eingelegt, Milben gezählt.

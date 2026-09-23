@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pflanzen &ndash; Fabian Bammes</title>
-<meta name="description" content="Meine Pflanzen mit Bildern und Pflegehinweisen. Wenn dir eine gefällt, gibt es einen Ableger.">
-<meta name="theme-color" content="#1f7a3f">
+<title>Bienen &ndash; Fabian Bammes</title>
+<meta name="description" content="Mein Bienenvolk Maria: ein Nachschwarm auf Dadant, mit Bildern und dem Tagebuch aus den Durchsichten.">
+<meta name="theme-color" content="#b5760a">
 <link rel="stylesheet" href="./css/style.css">
 <link rel="icon" href="./assets/icon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="./assets/icon-180.png">
 <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
-<body>
+<body class="bienen">
 <a class="skip-link" href="#main">Zum Inhalt springen</a>
 
 <header class="site-head">
@@ -24,8 +24,8 @@
     <nav class="nav" id="mainNav" aria-label="Hauptnavigation">
       <ul>
         <li><a href="./index.html">Start</a></li>
-        <li><a href="./pflanzen.html" class="active">Pflanzen</a></li>
-        <li><a href="./bienen.html">Bienen</a></li>
+        <li><a href="./pflanzen.html">Pflanzen</a></li>
+        <li><a href="./bienen.html" class="active">Bienen</a></li>
         <li><a href="./werdegang.html">Werdegang</a></li>
         <li><a href="./wuerfel.html">Würfel</a></li>
         <li><a href="./index.html#freunde">Freunde</a></li>
@@ -46,24 +46,24 @@
 
 <main id="main" class="section">
   <div class="container">
-    <div class="section-head" id="pflanzenIntro">
-      <p class="eyebrow">Ableger-Abteilung</p>
-      <h1>Meine Pflanzen</h1>
+    <div class="section-head" id="bienenIntro">
+      <p class="eyebrow">Summende Abteilung</p>
+      <h1>Meine Bienen</h1>
       <p>
-        Das wächst gerade bei mir. Klick eine Pflanze an, dann siehst du alle Bilder
-        und was du über sie wissen musst. Wenn dir eine gefällt: melde dich, dann
-        schneide ich dir einen Ableger ab.
+        Seit April 2026 steht ein Volk im Garten. Hier gibt es Bilder, die Eckdaten
+        und das Tagebuch aus den Durchsichten &ndash; also alles, was ich mir sowieso
+        aufschreibe, nur etwas hübscher.
       </p>
     </div>
 
-    <div id="pflanzenApp">
-      <div class="loading"><span class="spinner"></span> Pflanzen werden geladen &hellip;</div>
+    <div id="bienenApp">
+      <div class="loading"><span class="spinner"></span> Völker werden geladen &hellip;</div>
     </div>
 
     <noscript>
       <div class="empty">
         <h3>JavaScript ist aus</h3>
-        <p>Die Pflanzenliste wird im Browser aus <code>Pflanzen/pflanzen.json</code> zusammengebaut. Ohne JavaScript bleibt sie leer.</p>
+        <p>Die Seite wird im Browser aus <code>Bienen/bienen.json</code> zusammengebaut. Ohne JavaScript bleibt sie leer.</p>
       </div>
     </noscript>
   </div>
@@ -91,6 +91,6 @@
 </footer>
 
 <script src="./js/site.js"></script>
-<script src="./js/pflanzen.js"></script>
+<script src="./js/bienen.js"></script>
 </body>
 </html>

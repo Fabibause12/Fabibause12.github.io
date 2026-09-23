@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'Pflanzen/**'
+      - 'Bienen/**'
       - 'Werdegang/**'
       - 'tools/**'
       - '.github/workflows/seiten-bauen.yml'
@@ -33,6 +34,9 @@ jobs:
       - name: Pflanzenliste erzeugen
         run: python tools/build_pflanzen.py
 
+      - name: Bienenliste erzeugen
+        run: python tools/build_bienen.py
+
       - name: Werdegang-Seite erzeugen
         run: python tools/build_werdegang.py
 
@@ -40,7 +44,7 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add Pflanzen werdegang.html
+          git add Pflanzen Bienen werdegang.html
           if git diff --staged --quiet; then
             echo "Alles schon aktuell"
           else

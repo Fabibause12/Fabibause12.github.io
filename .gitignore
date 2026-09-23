@@ -4,3 +4,7 @@
 *.HEIC
 *.heif
 *.HEIF
+
+# Python-Zwischendateien vom Bauen
+__pycache__/
+*.pyc
