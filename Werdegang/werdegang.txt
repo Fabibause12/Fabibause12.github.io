@@ -44,7 +44,7 @@ Wo: Lehrstuhl für Laserphysik
 - Bausteine für ein Quanten-Elektronenmikroskop: eine Weiche und ein Ringresonator für Mehrfachdurchgangs-Messungen
 - FEM-Simulation planarer Elektrodengeometrien; eine neue elliptische Form verbessert das Führungspotential deutlich
 - Layout per Skript erzeugt, als Platine gefertigt, gebondet und gegen das Design abgeglichen
-- 3D-gedruckte helikale Elektroden mit chemischer Kupferbeschichtung
+- 3D-gedruckte Elektroden mit oberflächen funktionalisierung
 - Ein neu identifiziertes Führungsregime erstmals vermessen und in Teilchenbahn-Simulationen reproduziert
 
 ## 2025 – 2026 | Tutor im Physik-Department
