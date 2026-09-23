@@ -1441,3 +1441,86 @@ body.wuerfel {
   --surface-2:   #2c1e1b;
   --line:        #3f2d29;
 }
+
+/* ---------- Wuerfelbecher: Verteilung ---------- */
+
+.verteilung-block {
+  border-top: 1px solid var(--line);
+  margin-top: 1.6rem;
+  padding-top: 1.3rem;
+}
+
+.verteilung-block h3 { margin: 0 0 .7rem; }
+
+.legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  margin: 0 0 .9rem;
+  font-size: .85rem;
+  color: var(--text-muted);
+}
+
+.legende span { display: inline-flex; align-items: center; gap: .45rem; }
+
+.legende i {
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.legende i.theorie {
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+}
+
+.legende i.ist { background: var(--accent); }
+
+.verteilung {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  overflow-x: auto;
+  padding-bottom: .3rem;
+}
+
+.saeule {
+  flex: 1 1 0;
+  min-width: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .3rem;
+}
+
+.saeule .balken {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1px;
+  width: 100%;
+  height: 120px;
+}
+
+.saeule .theorie,
+.saeule .ist {
+  flex: 1 1 0;
+  min-height: 2px;
+  border-radius: 3px 3px 0 0;
+}
+
+.saeule .theorie {
+  background: var(--accent-soft);
+  border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
+  border-bottom: 0;
+}
+
+.saeule .ist { background: var(--accent); }
+
+.saeule .zahl {
+  font-size: .7rem;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
