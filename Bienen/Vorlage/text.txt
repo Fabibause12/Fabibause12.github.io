@@ -1,0 +1,13 @@
+Titel: Name des Volkes
+Untertitel: Ein Satz, der auf der Übersichtskarte steht.
+Beute: Dadant, Zander, Warré – was es eben ist
+Eingezogen: Datum
+Herkunft: Schwarm, Ableger, gekauft …
+Königin: Farbe, Jahrgang, wann zuletzt gesehen
+Varroa: Womit und wann behandelt
+Vorrat: Wie viel Futter eingelagert ist
+---
+Hier steht der Text über das Volk. Leerzeilen werden zu Absätzen.
+
+Diesen Ordner kopieren, umbenennen, Bilder reinlegen – fertig. Der Ordner „Vorlage“
+selbst taucht auf der Seite nicht auf.

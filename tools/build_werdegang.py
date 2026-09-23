@@ -174,7 +174,7 @@ KOPF = '''<!DOCTYPE html>
 <meta name="robots" content="noindex">
 <link rel="stylesheet" href="./css/style.css">
 <link rel="icon" href="./assets/icon-32.png" sizes="32x32">
-<link rel="apple-touch-icon" href="./assets/icon-180.png"><text y='.9em' font-size='90'>&#127807;</text></svg>">
+<link rel="apple-touch-icon" href="./assets/icon-180.png">
 <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
 <body>
@@ -194,7 +194,9 @@ KOPF = '''<!DOCTYPE html>
       <ul>
         <li><a href="./index.html">Start</a></li>
         <li><a href="./pflanzen.html">Pflanzen</a></li>
+        <li><a href="./bienen.html">Bienen</a></li>
         <li><a href="./werdegang.html" class="active">Werdegang</a></li>
+        <li><a href="./wuerfel.html">Würfel</a></li>
         <li><a href="./index.html#freunde">Freunde</a></li>
         <li><a href="https://www.wann-mensa-heute.de" class="ext" target="_blank" rel="noopener">Mensa</a></li>
       </ul>

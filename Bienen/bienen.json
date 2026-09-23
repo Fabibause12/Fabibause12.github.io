@@ -1,0 +1,136 @@
+{
+  "generated": "2026-09-23T08:23:07Z",
+  "count": 1,
+  "colonies": [
+    {
+      "slug": "Maria",
+      "title": "Maria",
+      "subtitle": "Ein Nachschwarm vom April 2026, der bis zum Sommer auf zehn Waben gewachsen ist.",
+      "meta": {
+        "Beute": "Dadant, zehn Brutwaben",
+        "Rähmchen": "48 cm breit, 28,6 cm hoch",
+        "Eingezogen": "28. April 2026",
+        "Herkunft": "Nachschwarm von Veronika, ungefähr 1,5 kg",
+        "Königin": "Zum ersten Mal am 6. Juni 2026 gesehen, goldbrauner Leib, sonst schwarz",
+        "Varroa": "Milchsäure im Mai, Ameisensäure im Juli",
+        "Vorrat": "Ende August 2026 rund 25 kg eingelagert"
+      },
+      "text": "Maria ist ein Nachschwarm, den ich Ende April 2026 bei Veronika in Effeltrich\nabgeholt habe. Ungefähr anderthalb Kilo Bienen, eine Nacht in der Garage des\nNachbarn zwischengeparkt, am nächsten Tag vor der Beute ausgekippt. Nach gut einer\nStunde waren alle drin – dieser Moment, in dem sich der ganze Haufen in Bewegung\nsetzt und nach oben ins Flugloch läuft, ist immer noch mein liebster Teil.\n\nDie Bienen wohnen in einer Dadant-Beute auf zwei Zargen (Rähmchen), die nach und nach dazukommen, \nwenn das Volk sie auch ausbauen kann.\nBei Maria ging das schnell: Anfang Mai die ersten zwei Rähmchen zu einem Drittel\nausgebaut, Mitte Mai schon so viel Betrieb, dass drei Waben auf einmal dazu konnten.\nMitte Juni hing die zehnte und letzte Wabe dieses Jahres im Kasten.\n\nDie Königin habe ich lange nicht zu Gesicht bekommen. Am Brutbild sieht man ja, dass\nsie da ist – gleichmäßig verdeckelte Flächen, Stifte auf fast jeder Wabe. Am 6. Juni\nsaß sie dann doch auf Wabe fünf: goldbrauner Leib, ansonsten schwarz. Seitdem finde\nich sie regelmäßig wieder.\n\n\nGeerntet habe ich in diesem Jahr nichts. Ein Schwarm darf im ersten Sommer alles\nbehalten, was er einträgt. Ende August waren mit zufütternung rund 25 Kilo eingelagert, \ndas Brutnest sah gut aus, und damit darf sie in ihren ersten Winter.",
+      "images": [
+        "Bienen/Maria/1.jpg",
+        "Bienen/Maria/2.jpg",
+        "Bienen/Maria/3.jpg",
+        "Bienen/Maria/4.jpg",
+        "Bienen/Maria/5.jpg",
+        "Bienen/Maria/6.jpg"
+      ],
+      "imageCount": 6,
+      "log": [
+        {
+          "datum": "29.08.2026",
+          "text": "Komplette Durchsicht. Rund 25 kg sind eingelagert, damit ist die Winterfütterung so gut wie durch."
+        },
+        {
+          "datum": "13.08.2026",
+          "text": "30 Grad. Brutnest intakt, Königin gesehen. Der Trog ist nach 24 Stunden jedes Mal leer."
+        },
+        {
+          "datum": "07.08.2026",
+          "text": "28 Grad und trotzdem ein normal großes Brutnest. Viel unverdeckelter Honig, schmeckt nach Wald."
+        },
+        {
+          "datum": "04.08.2026",
+          "text": "Normales Brutnest, viele Bienen. Weiter mit 1,5 kg Futter 2:1."
+        },
+        {
+          "datum": "28.07.2026",
+          "text": "Behandlung beendet, weil es die nächsten Tage zu heiß wird. Insgesamt 28 Milben, also 4,6 pro Tag."
+        },
+        {
+          "datum": "22.07.2026",
+          "text": "Ameisensäure mit dem Nassenheider-Verdunster, 290 ml."
+        },
+        {
+          "datum": "18.07.2026",
+          "text": "Einzelne Stifte auf Wabe 4, die Königin sitzt gesund auf Wabe 5. Futter leer."
+        },
+        {
+          "datum": "16.07.2026",
+          "text": "Kaum noch Brut, keine Stifte, keine Drohnenbrut. Start der Winterfütterung mit 1,2 l 2:1."
+        },
+        {
+          "datum": "01.07.2026",
+          "text": "Volk relativ groß, auf allen Waben Honigkranz und Brut. Adam-Fütterer abgenommen, Windel eingelegt."
+        },
+        {
+          "datum": "23.06.2026",
+          "text": "Komplette Durchsicht: gleichmäßiges Brutbild, genug Stifte auf fast allen Waben, nur wenig Buckelbrut. Brutnest leicht verhonigt, weil am Vorabend gefüttert wurde."
+        },
+        {
+          "datum": "22.06.2026",
+          "text": "Zwölf Milben ausgezählt, macht rund 2,4 pro Tag."
+        },
+        {
+          "datum": "17.06.2026",
+          "text": "19 Grad. Wabe 9 fast fertig ausgebaut, das Volk wirkt sehr stark. Zehnte und letzte Wabe für dieses Jahr dazu."
+        },
+        {
+          "datum": "15.06.2026",
+          "text": "Drei Milben auf dem Schieber. Schneckenkot auf der Windel macht die Zählung allerdings ungenau."
+        },
+        {
+          "datum": "07.06.2026",
+          "text": "Wabe 9 dazu, Honig vom Schleudern oben in der Futterbox aufgesetzt. Zwei Waben gezogen, um sie herzuzeigen."
+        },
+        {
+          "datum": "06.06.2026",
+          "text": "24 Grad. Zum ersten Mal die Königin gesehen, auf Wabe 5: goldbrauner Leib, sonst schwarz."
+        },
+        {
+          "datum": "04.06.2026",
+          "text": "Nur Wabe 8 angeschaut: zu 70 Prozent ausgebaut und schon mit Brut. Futter komplett leer."
+        },
+        {
+          "datum": "29.05.2026",
+          "text": "20 Grad. Die Brut nimmt von Wabe zu Wabe zu, dazwischen einzelne Buckelbrut. Futter aufgefressen, 800 ml 1:1 nachgelegt."
+        },
+        {
+          "datum": "26.05.2026",
+          "text": "Windel wieder raus: zwei Milben in vier Tagen."
+        },
+        {
+          "datum": "22.05.2026",
+          "text": "26 Grad. Sehr homogenes Brutbild auf sechs Waben, der Honig wird gut angenommen. Windel eingelegt."
+        },
+        {
+          "datum": "17.05.2026",
+          "text": "Erste, größtenteils verdeckelte Brut und Honigkränze auf drei Waben. Weil so viel Betrieb ist, drei neue Waben auf einmal dazu."
+        },
+        {
+          "datum": "08.05.2026",
+          "text": "Noch keine Brut. Vierte Wabe dazu, Behandlung mit Milchsäure."
+        },
+        {
+          "datum": "04.05.2026",
+          "text": "22 Grad, bewölkt. Ruhiges Volk, Wabe 2 zu 90 Prozent ausgebaut. Nur gefüttert."
+        },
+        {
+          "datum": "02.05.2026",
+          "text": "25 Grad. Die ersten zwei Rähmchen sind zu einem Drittel ausgebaut. Eine neue Wabe dazu und eine Honigwabe vom letzten Jahr."
+        },
+        {
+          "datum": "30.04.2026",
+          "text": "17 Grad, sonnig. Fehlbau am Königinnengitter, die Bienen sammeln sich links vom Flugloch. Gitter und Fehlbau raus, erste Fütterung mit 200 g Zuckerwasser 1:1."
+        },
+        {
+          "datum": "29.04.2026",
+          "text": "In der Schwarmkiste blieb alles ruhig. Nach dem Einlogieren waren nach gut einer Stunde alle Bienen in der Dadant-Beute."
+        },
+        {
+          "datum": "28.04.2026",
+          "text": "Nachschwarm von Veronika eingefangen, ungefähr 1,5 kg. Über Nacht in der Garage des Nachbarn abgestellt."
+        }
+      ]
+    }
+  ]
+}

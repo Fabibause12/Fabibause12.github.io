@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Würfelspiele &ndash; Fabian Bammes</title>
+<meta name="description" content="Kniffel mit Punkteblock, Mäxchen zum Bluffen und ein freier Würfelbecher. Läuft ohne Anmeldung direkt im Browser.">
+<meta name="theme-color" content="#1f7a3f">
+<link rel="stylesheet" href="./css/style.css">
+<link rel="icon" href="./assets/icon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="./assets/icon-180.png">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+<header class="site-head">
+  <div class="container">
+    <a class="brand" href="./index.html">
+      <img class="logo" src="./assets/logo.png" alt="" width="26" height="26">
+      Fabian Bammes
+    </a>
+
+    <nav class="nav" id="mainNav" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="./index.html">Start</a></li>
+        <li><a href="./pflanzen.html">Pflanzen</a></li>
+        <li><a href="./bienen.html">Bienen</a></li>
+        <li><a href="./werdegang.html">Werdegang</a></li>
+        <li><a href="./wuerfel.html" class="active">Würfel</a></li>
+        <li><a href="./index.html#freunde">Freunde</a></li>
+        <li><a href="https://www.wann-mensa-heute.de" class="ext" target="_blank" rel="noopener">Mensa</a></li>
+      </ul>
+    </nav>
+
+    <button class="icon-btn theme-toggle" type="button" aria-label="Dunkles Design">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+    </button>
+
+    <button class="icon-btn nav-toggle" type="button" aria-controls="mainNav" aria-expanded="false" aria-label="Menü">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Zeit totschlagen</p>
+        <h1>Würfelspiele</h1>
+        <p>
+          Ein Gerät, mehrere Leute, reihum. Kniffel führt den Punkteblock selbst,
+          bei Mäxchen sieht nur der die Würfel, der gerade dran ist. Nichts wird
+          gespeichert &ndash; ein Neuladen der Seite beendet jede Partie.
+        </p>
+      </div>
+
+      <div class="game-tabs" role="tablist" aria-label="Spiel wählen">
+        <button type="button" role="tab" id="tab-kniffel" data-game="kniffel" aria-controls="panel-kniffel" aria-selected="true">Kniffel</button>
+        <button type="button" role="tab" id="tab-maexchen" data-game="maexchen" aria-controls="panel-maexchen" aria-selected="false">Mäxchen</button>
+        <button type="button" role="tab" id="tab-becher" data-game="becher" aria-controls="panel-becher" aria-selected="false">Würfelbecher</button>
+      </div>
+
+      <!-- ================= Kniffel ================= -->
+      <div class="game-panel" id="panel-kniffel" role="tabpanel" aria-labelledby="tab-kniffel">
+
+        <div class="card" id="kSetup">
+          <h2>Kniffel</h2>
+          <p class="muted">Ein bis sechs Spieler, 13 Runden, drei Würfe pro Runde.</p>
+          <div class="name-list" id="kNames"></div>
+          <div class="btn-row" style="justify-content:flex-start">
+            <button class="btn btn-quiet" type="button" id="kAdd">Spieler hinzufügen</button>
+            <button class="btn btn-primary" type="button" id="kStart">Losspielen</button>
+          </div>
+        </div>
+
+        <div id="kBoard" hidden>
+          <div class="card turn-card">
+            <div class="turn-bar">
+              <div>
+                <p class="eyebrow">Runde <span id="kRound">1</span> von 13</p>
+                <h3 id="kWho">&ndash;</h3>
+              </div>
+              <p class="rolls" id="kRolls" aria-live="polite">3 Würfe übrig</p>
+            </div>
+
+            <div class="dice-row" id="kDice"></div>
+            <p class="hint" id="kHint">Erst würfeln.</p>
+
+            <div class="btn-row" style="justify-content:flex-start">
+              <button class="btn btn-primary" type="button" id="kRoll">Würfeln</button>
+              <button class="btn btn-quiet" type="button" id="kQuit">Abbrechen</button>
+            </div>
+          </div>
+
+          <div class="sheet-wrap">
+            <table class="sheet" id="kSheet"></table>
+          </div>
+          <p class="hint">Ein freies Feld antippen trägt die angezeigten Punkte ein und beendet den Zug. Auch eine Null ist erlaubt.</p>
+        </div>
+
+        <div class="card result" id="kResult" hidden></div>
+
+        <details class="rules">
+          <summary>Regeln, wie sie hier gelten</summary>
+          <ul>
+            <li>Fünf Würfel, drei Würfe pro Zug. Zwischen den Würfen darf beliebig gehalten werden.</li>
+            <li>Oberer Block: Einer bis Sechser zählen die Augen der passenden Würfel. Ab 63 Punkten gibt es 35 Bonuspunkte.</li>
+            <li>Unterer Block: Dreierpasch und Viererpasch zählen die Augensumme aller fünf Würfel, Full House 25, kleine Straße 30, große Straße 40, Kniffel 50, Chance die Augensumme.</li>
+            <li>Ein Kniffel gilt hier <em>nicht</em> als Full House oder Straße.</li>
+            <li>Jeder weitere Kniffel bringt 50 Zusatzpunkte, wenn das Kniffel-Feld schon mit 50 belegt ist. Eingetragen werden muss trotzdem irgendwo.</li>
+            <li>Jedes Feld wird genau einmal belegt. Passt nichts, wird ein Feld mit 0 gestrichen.</li>
+          </ul>
+        </details>
+      </div>
+
+      <!-- ================= Mäxchen ================= -->
+      <div class="game-panel" id="panel-maexchen" role="tabpanel" aria-labelledby="tab-maexchen" hidden>
+
+        <div class="card" id="mSetup">
+          <h2>Mäxchen</h2>
+          <p class="muted">Zwei bis sechs Spieler, zwei Würfel, viel Lügen. Das Gerät wird herumgegeben.</p>
+          <div class="name-list" id="mNames"></div>
+          <label class="pick">
+            <span>Leben pro Spieler</span>
+            <select id="mLives">
+              <option value="2">2</option>
+              <option value="3" selected>3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </label>
+          <div class="btn-row" style="justify-content:flex-start">
+            <button class="btn btn-quiet" type="button" id="mAdd">Spieler hinzufügen</button>
+            <button class="btn btn-primary" type="button" id="mStart">Losspielen</button>
+          </div>
+        </div>
+
+        <div id="mBoard" hidden>
+          <div class="card game-stage" id="mStage" aria-live="polite"></div>
+          <ul class="lives" id="mLifeList"></ul>
+          <div class="btn-row" style="justify-content:flex-start">
+            <button class="btn btn-quiet" type="button" id="mQuit">Abbrechen</button>
+          </div>
+        </div>
+
+        <details class="rules">
+          <summary>Regeln, wie sie hier gelten</summary>
+          <ul>
+            <li>Reihenfolge der Würfe, von niedrig nach hoch: 31, 32, 41, 42, 43, 51, 52, 53, 54, 61, 62, 63, 64, 65, dann die Päsche 11 bis 66 und ganz oben das Mäxchen 21.</li>
+            <li>Wer würfelt, sieht das Ergebnis allein und sagt danach einen Wert an. Der muss höher sein als die Ansage davor &ndash; die Wahrheit ist optional.</li>
+            <li>Der Nächste glaubt es und würfelt selbst weiter, oder er deckt auf.</li>
+            <li>Beim Aufdecken gilt: Ist der echte Wurf mindestens so hoch wie die Ansage, verliert der Aufdecker ein Leben. Sonst verliert der Ansager eines.</li>
+            <li>Nach einem angesagten Mäxchen muss aufgedeckt werden. War es wahr, kostet das den Aufdecker zwei Leben.</li>
+            <li>Bei null Leben ist man raus. Die neue Runde beginnt der Verlierer, die Ansage startet wieder bei null.</li>
+          </ul>
+        </details>
+      </div>
+
+      <!-- ================= Würfelbecher ================= -->
+      <div class="game-panel" id="panel-becher" role="tabpanel" aria-labelledby="tab-becher" hidden>
+        <div class="card">
+          <h2>Würfelbecher</h2>
+          <p class="muted">Für alles andere: Reihenfolge auslosen, Streit beenden, Pasch suchen.</p>
+          <div class="becher-row">
+            <label class="pick">
+              <span>Anzahl</span>
+              <input type="number" id="bCount" min="1" max="8" step="1" value="2">
+            </label>
+            <label class="pick">
+              <span>Seiten</span>
+              <select id="bSides">
+                <option value="4">W4</option>
+                <option value="6" selected>W6</option>
+                <option value="8">W8</option>
+                <option value="10">W10</option>
+                <option value="12">W12</option>
+                <option value="20">W20</option>
+              </select>
+            </label>
+            <button class="btn btn-primary" type="button" id="bRoll">Würfeln</button>
+          </div>
+          <div class="dice-row" id="bDice"></div>
+          <p class="hint" id="bSum" aria-live="polite">Noch nichts gewürfelt.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="container">
+    <p>&copy; <span id="year">2026</span> Fabian Bammes</p>
+    <span class="stamp">Gustav Hammer zertifiziert</span>
+  </div>
+</footer>
+
+<script src="./js/site.js"></script>
+<script src="./js/wuerfel.js"></script>
+</body>
+</html>
