@@ -184,6 +184,19 @@
           </div>
           <div class="dice-row" id="bDice"></div>
           <p class="hint" id="bSum" aria-live="polite">Noch nichts gewürfelt.</p>
+
+          <div class="verteilung-block">
+            <h3>Wie oft kommt welche Summe?</h3>
+            <p class="legende">
+              <span><i class="theorie"></i> theoretisch</span>
+              <span><i class="ist"></i> diese Sitzung</span>
+            </p>
+            <div class="verteilung" id="bChart" role="img" aria-label="Balkendiagramm der Summenverteilung"></div>
+            <p class="hint" id="bStats" aria-live="polite"></p>
+            <div class="btn-row" style="justify-content:flex-start">
+              <button class="btn btn-quiet" type="button" id="bReset">Zähler zurücksetzen</button>
+            </div>
+          </div>
         </div>
       </div>
 

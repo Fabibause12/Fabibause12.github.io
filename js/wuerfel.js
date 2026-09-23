@@ -620,17 +620,113 @@
      ===================================================== */
 
   var bDice = el("#bDice");
-  el("#bRoll").addEventListener("click", function () {
+  var bZaehler = {};          /* Gezaehlt wird je Kombination aus Anzahl und Seiten. */
+
+  function bSchluessel(anzahl, seiten) { return anzahl + "x" + seiten; }
+
+  function bEinstellung() {
     var anzahl = Math.max(1, Math.min(8, parseInt(el("#bCount").value, 10) || 1));
     var seiten = parseInt(el("#bSides").value, 10) || 6;
     el("#bCount").value = String(anzahl);
+    return { anzahl: anzahl, seiten: seiten };
+  }
 
+  /* Wahrscheinlichkeit jeder Summe: die Verteilung eines Wuerfels so oft
+     mit sich selbst falten, wie Wuerfel im Becher liegen. */
+  function bVerteilung(anzahl, seiten) {
+    var v = [1], d, i, f, neu;
+    for (d = 0; d < anzahl; d++) {
+      neu = [];
+      for (i = 0; i < v.length + seiten; i++) neu[i] = 0;
+      for (i = 0; i < v.length; i++) {
+        if (!v[i]) continue;
+        for (f = 1; f <= seiten; f++) neu[i + f] += v[i];
+      }
+      v = neu;
+    }
+    var gesamt = Math.pow(seiten, anzahl);
+    return v.map(function (x) { return x / gesamt; });
+  }
+
+  function komma(zahl, stellen) {
+    return zahl.toFixed(stellen == null ? 2 : stellen).replace(".", ",");
+  }
+
+  function prozent(anteil) { return komma(anteil * 100, 1) + " %"; }
+
+  function bStand(anzahl, seiten, anlegen) {
+    var k = bSchluessel(anzahl, seiten);
+    if (!bZaehler[k] && anlegen) bZaehler[k] = { wuerfe: 0, summe: 0, zahlen: {} };
+    return bZaehler[k] || { wuerfe: 0, summe: 0, zahlen: {} };
+  }
+
+  function bZeichneVerteilung() {
+    var e = bEinstellung();
+    var theorie = bVerteilung(e.anzahl, e.seiten);
+    var stand = bStand(e.anzahl, e.seiten, false);
+    var min = e.anzahl, max = e.anzahl * e.seiten;
+    var hoechster = 0, s, ist;
+
+    for (s = min; s <= max; s++) {
+      ist = stand.wuerfe ? (stand.zahlen[s] || 0) / stand.wuerfe : 0;
+      hoechster = Math.max(hoechster, theorie[s], ist);
+    }
+
+    /* Bei vielen Summen nur jede fuenfte beschriften, sonst klebt alles aneinander. */
+    var schritt = (max - min + 1) > 24 ? 5 : 1;
+    var html = "";
+
+    for (s = min; s <= max; s++) {
+      var t = theorie[s];
+      ist = stand.wuerfe ? (stand.zahlen[s] || 0) / stand.wuerfe : 0;
+      var titel = "Summe " + s + ": theoretisch " + prozent(t) +
+        (stand.wuerfe ? ", gewürfelt " + prozent(ist) + " (" + (stand.zahlen[s] || 0) + " mal)" : "");
+      var beschriftung = ((s - min) % schritt === 0 || s === max) ? s : "";
+      html += '<div class="saeule" title="' + titel + '">' +
+        '<div class="balken">' +
+        '<span class="theorie" style="height:' + (t / hoechster * 100).toFixed(1) + '%"></span>' +
+        '<span class="ist" style="height:' + (ist / hoechster * 100).toFixed(1) + '%"></span>' +
+        "</div>" +
+        '<span class="zahl">' + beschriftung + "</span></div>";
+    }
+
+    el("#bChart").innerHTML = html;
+
+    var erwartung = e.anzahl * (e.seiten + 1) / 2;
+    var aufbau = e.anzahl + " × W" + e.seiten;
+    el("#bStats").textContent = stand.wuerfe
+      ? stand.wuerfe + (stand.wuerfe === 1 ? " Wurf" : " Würfe") + " mit " + aufbau +
+        " · Schnitt " + komma(stand.summe / stand.wuerfe) +
+        ", theoretisch wären es " + komma(erwartung)
+      : "Noch keine Würfe mit " + aufbau + ". Die blassen Balken zeigen, was zu erwarten wäre.";
+  }
+
+  el("#bRoll").addEventListener("click", function () {
+    var e = bEinstellung();
     var werte = [];
-    for (var i = 0; i < anzahl; i++) werte.push(wurf(seiten));
-    bDice.innerHTML = werte.map(function (w) { return wuerfelHtml(w, seiten); }).join("");
+    for (var i = 0; i < e.anzahl; i++) werte.push(wurf(e.seiten));
+    bDice.innerHTML = werte.map(function (w) { return wuerfelHtml(w, e.seiten); }).join("");
     animiere(bDice);
+
+    var s = summe(werte);
     el("#bSum").textContent = werte.length > 1
-      ? "Einzeln: " + werte.join(", ") + " – Summe: " + summe(werte)
-      : "Ergebnis: " + werte[0];
+      ? "Einzeln: " + werte.join(", ") + " – Summe: " + s
+      : "Ergebnis: " + s;
+
+    var stand = bStand(e.anzahl, e.seiten, true);
+    stand.wuerfe++;
+    stand.summe += s;
+    stand.zahlen[s] = (stand.zahlen[s] || 0) + 1;
+
+    bZeichneVerteilung();
   });
+
+  el("#bCount").addEventListener("change", bZeichneVerteilung);
+  el("#bSides").addEventListener("change", bZeichneVerteilung);
+  el("#bReset").addEventListener("click", function () {
+    bZaehler = {};
+    bZeichneVerteilung();
+  });
+
+  bZeichneVerteilung();
 })();
