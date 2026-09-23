@@ -992,14 +992,15 @@ body.no-scroll { overflow: hidden; }
 }
 
 .die {
+  --seite: 54px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 9%;
-  width: 54px;
-  height: 54px;
-  padding: 11%;
-  border-radius: 13px;
+  gap: calc(var(--seite) * .09);
+  width: var(--seite);
+  height: var(--seite);
+  padding: calc(var(--seite) * .12);
+  border-radius: calc(var(--seite) * .24);
   background: var(--surface);
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
@@ -1041,7 +1042,7 @@ body.no-scroll { overflow: hidden; }
   grid-template-rows: 1fr;
   place-items: center;
   font-family: var(--serif);
-  font-size: 1.35rem;
+  font-size: calc(var(--seite) * .46);
   font-weight: 600;
   padding: 0;
 }
@@ -1052,6 +1053,9 @@ body.no-scroll { overflow: hidden; }
   background: var(--surface-2);
   color: var(--text-muted);
 }
+
+/* Bei Maexchen liegen nur zwei Wuerfel auf dem Tisch - die duerfen groesser sein. */
+.game-stage .die { --seite: 72px; }
 
 .die-btn {
   padding: 0;
@@ -1242,7 +1246,7 @@ body.no-scroll { overflow: hidden; }
 @media (max-width: 560px) {
   .game-tabs { width: 100%; justify-content: space-between; }
   .game-tabs button { flex: 1; padding: .45rem .5rem; }
-  .die { width: 46px; height: 46px; }
+  .die { --seite: 46px; }
 }
 
 /* ---------- Bienen: Tagebuch ---------- */
@@ -1308,3 +1312,132 @@ body.bienen .plant-title {
   color: transparent;
 }
 body.bienen .badge { background: color-mix(in srgb, var(--honig) 85%, #000); }
+
+/* ---------- Seitenfarben: Startseite (grau) ---------- */
+
+body.start {
+  --accent:      #51585c;
+  --accent-dark: #3a4043;
+  --accent-soft: #e6e9ea;
+  --bg:          #f5f5f4;
+  --bg-alt:      #eaeae8;
+  --surface:     #fcfcfb;
+  --surface-2:   #f0f0ee;
+  --line:        #dcdcd9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body.start {
+    --accent:      #b6c0c5;
+    --accent-dark: #d4dcdf;
+    --accent-soft: #2b3134;
+    --bg:          #111314;
+    --bg-alt:      #17191a;
+    --surface:     #1a1d1e;
+    --surface-2:   #232728;
+    --line:        #333839;
+  }
+}
+
+:root[data-theme="dark"] body.start {
+  --accent:      #b6c0c5;
+  --accent-dark: #d4dcdf;
+  --accent-soft: #2b3134;
+  --bg:          #111314;
+  --bg-alt:      #17191a;
+  --surface:     #1a1d1e;
+  --surface-2:   #232728;
+  --line:        #333839;
+}
+
+body.start .hero::after {
+  background: linear-gradient(180deg, rgba(10, 12, 13, .35), rgba(10, 12, 13, .74));
+}
+body.start .hero .eyebrow { color: #d3d9dc; }
+
+/* ---------- Seitenfarben: Werdegang (lila mit Orange) ---------- */
+
+body.cv {
+  --accent:      #6d3fa0;
+  --accent-dark: #58307f;
+  --accent-soft: #efe6fa;
+  --orange:      #d2740f;
+  --bg:          #f7f5fa;
+  --bg-alt:      #efebf5;
+  --surface:     #fefcff;
+  --surface-2:   #f3eff8;
+  --line:        #ded7e7;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body.cv {
+    --accent:      #bb92f2;
+    --accent-dark: #d6bdff;
+    --accent-soft: #2a1d3c;
+    --orange:      #f59b3c;
+    --bg:          #121017;
+    --bg-alt:      #181322;
+    --surface:     #1c1726;
+    --surface-2:   #251e31;
+    --line:        #362c46;
+  }
+}
+
+:root[data-theme="dark"] body.cv {
+  --accent:      #bb92f2;
+  --accent-dark: #d6bdff;
+  --accent-soft: #2a1d3c;
+  --orange:      #f59b3c;
+  --bg:          #121017;
+  --bg-alt:      #181322;
+  --surface:     #1c1726;
+  --surface-2:   #251e31;
+  --line:        #362c46;
+}
+
+body.cv .tl-when { color: var(--orange); }
+body.cv .tl-item::before { border-color: var(--orange); }
+body.cv .tl-item.now::before {
+  background: var(--orange);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+body.cv .chips li {
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--orange) 40%, transparent);
+}
+
+/* ---------- Seitenfarben: Wuerfelspiele (rot) ---------- */
+
+body.wuerfel {
+  --accent:      #c02626;
+  --accent-dark: #9a1c1c;
+  --accent-soft: #fde3e0;
+  --bg:          #faf6f5;
+  --bg-alt:      #f4eae8;
+  --surface:     #fffcfb;
+  --surface-2:   #f8eeec;
+  --line:        #e7d6d2;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body.wuerfel {
+    --accent:      #f4715f;
+    --accent-dark: #ffa596;
+    --accent-soft: #3a1a16;
+    --bg:          #17100f;
+    --bg-alt:      #1e1413;
+    --surface:     #221715;
+    --surface-2:   #2c1e1b;
+    --line:        #3f2d29;
+  }
+}
+
+:root[data-theme="dark"] body.wuerfel {
+  --accent:      #f4715f;
+  --accent-dark: #ffa596;
+  --accent-soft: #3a1a16;
+  --bg:          #17100f;
+  --bg-alt:      #1e1413;
+  --surface:     #221715;
+  --surface-2:   #2c1e1b;
+  --line:        #3f2d29;
+}

@@ -170,14 +170,14 @@ KOPF = '''<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Werdegang &ndash; Fabian Bammes</title>
 <meta name="description" content="Kurzer Einblick in meinen fachlichen Werdegang.">
-<meta name="theme-color" content="#1f7a3f">
+<meta name="theme-color" content="#6d3fa0">
 <meta name="robots" content="noindex">
 <link rel="stylesheet" href="./css/style.css">
 <link rel="icon" href="./assets/icon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="./assets/icon-180.png">
 <script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
-<body>
+<body class="cv">
 <!-- Diese Datei wird aus Werdegang/werdegang.txt erzeugt.
      Änderungen hier gehen beim nächsten Bauen verloren!
      Bearbeite stattdessen Werdegang/werdegang.txt -->
