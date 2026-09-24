@@ -48,6 +48,16 @@ Sortiert wird automatisch, die neueste Durchsicht steht oben. Zeilen, die mit `#
 anfangen, sind Notizen für dich und tauchen auf der Seite nicht auf. Die Datei darf
 auch `durchsichten.txt` oder `log.txt` heißen.
 
+## Englische Fassung (optional)
+
+`text.en.txt` ist die englische `text.txt` (Stichwörter `Title`, `Subtitle`, `Hive`, …),
+`tagebuch.en.txt` die englische `tagebuch.txt`. Die Zeilen werden über das Datum
+zugeordnet – fehlt eine, steht auf Englisch der deutsche Eintrag da.
+
+```
+28.04.2026 | Caught a secondary swarm from Veronika, about 1.5 kg.
+```
+
 ## Bilder
 
 Gleiche Regeln wie bei den Pflanzen: `.jpg`, `.png`, `.webp` und so weiter, sortiert

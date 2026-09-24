@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://fabibause12.github.io/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://fabibause12.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fabibause12.github.io/index-en.html"/>
+  </url>
+  <url>
+    <loc>https://fabibause12.github.io/index-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://fabibause12.github.io/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fabibause12.github.io/index-en.html"/>
+  </url>
+  <url>
+    <loc>https://fabibause12.github.io/pflanzen.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://fabibause12.github.io/pflanzen.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fabibause12.github.io/pflanzen-en.html"/>
+  </url>
+  <url>
+    <loc>https://fabibause12.github.io/pflanzen-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://fabibause12.github.io/pflanzen.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fabibause12.github.io/pflanzen-en.html"/>
+  </url>
+  <url>
+    <loc>https://fabibause12.github.io/bienen.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://fabibause12.github.io/bienen.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fabibause12.github.io/bienen-en.html"/>
+  </url>
+  <url>
+    <loc>https://fabibause12.github.io/bienen-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://fabibause12.github.io/bienen.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fabibause12.github.io/bienen-en.html"/>
+  </url>
+  <url>
+    <loc>https://fabibause12.github.io/werdegang.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://fabibause12.github.io/werdegang.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fabibause12.github.io/werdegang-en.html"/>
+  </url>
+  <url>
+    <loc>https://fabibause12.github.io/werdegang-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://fabibause12.github.io/werdegang.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fabibause12.github.io/werdegang-en.html"/>
+  </url>
+  <url>
+    <loc>https://fabibause12.github.io/wuerfel.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://fabibause12.github.io/wuerfel.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fabibause12.github.io/wuerfel-en.html"/>
+  </url>
+  <url>
+    <loc>https://fabibause12.github.io/wuerfel-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://fabibause12.github.io/wuerfel.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fabibause12.github.io/wuerfel-en.html"/>
+  </url>
+  <url>
+    <loc>https://fabibause12.github.io/impressum.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://fabibause12.github.io/impressum.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fabibause12.github.io/impressum-en.html"/>
+  </url>
+  <url>
+    <loc>https://fabibause12.github.io/impressum-en.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://fabibause12.github.io/impressum.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://fabibause12.github.io/impressum-en.html"/>
+  </url>
+</urlset>

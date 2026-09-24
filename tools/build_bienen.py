@@ -7,10 +7,12 @@ Jedes Volk ist ein Unterordner:
       Maria/
         text.txt        <- Eckdaten und Text
         tagebuch.txt    <- optional: eine Durchsicht pro Zeile
+        text.en.txt     <- optional: Eckdaten und Text auf Englisch
+        tagebuch.en.txt <- optional: Durchsichten auf Englisch (gleiche Daten)
         1.jpg           <- beliebig viele Bilder
         2.jpg
 
-Die Bausteine (HEIC-Umwandlung, Textkopf, Sortierung) kommen aus
+Die Bausteine (HEIC-Umwandlung, Verkleinern, Textkopf, Sortierung) kommen aus
 build_pflanzen.py, damit es sie nur einmal gibt.
 
 Aufruf:  python tools/build_bienen.py
@@ -32,8 +34,27 @@ TAGEBUCH_NAMEN = ["tagebuch.txt", "durchsichten.txt", "log.txt"]
 DATUM = re.compile(r"^\s*(\d{1,2}[.\-/]\d{1,2}[.\-/]\d{2,4}|\d{4}-\d{2}-\d{2})\s*[|;\t]\s*(.+)$")
 
 
+def lies_zeilen(folder: Path, datei: Path, warnings: list):
+    """Zeilen der Form 'Datum | Was war' als Liste von (datum, text)."""
+    raus = []
+    for nr, zeile in enumerate(basis.read_text(datei).splitlines(), 1):
+        if not zeile.strip() or zeile.lstrip().startswith("#"):
+            continue
+        treffer = DATUM.match(zeile)
+        if not treffer:
+            warnings.append("%s/%s Zeile %d: kein 'Datum | Text' - uebersprungen"
+                            % (folder.name, datei.name, nr))
+            continue
+        raus.append((treffer.group(1).strip(), treffer.group(2).strip()))
+    return raus
+
+
 def lies_tagebuch(folder: Path, warnings: list):
-    """Zeilen der Form 'Datum | Was war' einlesen, juengste zuerst."""
+    """Zeilen der Form 'Datum | Was war' einlesen, juengste zuerst.
+
+    Liegt daneben eine tagebuch.en.txt, wird jede Zeile ueber das Datum
+    ihrer englischen Fassung zugeordnet.
+    """
     datei = None
     for name in TAGEBUCH_NAMEN:
         p = folder / name
@@ -43,16 +64,22 @@ def lies_tagebuch(folder: Path, warnings: list):
     if datei is None:
         return []
 
+    englisch = {}
+    en_datei = datei.with_name(datei.stem + ".en.txt")
+    if en_datei.is_file():
+        for datum, text in lies_zeilen(folder, en_datei, warnings):
+            englisch[sortier_datum(datum)] = text
+
     eintraege = []
-    for nr, zeile in enumerate(basis.read_text(datei).splitlines(), 1):
-        if not zeile.strip() or zeile.lstrip().startswith("#"):
-            continue
-        treffer = DATUM.match(zeile)
-        if not treffer:
-            warnings.append("%s/%s Zeile %d: kein 'Datum | Text' - uebersprungen"
-                            % (folder.name, datei.name, nr))
-            continue
-        eintraege.append({"datum": treffer.group(1).strip(), "text": treffer.group(2).strip()})
+    for datum, text in lies_zeilen(folder, datei, warnings):
+        eintrag = {"datum": datum, "text": text}
+        en = englisch.pop(sortier_datum(datum), None)
+        if en:
+            eintrag["en"] = en
+        eintraege.append(eintrag)
+    for rest in englisch:
+        warnings.append("%s/%s: %02d.%02d.%d steht nur in der englischen Fassung"
+                        % (folder.name, en_datei.name, rest[2], rest[1], rest[0]))
 
     eintraege.sort(key=lambda e: sortier_datum(e["datum"]), reverse=True)
     return eintraege
@@ -78,6 +105,7 @@ def sortier_datum(text: str):
 
 def collect(folder: Path, warnings: list):
     basis.wandle_heic(folder, warnings)
+    basis.verkleinere(folder, warnings)
 
     images = sorted(
         [p for p in folder.iterdir()
@@ -89,7 +117,8 @@ def collect(folder: Path, warnings: list):
     txt = None
     kandidaten = [p for p in folder.iterdir()
                   if p.is_file() and p.suffix.lower() == ".txt"
-                  and p.name.lower() not in TAGEBUCH_NAMEN]
+                  and p.name.lower() not in TAGEBUCH_NAMEN
+                  and not basis.ist_englisch(p)]
     if kandidaten:
         txt = basis.find_text_file(folder) if len(kandidaten) == 1 else sorted(
             kandidaten, key=lambda p: basis.natural_key(p.name))[0]
@@ -110,7 +139,7 @@ def collect(folder: Path, warnings: list):
     title = meta.pop("Titel", None) or meta.pop("Name", None) or folder.name.replace("_", " ")
     subtitle = meta.pop("Untertitel", None) or meta.pop("Kurz", None) or ""
 
-    return {
+    eintrag = {
         "slug": folder.name,
         "title": title,
         "subtitle": subtitle,
@@ -120,6 +149,10 @@ def collect(folder: Path, warnings: list):
         "imageCount": len(images),
         "log": lies_tagebuch(folder, warnings),
     }
+    en = basis.englisch(folder, txt, warnings, ("Title", "Titel", "Name"))
+    if en:
+        eintrag["en"] = en
+    return eintrag
 
 
 def main():
@@ -151,7 +184,8 @@ def main():
     print(f"{OUT_FILE.relative_to(ROOT).as_posix()}: {len(voelker)} Volk/Voelker, "
           f"{sum(v['imageCount'] for v in voelker)} Bild(er)")
     for v in voelker:
-        print(f"  - {v['title']:<24} {v['imageCount']} Bild(er), {len(v['log'])} Durchsicht(en)")
+        print(f"  - {v['title']:<24} {v['imageCount']} Bild(er), {len(v['log'])} Durchsicht(en)"
+              + ("" if "en" in v else ", ohne englische Fassung"))
     for w in warnings:
         print(f"  ! {w}", file=sys.stderr)
 

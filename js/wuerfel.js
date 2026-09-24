@@ -6,6 +6,9 @@
   var tabRow = document.querySelector(".game-tabs");
   if (!tabRow) return;
 
+  var i18n = window.i18n;
+  var t = i18n.t;
+
   /* ---------- Kleine Helfer ---------- */
 
   function el(sel, root) { return (root || document).querySelector(sel); }
@@ -60,7 +63,7 @@
     row.className = "name-row";
     row.innerHTML =
       '<input type="text" maxlength="14" autocomplete="off">' +
-      '<button type="button" class="drop icon-btn" aria-label="Spieler entfernen">' +
+      '<button type="button" class="drop icon-btn" aria-label="' + t("Spieler entfernen", "Remove player") + '">' +
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">' +
       '<path d="M6 6l12 12M18 6L6 18"/></svg></button>';
     liste.appendChild(row);
@@ -69,14 +72,15 @@
   function namenFrischen(liste, minimum) {
     var rows = els(".name-row", liste);
     rows.forEach(function (row, i) {
-      el("input", row).placeholder = "Spieler " + (i + 1);
+      el("input", row).placeholder = t("Spieler ", "Player ") + (i + 1);
+      el(".drop", row).setAttribute("aria-label", t("Spieler entfernen", "Remove player"));
       el(".drop", row).hidden = rows.length <= minimum;
     });
   }
 
   function namenLesen(liste) {
     return els(".name-row input", liste).map(function (inp, i) {
-      return inp.value.trim().slice(0, 14) || "Spieler " + (i + 1);
+      return inp.value.trim().slice(0, 14) || t("Spieler ", "Player ") + (i + 1);
     });
   }
 
@@ -125,22 +129,22 @@
   }
 
   var FELDER = [
-    { id: "o1", name: "Einer", oben: true, punkte: function (w) { return augenwert(w, 1); } },
-    { id: "o2", name: "Zweier", oben: true, punkte: function (w) { return augenwert(w, 2); } },
-    { id: "o3", name: "Dreier", oben: true, punkte: function (w) { return augenwert(w, 3); } },
-    { id: "o4", name: "Vierer", oben: true, punkte: function (w) { return augenwert(w, 4); } },
-    { id: "o5", name: "Fünfer", oben: true, punkte: function (w) { return augenwert(w, 5); } },
-    { id: "o6", name: "Sechser", oben: true, punkte: function (w) { return augenwert(w, 6); } },
-    { id: "u1", name: "Dreierpasch", punkte: function (w) { return gleiche(w) >= 3 ? summe(w) : 0; } },
-    { id: "u2", name: "Viererpasch", punkte: function (w) { return gleiche(w) >= 4 ? summe(w) : 0; } },
+    { id: "o1", name: "Einer", en: "Ones", oben: true, punkte: function (w) { return augenwert(w, 1); } },
+    { id: "o2", name: "Zweier", en: "Twos", oben: true, punkte: function (w) { return augenwert(w, 2); } },
+    { id: "o3", name: "Dreier", en: "Threes", oben: true, punkte: function (w) { return augenwert(w, 3); } },
+    { id: "o4", name: "Vierer", en: "Fours", oben: true, punkte: function (w) { return augenwert(w, 4); } },
+    { id: "o5", name: "Fünfer", en: "Fives", oben: true, punkte: function (w) { return augenwert(w, 5); } },
+    { id: "o6", name: "Sechser", en: "Sixes", oben: true, punkte: function (w) { return augenwert(w, 6); } },
+    { id: "u1", name: "Dreierpasch", en: "Three of a kind", punkte: function (w) { return gleiche(w) >= 3 ? summe(w) : 0; } },
+    { id: "u2", name: "Viererpasch", en: "Four of a kind", punkte: function (w) { return gleiche(w) >= 4 ? summe(w) : 0; } },
     {
       id: "u3", name: "Full House", punkte: function (w) {
         var h = haeufig(w).slice(1);
         return h.indexOf(3) >= 0 && h.indexOf(2) >= 0 ? 25 : 0;
       }
     },
-    { id: "u4", name: "Kleine Straße", punkte: function (w) { return strasse(w, 4) ? 30 : 0; } },
-    { id: "u5", name: "Große Straße", punkte: function (w) { return strasse(w, 5) ? 40 : 0; } },
+    { id: "u4", name: "Kleine Straße", en: "Small straight", punkte: function (w) { return strasse(w, 4) ? 30 : 0; } },
+    { id: "u5", name: "Große Straße", en: "Large straight", punkte: function (w) { return strasse(w, 5) ? 40 : 0; } },
     { id: "u6", name: "Kniffel", punkte: function (w) { return gleiche(w) === 5 ? 50 : 0; } },
     { id: "u7", name: "Chance", punkte: function (w) { return summe(w); } }
   ];
@@ -200,26 +204,28 @@
   }
 
   function kTabelle() {
-    var html = '<thead><tr><th scope="col">Feld</th>';
+    var html = '<thead><tr><th scope="col">' + t("Feld", "Box") + "</th>";
     kSpieler.forEach(function (s, i) {
       html += '<th scope="col" data-col="' + i + '">' + esc(s.name) + "</th>";
     });
     html += "</tr></thead><tbody>";
 
     FELDER.forEach(function (f) {
-      html += '<tr><th scope="row">' + f.name + "</th>";
+      html += '<tr><th scope="row">' + t(f.name, f.en) + "</th>";
       kSpieler.forEach(function (s, i) {
         html += '<td data-col="' + i + '"><button type="button" class="score-cell" data-feld="' +
           f.id + '" data-col="' + i + '"></button></td>';
       });
       html += "</tr>";
       if (f.id === "o6") {
-        html += kSummenZeile("Summe oben", "oben") + kSummenZeile("Bonus ab 63", "bonus");
+        html += kSummenZeile(t("Summe oben", "Upper total"), "oben") +
+          kSummenZeile(t("Bonus ab 63", "Bonus from 63"), "bonus");
       }
     });
 
-    html += kSummenZeile("Summe unten", "unten") + kSummenZeile("Kniffel-Bonus", "kbonus");
-    html += "</tbody><tfoot>" + kSummenZeile("Gesamt", "gesamt", true) + "</tfoot>";
+    html += kSummenZeile(t("Summe unten", "Lower total"), "unten") +
+      kSummenZeile(t("Kniffel-Bonus", "Kniffel bonus"), "kbonus");
+    html += "</tbody><tfoot>" + kSummenZeile(t("Gesamt", "Total"), "gesamt", true) + "</tfoot>";
     kSheet.innerHTML = html;
   }
 
@@ -246,21 +252,24 @@
 
   function kZeichne() {
     var sp = kSpieler[kAktiv];
-    el("#kWho").textContent = sp ? sp.name + " ist dran" : "–";
+    el("#kWho").textContent = sp ? sp.name + t(" ist dran", "’s turn") : "–";
     el("#kRound").textContent = String(kRunde());
-    el("#kRolls").textContent = kUebrig === 1 ? "1 Wurf übrig" : kUebrig + " Würfe übrig";
+    el("#kRolls").textContent = kUebrig === 1
+      ? t("1 Wurf übrig", "1 roll left")
+      : kUebrig + t(" Würfe übrig", " rolls left");
 
     var roll = el("#kRoll");
     roll.disabled = !kLaeuft || kUebrig === 0;
-    roll.textContent = kUebrig === 3 ? "Würfeln" : "Nochmal würfeln";
+    roll.textContent = kUebrig === 3 ? t("Würfeln", "Roll") : t("Nochmal würfeln", "Roll again");
 
     el("#kHint").textContent = !kLaeuft
-      ? "Die Partie ist vorbei."
+      ? t("Die Partie ist vorbei.", "The game is over.")
       : !kGeworfen
-        ? "Erst würfeln."
+        ? t("Erst würfeln.", "Roll first.")
         : kUebrig > 0
-          ? "Würfel antippen, die liegen bleiben sollen – oder gleich ein Feld eintragen."
-          : "Keine Würfe mehr: jetzt ein Feld eintragen.";
+          ? t("Würfel antippen, die liegen bleiben sollen – oder gleich ein Feld eintragen.",
+              "Tap the dice you want to keep – or fill in a box right away.")
+          : t("Keine Würfe mehr: jetzt ein Feld eintragen.", "No rolls left: fill in a box now.");
 
     kZeichneWuerfel();
     kZeichneTabelle();
@@ -269,8 +278,9 @@
   function kZeichneWuerfel() {
     kDice.innerHTML = kWuerfel.map(function (wert, i) {
       var aus = !kLaeuft || !kGeworfen || kUebrig === 0;
-      var label = "Würfel " + (i + 1) + (wert ? ", " + wert + " Augen" : ", noch nicht geworfen") +
-        (kFest[i] ? ", liegt" : "");
+      var label = t("Würfel ", "Die ") + (i + 1) +
+        (wert ? ", " + wert + t(" Augen", " pips") : t(", noch nicht geworfen", ", not rolled yet")) +
+        (kFest[i] ? t(", liegt", ", kept") : "");
       return '<button type="button" class="die-btn" data-i="' + i + '" aria-pressed="' +
         (kFest[i] ? "true" : "false") + '" aria-label="' + label + '"' + (aus ? " disabled" : "") +
         ">" + wuerfelHtml(wert, 6) + "</button>";
@@ -356,25 +366,29 @@
   function kEnde() {
     kLaeuft = false;
     kGeworfen = false;
+    kErgebnis();
+    kResult.hidden = false;
+    kZeichne();
+    kResult.scrollIntoView({ block: "nearest" });
+  }
+
+  function kErgebnis() {
     var liste = kSpieler.map(function (sp) {
       return { name: sp.name, punkte: kSummen(sp).gesamt };
     }).sort(function (a, b) { return b.punkte - a.punkte; });
 
-    var html = '<p class="eyebrow">Feierabend</p><h3>' +
+    var html = '<p class="eyebrow">' + t("Feierabend", "Game over") + "</p><h3>" +
       (liste.length > 1
-        ? esc(liste[0].name) + " gewinnt mit " + liste[0].punkte + " Punkten"
-        : esc(liste[0].name) + " kommt auf " + liste[0].punkte + " Punkte") +
+        ? esc(liste[0].name) + t(" gewinnt mit ", " wins with ") + liste[0].punkte + t(" Punkten", " points")
+        : esc(liste[0].name) + t(" kommt auf ", " scores ") + liste[0].punkte + t(" Punkte", " points")) +
       '</h3><ol class="rank-list">';
     liste.forEach(function (r) {
       html += "<li><span>" + esc(r.name) + "</span><strong>" + r.punkte + "</strong></li>";
     });
     html += '</ol><div class="btn-row" style="justify-content:flex-start">' +
-      '<button class="btn btn-primary" type="button" data-k="neu">Neues Spiel</button></div>';
+      '<button class="btn btn-primary" type="button" data-k="neu">' + t("Neues Spiel", "New game") + "</button></div>";
 
     kResult.innerHTML = html;
-    kResult.hidden = false;
-    kZeichne();
-    kResult.scrollIntoView({ block: "nearest" });
   }
 
   kResult.addEventListener("click", function (ev) {
@@ -396,7 +410,7 @@
   function mLabel(a, b) {
     var hoch = Math.max(a, b), tief = Math.min(a, b);
     if (hoch === 2 && tief === 1) return "21 (Mäxchen)";
-    if (hoch === tief) return String(hoch) + String(tief) + " (Pasch)";
+    if (hoch === tief) return String(hoch) + String(tief) + t(" (Pasch)", " (doubles)");
     return String(hoch) + String(tief);
   }
 
@@ -407,8 +421,9 @@
     }
     for (hoch = 1; hoch <= 6; hoch++) liste.push([hoch, hoch]);
     liste.push([2, 1]);
+    /* Das Label wird erst beim Zeichnen gebildet, damit es der Sprache folgt. */
     return liste.map(function (p) {
-      return { a: p[0], b: p[1], wert: mWert(p[0], p[1]), label: mLabel(p[0], p[1]) };
+      return { a: p[0], b: p[1], wert: mWert(p[0], p[1]) };
     }).sort(function (x, y) { return x.wert - y.wert; });
   })();
 
@@ -461,59 +476,69 @@
     var sp = mSpieler[mAktiv], html = "";
 
     if (mPhase === "uebergabe") {
-      html = '<p class="eyebrow">Weitergeben</p><h3>' + esc(sp.name) + ' ist dran</h3>' +
-        '<p class="hint">Gerät an ' + esc(sp.name) + ' geben, damit niemand mitguckt.' +
-        (mAnsage ? " Die Ansage steht bei " + mAnsage.label + "." : "") + "</p>" +
-        mKnopf("uebernehmen", "Ich bin " + sp.name, true);
+      html = '<p class="eyebrow">' + t("Weitergeben", "Pass it on") + "</p><h3>" +
+        esc(sp.name) + t(" ist dran", "’s turn") + "</h3>" +
+        '<p class="hint">' + t("Gerät an " + esc(sp.name) + " geben, damit niemand mitguckt.",
+                               "Hand the device to " + esc(sp.name) + " so nobody else can peek.") +
+        (mAnsage ? t(" Die Ansage steht bei ", " The current call is ") + mLabel(mAnsage.a, mAnsage.b) + "." : "") +
+        "</p>" +
+        mKnopf("uebernehmen", t("Ich bin ", "I am ") + sp.name, true);
 
     } else if (mPhase === "entscheiden") {
       var vor = mSpieler[mAnsage.von];
       var maex = mAnsage.wert === 1000;
-      html = '<p class="eyebrow">Ansage von ' + esc(vor.name) + '</p><h3>' + mAnsage.label + "</h3>" +
+      var ansage = mLabel(mAnsage.a, mAnsage.b);
+      html = '<p class="eyebrow">' + t("Ansage von ", "Called by ") + esc(vor.name) + "</p><h3>" + ansage + "</h3>" +
         '<div class="dice-row">' + wuerfelHtml("zu") + wuerfelHtml("zu") + "</div>" +
         '<p class="hint">' + (maex
-          ? "Ein angesagtes Mäxchen musst du aufdecken. Stimmt es, kostet dich das zwei Leben."
-          : "Glaubst du das? Wenn du weiterwürfelst, musst du höher ansagen als " +
-            mAnsage.label + ".") + "</p>" +
+          ? t("Ein angesagtes Mäxchen musst du aufdecken. Stimmt es, kostet dich das zwei Leben.",
+              "You have to call the bluff on an announced Mäxchen. If it's true, it costs you two lives.")
+          : t("Glaubst du das? Wenn du weiterwürfelst, musst du höher ansagen als " + ansage + ".",
+              "Do you believe it? If you roll on, you have to call higher than " + ansage + ".")) + "</p>" +
         '<div class="btn-row" style="justify-content:flex-start">' +
-        '<button class="btn btn-primary" type="button" data-m="aufdecken">Aufdecken</button>' +
-        (maex ? "" : '<button class="btn btn-quiet" type="button" data-m="glauben">Glauben und würfeln</button>') +
+        '<button class="btn btn-primary" type="button" data-m="aufdecken">' + t("Aufdecken", "Call the bluff") + "</button>" +
+        (maex ? "" : '<button class="btn btn-quiet" type="button" data-m="glauben">' +
+          t("Glauben und würfeln", "Believe it and roll") + "</button>") +
         "</div>";
 
     } else if (mPhase === "werfen") {
-      html = '<p class="eyebrow">' + esc(sp.name) + '</p><h3>Würfeln</h3>' +
+      html = '<p class="eyebrow">' + esc(sp.name) + "</p><h3>" + t("Würfeln", "Roll") + "</h3>" +
         '<div class="dice-row">' + wuerfelHtml("zu") + wuerfelHtml("zu") + "</div>" +
-        '<p class="hint">Nur du siehst das Ergebnis.</p>' +
-        mKnopf("wuerfeln", "Becher schütteln", true);
+        '<p class="hint">' + t("Nur du siehst das Ergebnis.", "Only you can see the result.") + "</p>" +
+        mKnopf("wuerfeln", t("Becher schütteln", "Shake the cup"), true);
 
     } else if (mPhase === "ansagen") {
       var frei = M_LISTE.filter(function (a) {
         return !mAnsage || a.wert > mAnsage.wert;
       });
       var wahrheit = frei.some(function (a) { return a.wert === mWurf.wert; });
-      html = '<p class="eyebrow">' + esc(sp.name) + '</p><h3>Du hast ' + mWurf.label + "</h3>" +
+      html = '<p class="eyebrow">' + esc(sp.name) + "</p><h3>" + t("Du hast ", "You rolled ") +
+        mLabel(mWurf.a, mWurf.b) + "</h3>" +
         '<div class="dice-row">' + wuerfelHtml(mWurf.a, 6) + wuerfelHtml(mWurf.b, 6) + "</div>" +
         '<p class="hint">' + (wahrheit
-          ? "Du kannst die Wahrheit sagen oder höher gehen."
-          : "Dein Wurf liegt nicht über " + mAnsage.label + " – du musst bluffen.") + "</p>" +
-        '<label class="pick"><span>Ich sage an</span><select id="mPick">' +
+          ? t("Du kannst die Wahrheit sagen oder höher gehen.", "You can tell the truth or go higher.")
+          : t("Dein Wurf liegt nicht über " + mLabel(mAnsage.a, mAnsage.b) + " – du musst bluffen.",
+              "Your roll isn't higher than " + mLabel(mAnsage.a, mAnsage.b) + " – you have to bluff.")) + "</p>" +
+        '<label class="pick"><span>' + t("Ich sage an", "I call") + '</span><select id="mPick">' +
         frei.map(function (a) {
           return '<option value="' + a.wert + '"' +
-            (a.wert === mWurf.wert ? " selected" : "") + ">" + a.label +
-            (a.wert === mWurf.wert ? " – dein Wurf" : "") + "</option>";
+            (a.wert === mWurf.wert ? " selected" : "") + ">" + mLabel(a.a, a.b) +
+            (a.wert === mWurf.wert ? t(" – dein Wurf", " – your roll") : "") + "</option>";
         }).join("") + "</select></label>" +
-        mKnopf("ansagen", "Ansagen und weitergeben", true);
+        mKnopf("ansagen", t("Ansagen und weitergeben", "Call and pass on"), true);
 
     } else if (mPhase === "aufgedeckt") {
-      html = '<p class="eyebrow">Aufgedeckt</p><h3>' + mErgebnis.titel + "</h3>" +
+      var aufgedeckt = mAufgedecktText();
+      html = '<p class="eyebrow">' + t("Aufgedeckt", "Revealed") + "</p><h3>" + aufgedeckt.titel + "</h3>" +
         '<div class="dice-row">' + wuerfelHtml(mWurf.a, 6) + wuerfelHtml(mWurf.b, 6) + "</div>" +
-        "<p>" + mErgebnis.text + "</p>" +
-        mKnopf("weiter", "Weiter", true);
+        "<p>" + aufgedeckt.text + "</p>" +
+        mKnopf("weiter", t("Weiter", "Continue"), true);
 
     } else if (mPhase === "sieg") {
-      html = '<p class="eyebrow">Vorbei</p><h3>' + esc(mLebend()[0].name) + " gewinnt</h3>" +
-        '<p class="hint">Alle anderen haben ihre Leben verspielt.</p>' +
-        mKnopf("neu", "Neues Spiel", true);
+      html = '<p class="eyebrow">' + t("Vorbei", "Game over") + "</p><h3>" +
+        esc(mLebend()[0].name) + t(" gewinnt", " wins") + "</h3>" +
+        '<p class="hint">' + t("Alle anderen haben ihre Leben verspielt.", "Everyone else has lost all their lives.") + "</p>" +
+        mKnopf("neu", t("Neues Spiel", "New game"), true);
     }
 
     mStage.innerHTML = html;
@@ -534,7 +559,8 @@
       }
       var klasse = s.leben <= 0 ? "out" : (i === mAktiv && mPhase !== "sieg" ? "now" : "");
       return '<li class="' + klasse + '"><span>' + esc(s.name) +
-        '</span><span class="pips" aria-label="' + s.leben + ' Leben">' + pips + "</span></li>";
+        '</span><span class="pips" aria-label="' + s.leben +
+        (s.leben === 1 ? t(" Leben", " life") : t(" Leben", " lives")) + '">' + pips + "</span></li>";
     }).join("");
   }
 
@@ -551,7 +577,7 @@
 
     } else if (aktion === "wuerfeln") {
       var a = wurf(6), b = wurf(6);
-      mWurf = { a: a, b: b, wert: mWert(a, b), label: mLabel(a, b) };
+      mWurf = { a: a, b: b, wert: mWert(a, b) };
       mPhase = "ansagen";
       mZeichne();
       animiere(el(".dice-row", mStage));
@@ -560,7 +586,7 @@
     } else if (aktion === "ansagen") {
       var pick = el("#mPick");
       var gewaehlt = M_LISTE.filter(function (x) { return x.wert === +pick.value; })[0];
-      mAnsage = { wert: gewaehlt.wert, label: gewaehlt.label, von: mAktiv };
+      mAnsage = { a: gewaehlt.a, b: gewaehlt.b, wert: gewaehlt.wert, von: mAktiv };
       mAktiv = mNaechster(mAktiv);
       mPhase = "uebergabe";
 
@@ -588,31 +614,41 @@
   });
 
   function mAufdecken() {
-    var ansager = mSpieler[mAnsage.von], aufdecker = mSpieler[mAktiv];
     var stimmt = mWurf.wert >= mAnsage.wert;
     var maex = mAnsage.wert === 1000;
-    var verlierer, abzug, titel, text;
-
-    if (stimmt) {
-      verlierer = mAktiv;
-      abzug = maex ? 2 : 1;
-      titel = esc(aufdecker.name) + " verliert " + (abzug === 2 ? "zwei Leben" : "ein Leben");
-      text = esc(ansager.name) + " hat " + mAnsage.label + " angesagt und tatsächlich " +
-        mWurf.label + " gewürfelt.";
-    } else {
-      verlierer = mAnsage.von;
-      abzug = 1;
-      titel = esc(ansager.name) + " verliert ein Leben";
-      text = esc(ansager.name) + " hat " + mAnsage.label + " angesagt, im Becher lagen aber nur " +
-        mWurf.label + ".";
-    }
+    var verlierer = stimmt ? mAktiv : mAnsage.von;
+    var abzug = stimmt && maex ? 2 : 1;
 
     mSpieler[verlierer].leben = Math.max(0, mSpieler[verlierer].leben - abzug);
-    if (mSpieler[verlierer].leben === 0) {
-      text += " " + esc(mSpieler[verlierer].name) + " ist damit raus.";
-    }
-    mErgebnis = { verlierer: verlierer, titel: titel, text: text };
+    mErgebnis = {
+      verlierer: verlierer, abzug: abzug, stimmt: stimmt,
+      ansager: mAnsage.von, aufdecker: mAktiv, raus: mSpieler[verlierer].leben === 0
+    };
     mPhase = "aufgedeckt";
+  }
+
+  /* Ergebnis des Aufdeckens als Text, erst beim Zeichnen gebildet (Sprache). */
+  function mAufgedecktText() {
+    var e = mErgebnis;
+    var ansager = esc(mSpieler[e.ansager].name), aufdecker = esc(mSpieler[e.aufdecker].name);
+    var ansage = mLabel(mAnsage.a, mAnsage.b), wurfText = mLabel(mWurf.a, mWurf.b);
+    var titel, text;
+
+    if (e.stimmt) {
+      titel = aufdecker + (e.abzug === 2
+        ? t(" verliert zwei Leben", " loses two lives")
+        : t(" verliert ein Leben", " loses a life"));
+      text = t(ansager + " hat " + ansage + " angesagt und tatsächlich " + wurfText + " gewürfelt.",
+               ansager + " called " + ansage + " and really rolled " + wurfText + ".");
+    } else {
+      titel = ansager + t(" verliert ein Leben", " loses a life");
+      text = t(ansager + " hat " + ansage + " angesagt, im Becher lagen aber nur " + wurfText + ".",
+               ansager + " called " + ansage + ", but the cup only held " + wurfText + ".");
+    }
+    if (e.raus) {
+      text += " " + esc(mSpieler[e.verlierer].name) + t(" ist damit raus.", " is out.");
+    }
+    return { titel: titel, text: text };
   }
 
   /* =====================================================
@@ -620,6 +656,7 @@
      ===================================================== */
 
   var bDice = el("#bDice");
+  var bLetzte = null;         /* zuletzt gewuerfelte Werte, fuer den Text darunter */
   var bZaehler = {};          /* Gezaehlt wird je Kombination aus Anzahl und Seiten. */
 
   function bSchluessel(anzahl, seiten) { return anzahl + "x" + seiten; }
@@ -649,10 +686,11 @@
   }
 
   function komma(zahl, stellen) {
-    return zahl.toFixed(stellen == null ? 2 : stellen).replace(".", ",");
+    var text = zahl.toFixed(stellen == null ? 2 : stellen);
+    return i18n.lang() === "en" ? text : text.replace(".", ",");
   }
 
-  function prozent(anteil) { return komma(anteil * 100, 1) + " %"; }
+  function prozent(anteil) { return komma(anteil * 100, 1) + t(" %", "%"); }
 
   function bStand(anzahl, seiten, anlegen) {
     var k = bSchluessel(anzahl, seiten);
@@ -702,12 +740,13 @@
 
     for (s = min; s <= max; s++) {
       var spalte = s - min;
-      var t = theorie[s];
       ist = stand.wuerfe ? (stand.zahlen[s] || 0) / stand.wuerfe : 0;
-      punkte.push([spalte + 0.5, 100 - (t / hoechster) * 100]);
+      punkte.push([spalte + 0.5, 100 - (theorie[s] / hoechster) * 100]);
 
-      var titel = "Summe " + s + ": theoretisch " + prozent(t) +
-        (stand.wuerfe ? ", gewürfelt " + prozent(ist) + " (" + (stand.zahlen[s] || 0) + " mal)" : "");
+      var titel = t("Summe ", "Sum ") + s + t(": theoretisch ", ": theoretical ") + prozent(theorie[s]) +
+        (stand.wuerfe
+          ? t(", gewürfelt ", ", rolled ") + prozent(ist) + " (" + (stand.zahlen[s] || 0) + t(" mal)", "×)")
+          : "");
       var beschriftung = (spalte % schritt === 0 || s === max) ? s : "";
       html += '<div class="saeule" title="' + titel + '">' +
         '<div class="balken">' +
@@ -729,12 +768,25 @@
       "</div>";
 
     var erwartung = e.anzahl * (e.seiten + 1) / 2;
-    var aufbau = e.anzahl + " × W" + e.seiten;
+    var aufbau = e.anzahl + t(" × W", " × D") + e.seiten;
     el("#bStats").textContent = stand.wuerfe
-      ? stand.wuerfe + (stand.wuerfe === 1 ? " Wurf" : " Würfe") + " mit " + aufbau +
-        " · Schnitt " + komma(stand.summe / stand.wuerfe) +
-        ", theoretisch wären es " + komma(erwartung)
-      : "Noch keine Würfe mit " + aufbau + ". Die blassen Balken zeigen, was zu erwarten wäre.";
+      ? stand.wuerfe + (stand.wuerfe === 1 ? t(" Wurf", " roll") : t(" Würfe", " rolls")) +
+        t(" mit ", " with ") + aufbau +
+        t(" · Schnitt ", " · average ") + komma(stand.summe / stand.wuerfe) +
+        t(", theoretisch wären es ", ", in theory it would be ") + komma(erwartung)
+      : t("Noch keine Würfe mit " + aufbau + ". Die blassen Balken zeigen, was zu erwarten wäre.",
+          "No rolls with " + aufbau + " yet. The pale bars show what to expect.");
+  }
+
+  function bZeichneSumme() {
+    if (!bLetzte) {
+      el("#bSum").textContent = t("Noch nichts gewürfelt.", "Nothing rolled yet.");
+      return;
+    }
+    var s = summe(bLetzte);
+    el("#bSum").textContent = bLetzte.length > 1
+      ? t("Einzeln: ", "Individually: ") + bLetzte.join(", ") + t(" – Summe: ", " – sum: ") + s
+      : t("Ergebnis: ", "Result: ") + s;
   }
 
   el("#bRoll").addEventListener("click", function () {
@@ -745,9 +797,8 @@
     animiere(bDice);
 
     var s = summe(werte);
-    el("#bSum").textContent = werte.length > 1
-      ? "Einzeln: " + werte.join(", ") + " – Summe: " + s
-      : "Ergebnis: " + s;
+    bLetzte = werte;
+    bZeichneSumme();
 
     var stand = bStand(e.anzahl, e.seiten, true);
     stand.wuerfe++;
@@ -765,4 +816,20 @@
   });
 
   bZeichneVerteilung();
+  bZeichneSumme();
+
+  /* ---------- Sprache gewechselt: alles, was das Skript geschrieben hat, neu zeichnen ---------- */
+
+  document.addEventListener("langchange", function () {
+    namenFrischen(kNames, 1);
+    namenFrischen(mNames, 2);
+    if (kSpieler.length && !kBoard.hidden) {
+      kTabelle();
+      kZeichne();
+      if (!kResult.hidden) kErgebnis();
+    }
+    if (mPhase !== "aus") mZeichne();
+    bZeichneSumme();
+    bZeichneVerteilung();
+  });
 })();

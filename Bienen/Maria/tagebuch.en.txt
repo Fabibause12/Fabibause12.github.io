@@ -1,0 +1,29 @@
+# English version of tagebuch.txt: same dates, one inspection per line.
+# Lines are matched to the German diary by their date.
+
+28.04.2026 | Caught a secondary swarm from Veronika, about 1.5 kg. Left it overnight in the neighbour's garage.
+29.04.2026 | Everything stayed calm in the swarm box. After hiving, all bees were in the Dadant hive within a good hour.
+30.04.2026 | 17 degrees, sunny. Wild comb on the queen excluder, the bees are gathering to the left of the entrance. Excluder and wild comb out, first feeding with 200 g of 1:1 sugar syrup.
+02.05.2026 | 25 degrees. The first two frames are a third drawn. Added a new comb and a honey comb from last year.
+04.05.2026 | 22 degrees, cloudy. Calm colony, comb 2 is 90 percent drawn. Only fed.
+08.05.2026 | No brood yet. Added a fourth comb, treatment with lactic acid.
+17.05.2026 | First brood, mostly capped, and honey arches on three combs. Because there's so much going on, added three new combs at once.
+22.05.2026 | 26 degrees. Very even brood pattern on six combs, the honey is taken well. Put in the mite board.
+26.05.2026 | Mite board out again: two mites in four days.
+29.05.2026 | 20 degrees. Brood increases from comb to comb, with a few cells of drone brood in worker cells in between. Feed eaten up, topped up with 800 ml of 1:1.
+04.06.2026 | Only looked at comb 8: 70 percent drawn and already with brood. Feed completely gone.
+06.06.2026 | 24 degrees. Saw the queen for the first time, on comb 5: golden-brown abdomen, otherwise black.
+07.06.2026 | Added comb 9, put honey from extracting on top in the feeder box. Pulled out two combs to show them off.
+15.06.2026 | Three mites on the tray. Slug droppings on the mite board make the count inaccurate, though.
+17.06.2026 | 19 degrees. Comb 9 almost fully drawn, the colony seems very strong. Added the tenth and last comb for this year.
+22.06.2026 | Counted twelve mites, which makes about 2.4 per day.
+23.06.2026 | Full inspection: even brood pattern, enough eggs on almost all combs, only a little drone brood in worker cells. Brood nest slightly clogged with honey because it was fed the evening before.
+01.07.2026 | Colony fairly large, honey arch and brood on every comb. Took off the Adam feeder, put in the mite board.
+16.07.2026 | Hardly any brood left, no eggs, no drone brood. Start of winter feeding with 1.2 l of 2:1.
+18.07.2026 | A few eggs on comb 4, the queen is sitting healthy on comb 5. Feed gone.
+22.07.2026 | Formic acid with the Nassenheider evaporator, 290 ml.
+28.07.2026 | Treatment stopped because the next few days will be too hot. 28 mites in total, so 4.6 per day.
+04.08.2026 | Normal brood nest, lots of bees. Continuing with 1.5 kg of 2:1 feed.
+07.08.2026 | 28 degrees and still a normal-sized brood nest. Lots of uncapped honey, tastes of forest.
+13.08.2026 | 30 degrees. Brood nest intact, saw the queen. The trough is empty every time after 24 hours.
+29.08.2026 | Full inspection. About 25 kg are stored, so the winter feeding is as good as done.

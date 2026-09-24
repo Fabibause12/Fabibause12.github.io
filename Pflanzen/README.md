@@ -50,6 +50,21 @@ in der Tabelle rechts. Du kannst dir also beliebige Zeilen ausdenken.
 Die Datei darf auch `info.txt` oder `Monstera.txt` heißen – irgendeine `.txt`
 im Ordner reicht.
 
+## Englische Fassung (optional)
+
+Neben die `text.txt` kommt eine `text.en.txt` mit demselben Aufbau. Die Stichwörter
+dürfen englisch sein (`Title`, `Subtitle`, `Light`, `Watering`, …), sie stehen so in
+der Tabelle. Der lateinische Name wird nicht wiederholt. Was fehlt, zeigt die Seite
+auf Englisch einfach auf Deutsch an.
+
+```
+Title: Snake plant
+Subtitle: The plant for everyone who regularly forgets their plants.
+Light: Bright to shady
+---
+The English text.
+```
+
 ## Bilder
 
 * Erlaubt sind `.jpg`, `.jpeg`, `.png`, `.webp`, `.gif`, `.avif`, `.svg`
