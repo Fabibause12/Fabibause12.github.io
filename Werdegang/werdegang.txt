@@ -31,7 +31,7 @@ Bereich Halbleiter- und Quantenbauelemente promovieren.
 # Stationen
 
 ## 2023 – 2026 | Master Physik
-Wo: Universität · Abschluss Ende 2026
+Wo: FAU Erlangen-Nürnberg · Abschluss Ende 2026
 Aktuell: ja
 Schwerpunkte in Attosekundenphysik, Advanced Theoretical und Advanced
 Experimental Physics, Complex Systems II und III, dazu ein Seminar zu
@@ -40,7 +40,7 @@ Quantenkommunikation und eine Vorlesung Neutrinophysik.
 Als fachfremdes Wahlfach: Anatomie und Physiologie für Nichtmediziner.
 
 ## 2025 – 2026 | Masterarbeit: Elektronenführung auf dem Chip
-Wo: Lehrstuhl für Laserphysik
+Wo: Lehrstuhl für Laserphysik (Prof. Hommelhoff), FAU Erlangen-Nürnberg
 - Bausteine für ein Quanten-Elektronenmikroskop: eine Weiche und ein Ringresonator für Mehrfachdurchgangs-Messungen
 - FEM-Simulation planarer Elektrodengeometrien; eine neue elliptische Form verbessert das Führungspotential deutlich
 - Layout per Skript erzeugt, als Platine gefertigt, gebondet und gegen das Design abgeglichen
@@ -48,17 +48,17 @@ Wo: Lehrstuhl für Laserphysik
 - Ein neu identifiziertes Führungsregime erstmals vermessen und in Teilchenbahn-Simulationen reproduziert
 
 ## 2025 – 2026 | Tutor im Physik-Department
-Wo: Universität
+Wo: FAU Erlangen-Nürnberg
 Festkörperphysik für Nebenfächler, Rechenmethoden der Physik I und II,
 Grundpraktikum für Medizinerinnen.
 
 ## 2023 – 2025 | Studentischer wissenschaftlicher Mitarbeiter
-Wo: Lehrstuhl für Laserphysik
+Wo: Lehrstuhl für Laserphysik (Prof. Hommelhoff), FAU Erlangen-Nürnberg
 - Betrieb und Wartung eines Rasterelektronenmikroskops, Hoch- und Ultrahochvakuum
 - Ätzen von Feldemissionsspitzen, Aufbau eine Simulations pipeline 
 
 ## 2023 | Bachelorarbeit: auto-ponderomotorische S-Kurve
-Wo: Lehrstuhl für Laserphysik
+Wo: Lehrstuhl für Laserphysik (Prof. Hommelhoff), FAU Erlangen-Nürnberg
 - Simulation und Messung des ersten Stabilitätsbereichs einer auto-ponderomotorischen S-Kurve mit interner Energievariation
 - Der Einstieg in das Thema, das ich in der Masterarbeit weitergeführt habe
 
@@ -68,7 +68,7 @@ Wo: Technologiekonzern, Bereich Hochspannungs-Gleichstromübertragung
 - Weiterentwicklung der bestehenden MATLAB-Skripte für die Simulationsabläufe
 
 ## 2019 – 2024 | Bachelor Physik
-Wo: Universität
+Wo: FAU Erlangen-Nürnberg
 Neben dem Pflichtprogramm: Elektronikpraktikum, Fortgeschrittenenpraktikum,
 Allgemeine Relativitätstheorie, Statistische Physik, ein Seminar zu Physik in
 der Medizin sowie Datenverarbeitung in der Physik, systemnahe Programmierung
