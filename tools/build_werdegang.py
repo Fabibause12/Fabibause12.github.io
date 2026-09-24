@@ -110,6 +110,21 @@ def e(s: str) -> str:
     return html.escape(s, quote=False)
 
 
+LINK = re.compile(r"\[([^\]]+)\]\((https?://[^)\s]+)\)")
+
+
+def t(s: str) -> str:
+    """Text mit Links in der Schreibweise [Text](https://...)."""
+    raus, pos = [], 0
+    for m in LINK.finditer(s):
+        raus.append(e(s[pos:m.start()]))
+        raus.append('<a href="%s" target="_blank" rel="noopener">%s</a>'
+                    % (html.escape(m.group(2), quote=True), e(m.group(1))))
+        pos = m.end()
+    raus.append(e(s[pos:]))
+    return "".join(raus)
+
+
 def render_stationen(eintraege):
     out = []
     for s in eintraege:
@@ -122,11 +137,11 @@ def render_stationen(eintraege):
         if s["wo"]:
             teile.append('          <p class="tl-where">%s</p>' % e(s["wo"]))
         for p in absaetze(s["text"]):
-            teile.append("          <p>%s</p>" % e(p))
+            teile.append("          <p>%s</p>" % t(p))
         if s["punkte"]:
             teile.append("          <ul>")
             for p in s["punkte"]:
-                teile.append("            <li>%s</li>" % e(p))
+                teile.append("            <li>%s</li>" % t(p))
             teile.append("          </ul>")
         teile.append("        </li>")
         out.append("\n".join(teile))
@@ -141,11 +156,11 @@ def render_karten(eintraege):
         if k["titel"]:
             teile.append("          <h3>%s</h3>" % e(k["titel"]))
         for p in absaetze(k["text"]):
-            teile.append("          <p>%s</p>" % e(p))
+            teile.append("          <p>%s</p>" % t(p))
         if k["punkte"]:
             teile.append('          <ul class="cv-list">')
             for p in k["punkte"]:
-                teile.append("            <li>%s</li>" % e(p))
+                teile.append("            <li>%s</li>" % t(p))
             teile.append("          </ul>")
         teile.append("        </div>")
         out.append("\n".join(teile))
@@ -176,7 +191,7 @@ def render_text(eintraege, klasse=""):
     for k in eintraege:
         for p in absaetze(k["text"]):
             attr = ' class="%s"' % klasse if klasse else ""
-            out.append("      <p%s>%s</p>" % (attr, e(p)))
+            out.append("      <p%s>%s</p>" % (attr, t(p)))
     return "\n".join(out)
 
 
@@ -226,7 +241,9 @@ KOPF = '''<!DOCTYPE html>
                    "Elektronenmikroskopie", "Electron microscopy", "Laserphysik", "Attosekundenphysik",
                    "FEM-Simulation", "COMSOL Multiphysics", "Ultrahochvakuum", "Halbleiter- und Quantenbauelemente",
                    "Python", "MATLAB"],
-    "knowsLanguage": ["de", "en"]
+    "knowsLanguage": ["de", "en"],
+    "sameAs": ["https://orcid.org/0009-0009-8834-6500",
+               "https://www.laserphysics.nat.fau.eu/person/fabian-bammes/"]
   }
 }
 </script>
