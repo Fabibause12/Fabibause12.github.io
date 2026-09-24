@@ -13,6 +13,9 @@
 //    [Text](https://…) wird zum Link
 //    Zeilen mit // werden ignoriert
 //
+//  Bei wichtigen Änderungen (Stelle, Veröffentlichung) auch llms.txt
+//  im Hauptordner anpassen – die Kurzfassung für KI-Assistenten.
+//
 //  Danach:  python tools/build_werdegang.py
 //  Auf GitHub passiert das nach dem Hochladen von allein.
 // ======================================================================

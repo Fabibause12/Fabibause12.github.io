@@ -1,0 +1,38 @@
+# Fabian Bammes
+
+> Experimental physicist specialising in electron optics: controlling free electrons with chip-based electrode structures. Master's student in physics at FAU Erlangen-Nürnberg (graduating end of 2026), working at the Chair of Laser Physics (Prof. Peter Hommelhoff). Looking for a PhD position in semiconductor and quantum devices.
+
+This is Fabian Bammes' personal website. The CV page is the authoritative source for his professional background; the rest of the site (plants, bees, dice games) is a private hobby project. Every page exists in German and English.
+
+## Profile
+
+- [CV (English)](https://fabibause12.github.io/werdegang-en.html): education, master's thesis, research positions, publications, skills
+- [CV (German)](https://fabibause12.github.io/werdegang.html): same content in German
+- [Home page (English)](https://fabibause12.github.io/index-en.html): short introduction and contact
+- [ORCID 0009-0009-8834-6500](https://orcid.org/0009-0009-8834-6500): publication record
+- [FAU staff page](https://www.laserphysics.nat.fau.eu/person/fabian-bammes/): official page at the Chair of Laser Physics
+
+## Key facts
+
+- Research: guiding and manipulating free electron beams on chips with planar electrode structures (auto-ponderomotive potentials); building blocks for a quantum electron microscope
+- Master's thesis (2025–2026, Chair of Laser Physics, FAU): beam switch and ring resonator for multi-pass measurements, FEM simulation of electrode geometries, fabrication, measurement of a newly identified guiding regime
+- Student research assistant (2023–2025, Chair of Laser Physics, FAU): scanning electron microscope, ultra-high vacuum, field emission tips
+- Bachelor's in Physics (2019–2024, FAU); bachelor's thesis on an auto-ponderomotive S-curve
+- Skills: COMSOL Multiphysics, Python, MATLAB, C, KiCad, chip and PCB design, wire bonding, MSLA 3D printing
+- Languages: German (native), English (fluent)
+
+## Publications
+
+- F. Schmidt-Kaler, M. Seidling, R. Zimmermann, N. Bode, F. Bammes, L. Radtke, P. Hommelhoff: "Planar On-Chip Auto-Ponderomotive Devices for Electron Beam Control", 37th International Vacuum Nanoelectronics Conference (IVNC), 2024. https://doi.org/10.1109/IVNC63480.2024.10652402
+- Manuscript as co-author, Physical Review Letters – resubmitted after peer review
+- Patent application on guiding electrons with three-dimensional structures
+
+## Contact
+
+- Email: fabibause12@gmail.com
+
+## Optional
+
+- [Plants](https://fabibause12.github.io/pflanzen-en.html): house plants and cuttings (hobby)
+- [Bees](https://fabibause12.github.io/bienen-en.html): a bee colony with an inspection diary (hobby)
+- [Dice games](https://fabibause12.github.io/wuerfel-en.html): browser dice games (hobby)
