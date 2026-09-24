@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-23T09:08:38Z",
+  "generated": "2026-09-24T14:58:55Z",
   "count": 3,
   "plants": [
     {
@@ -19,7 +19,19 @@
         "Pflanzen/Bogenhanf/IMG_0372.jpg",
         "Pflanzen/Bogenhanf/IMG_0373.jpg"
       ],
-      "imageCount": 2
+      "imageCount": 2,
+      "en": {
+        "title": "Snake plant",
+        "subtitle": "The plant for everyone who regularly forgets their plants.",
+        "meta": {
+          "Light": "Bright to shady – takes almost any spot",
+          "Watering": "Every two to three weeks, even less in winter",
+          "Location": "Room temperature, not below 10 degrees",
+          "Pets": "Mildly toxic to cats and dogs",
+          "Cuttings": "Yes, by dividing the rhizome or as a leaf cutting"
+        },
+        "text": "The snake plant is the most undemanding plant I have. It still looks good in a\ndark corner, needs hardly any water and just slowly grows along at its own pace.\nIt used to be called Sansevieria; botanically it now belongs to the dragon trees.\n\nThere is really only one way to kill it: too much water. If it stays wet for too\nlong, the rhizome rots away from below. Better a week too late than a day too\nearly.\n\nThere are two ways to propagate it: divide the rhizome when repotting, or cut a\nleaf into pieces and let them dry off before they go into the soil. The second\nway takes longer, but one leaf gives you several plants."
+      }
     },
     {
       "slug": "Efeutute",
@@ -35,7 +47,17 @@
       "images": [
         "Pflanzen/Efeutute/IMG_0374.jpg"
       ],
-      "imageCount": 1
+      "imageCount": 1,
+      "en": {
+        "title": "Pothos",
+        "subtitle": "Grows everywhere, including where it shouldn't.",
+        "meta": {
+          "Light": "Partial shade to bright, copes with dark corners too",
+          "Watering": "Every 7 to 10 days, rather too little than too much",
+          "Cuttings": "Yes, any time - a piece of vine in a glass of water is enough"
+        },
+        "text": "The pothos is the plant for everyone who can't really do plants. It grows in\nalmost any light, forgives dry spells and turns every piece you cut off into a\nnew plant.\n\nAt my place it hangs down from the shelf and has conquered half the room by now.\nThat's exactly why I always have cuttings to spare."
+      }
     },
     {
       "slug": "Monstera",
@@ -54,7 +76,19 @@
         "Pflanzen/Monstera/IMG_0370.jpg",
         "Pflanzen/Monstera/IMG_0371.jpg"
       ],
-      "imageCount": 2
+      "imageCount": 2,
+      "en": {
+        "title": "Monstera",
+        "subtitle": "The Swiss cheese plant that makes every room look bigger.",
+        "meta": {
+          "Light": "Bright, but no direct sunlight",
+          "Watering": "Once a week, let the soil dry off a little first",
+          "Location": "Room temperature, no draughts",
+          "Pets": "Mildly toxic to cats and dogs",
+          "Cuttings": "Yes, as a stem cutting in a glass of water"
+        },
+        "text": "The Monstera is the least complicated flatmate I have. She forgives you for\nforgetting to water her for a week and only complains with drooping leaves -\nafter the next watering she stands tall again as if nothing had happened.\n\nCuttings are easy: I cut off a piece of stem just below an aerial root, put it in\na glass of water for two to three weeks, and as soon as the roots are two\ncentimetres long, it goes into normal potting soil.\n\nIf you want one, just let me know - there's plenty to go around."
+      }
     }
   ]
 }

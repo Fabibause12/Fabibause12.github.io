@@ -8,13 +8,15 @@
 
   var MANIFEST = "Pflanzen/pflanzen.json";
   var PLACEHOLDER = "assets/keinbild.svg";
+  var MAIL = "fabibause12@gmail.com";
 
   var ICON = {
     left:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>',
     right: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>',
     back:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>',
     close: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>',
-    photo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>'
+    photo: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>',
+    mail:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>'
   };
 
   var app = document.getElementById("pflanzenApp");
@@ -22,6 +24,9 @@
   var lightbox = document.getElementById("lightbox");
   var plants = [];
   var view = { slug: null, index: 0 };
+  var suche = "";
+  var i18n = window.i18n;
+  var t = i18n.t;
 
   /* ---------- kleine Helfer ---------- */
 
@@ -49,13 +54,22 @@
     return null;
   }
 
+  /* Feld in der eingestellten Sprache; fehlt die englische Fassung, bleibt es deutsch. */
+  function loc(plant, key) {
+    var en = i18n.lang() === "en" && plant.en;
+    if (key === "meta") {
+      return en && plant.en.meta && Object.keys(plant.en.meta).length ? plant.en.meta : (plant.meta || {});
+    }
+    return en && plant.en[key] ? plant.en[key] : plant[key];
+  }
+
   function cover(plant) {
     return plant.images && plant.images.length ? plant.images[0] : PLACEHOLDER;
   }
 
   function teaser(plant) {
-    var t = (plant.text || "").replace(/\s+/g, " ").trim();
-    return t.length > 190 ? t.slice(0, 190).replace(/\S+$/, "") + "…" : t;
+    var text = (loc(plant, "text") || "").replace(/\s+/g, " ").trim();
+    return text.length > 190 ? text.slice(0, 190).replace(/\S+$/, "") + "…" : text;
   }
 
   function paragraphs(text) {
@@ -70,7 +84,7 @@
   function card(plant) {
     var thumbImg = el("img", {
       src: cover(plant),
-      alt: plant.title,
+      alt: loc(plant, "title"),
       loading: "lazy",
       decoding: "async"
     });
@@ -83,9 +97,9 @@
       }));
     }
 
-    var body = [el("h3", { text: plant.title })];
+    var body = [el("h3", { text: loc(plant, "title") })];
     if (plant.latin) body.push(el("p", { class: "latin", text: plant.latin }));
-    var sub = plant.subtitle || teaser(plant);
+    var sub = loc(plant, "subtitle") || teaser(plant);
     if (sub) body.push(el("p", { class: "teaser", text: sub }));
 
     return el("a", {
@@ -97,10 +111,12 @@
 
   function renderOverview(filter) {
     if (intro) intro.hidden = false;
-    var needle = (filter || "").trim().toLowerCase();
+    suche = filter || "";
+    var needle = suche.trim().toLowerCase();
     var list = plants.filter(function (p) {
       if (!needle) return true;
-      return (p.title + " " + p.latin + " " + p.subtitle + " " + p.text)
+      var en = p.en || {};
+      return [p.title, p.latin, p.subtitle, p.text, en.title, en.subtitle, en.text].join(" ")
         .toLowerCase().indexOf(needle) !== -1;
     });
 
@@ -113,9 +129,9 @@
 
     var input = el("input", {
       type: "search",
-      placeholder: "Pflanze suchen …",
-      value: filter || "",
-      "aria-label": "Pflanzen durchsuchen"
+      placeholder: t("Pflanze suchen …", "Search plants …"),
+      value: suche,
+      "aria-label": t("Pflanzen durchsuchen", "Search the plants")
     });
     input.addEventListener("input", function () {
       var pos = input.selectionStart;
@@ -131,15 +147,16 @@
 
     var count = el("span", {
       class: "count",
-      text: list.length + (list.length === 1 ? " Pflanze" : " Pflanzen")
+      text: list.length + (list.length === 1 ? t(" Pflanze", " plant") : t(" Pflanzen", " plants"))
     });
 
     app.appendChild(el("div", { class: "toolbar" }, [search, count]));
 
     if (!list.length) {
       app.appendChild(el("div", { class: "empty" }, [
-        el("h3", { text: "Nichts gefunden" }),
-        el("p", { text: "Zu „" + needle + "“ passt gerade keine Pflanze." })
+        el("h3", { text: t("Nichts gefunden", "Nothing found") }),
+        el("p", { text: t("Zu „" + needle + "“ passt gerade keine Pflanze.",
+                          "No plant matches “" + needle + "” right now.") })
       ]));
       return;
     }
@@ -161,8 +178,9 @@
       "    foto.jpg";
 
     return el("div", { class: "empty" }, [
-      el("h3", { text: "Noch keine Pflanzen da" }),
-      el("p", { html: "Leg im Ordner <code>Pflanzen/</code> einen Unterordner pro Pflanze an – mit einer <code>text.txt</code> und beliebig vielen Bildern:" }),
+      el("h3", { text: t("Noch keine Pflanzen da", "No plants yet") }),
+      el("p", { html: t("Leg im Ordner <code>Pflanzen/</code> einen Unterordner pro Pflanze an – mit einer <code>text.txt</code> und beliebig vielen Bildern:",
+                        "Create one subfolder per plant in the <code>Pflanzen/</code> folder – with a <code>text.txt</code> and as many pictures as you like:") }),
       el("pre", { text: beispiel })
     ]);
   }
@@ -170,17 +188,18 @@
   /* ---------- Detailansicht ---------- */
 
   function renderDetail(plant) {
+    var title = loc(plant, "title");
     view.slug = plant.slug;
     view.index = 0;
     if (intro) intro.hidden = true;
 
     app.innerHTML = "";
-    document.title = plant.title + " – Pflanzen";
+    document.title = title + t(" – Pflanzen", " – Plants");
 
     var back = el("button", {
       class: "back-link",
       type: "button",
-      html: ICON.back + " <span>Alle Pflanzen</span>"
+      html: ICON.back + " <span>" + t("Alle Pflanzen", "All plants") + "</span>"
     });
     back.addEventListener("click", function () { go(null); });
     app.appendChild(back);
@@ -190,12 +209,12 @@
 
     var stageImg = el("img", {
       src: images[0],
-      alt: plant.title + " – Bild 1",
+      alt: title + t(" – Bild 1", " – image 1"),
       decoding: "async"
     });
     var counter = el("span", { class: "stage-count" });
-    var prev = el("button", { class: "stage-nav prev", type: "button", "aria-label": "Vorheriges Bild", html: ICON.left });
-    var next = el("button", { class: "stage-nav next", type: "button", "aria-label": "Naechstes Bild", html: ICON.right });
+    var prev = el("button", { class: "stage-nav prev", type: "button", "aria-label": t("Vorheriges Bild", "Previous image"), html: ICON.left });
+    var next = el("button", { class: "stage-nav next", type: "button", "aria-label": t("Nächstes Bild", "Next image"), html: ICON.right });
 
     var stage = el("div", { class: "stage" }, [stageImg]);
     var thumbs = el("div", { class: "thumbs" });
@@ -206,7 +225,7 @@
       stage.appendChild(counter);
 
       images.forEach(function (src, i) {
-        var btn = el("button", { type: "button", "aria-label": "Bild " + (i + 1) }, [
+        var btn = el("button", { type: "button", "aria-label": t("Bild ", "Image ") + (i + 1) }, [
           el("img", { src: src, alt: "", loading: "lazy", decoding: "async" })
         ]);
         btn.addEventListener("click", function () { show(i); });
@@ -217,7 +236,7 @@
     function show(i) {
       view.index = (i + images.length) % images.length;
       stageImg.src = images[view.index];
-      stageImg.alt = plant.title + " – Bild " + (view.index + 1);
+      stageImg.alt = title + t(" – Bild ", " – image ") + (view.index + 1);
       counter.textContent = (view.index + 1) + " / " + images.length;
       Array.prototype.forEach.call(thumbs.children, function (btn, idx) {
         btn.setAttribute("aria-current", String(idx === view.index));
@@ -244,36 +263,52 @@
     var gallery = el("div", { class: "gallery" }, [stage, images.length > 1 ? thumbs : null]);
 
     var textCol = [
-      el("h1", { class: "plant-title", text: plant.title })
+      el("h1", { class: "plant-title", text: title })
     ];
     if (plant.latin) textCol.push(el("p", { class: "plant-latin", text: plant.latin }));
 
     var body = el("div", { class: "plant-text" });
-    var parts = paragraphs(plant.text);
+    var parts = paragraphs(loc(plant, "text"));
     if (parts.length) {
       parts.forEach(function (p) { body.appendChild(el("p", { text: p })); });
     } else {
       body.appendChild(el("p", {
         class: "muted",
-        text: "Für diese Pflanze steht noch kein Text in der text.txt."
+        text: t("Für diese Pflanze steht noch kein Text in der text.txt.",
+                "There is no text for this plant in its text.txt yet.")
       }));
     }
     textCol.push(body);
 
-    var keys = Object.keys(plant.meta || {});
+    var meta = loc(plant, "meta");
+    var keys = Object.keys(meta);
     if (keys.length) {
       var facts = el("dl", { class: "facts" });
       keys.forEach(function (k) {
         facts.appendChild(el("div", {}, [
           el("dt", { text: k }),
-          el("dd", { text: plant.meta[k] })
+          el("dd", { text: meta[k] })
         ]));
       });
       textCol.push(facts);
     }
 
     if (!hasReal) {
-      textCol.push(el("p", { class: "muted", text: "Bilder folgen – im Ordner liegt noch keins." }));
+      textCol.push(el("p", { class: "muted", text: t("Bilder folgen – im Ordner liegt noch keins.",
+                                                        "Pictures to follow – the folder doesn't have any yet.") }));
+    }
+
+    /* "Ableger: Nein" in der text.txt blendet den Knopf aus */
+    if (!/^\s*nein/i.test((plant.meta || {}).Ableger || "")) {
+      var betreff = t("Ableger: ", "Cutting: ") + title;
+      var mail = t("Hallo Fabian,\n\nich hätte gern einen Ableger von deiner Pflanze \"" + title + "\".\n\n",
+                   "Hi Fabian,\n\nI would love a cutting of your plant \"" + title + "\".\n\n");
+      textCol.push(el("a", {
+        class: "btn btn-primary ableger-btn",
+        href: "mailto:" + MAIL + "?subject=" + encodeURIComponent(betreff) +
+          "&body=" + encodeURIComponent(mail),
+        html: ICON.mail + " " + t("Ableger anfragen", "Ask for a cutting")
+      }));
     }
 
     app.appendChild(el("div", { class: "detail" }, [gallery, el("div", {}, textCol)]));
@@ -293,9 +328,9 @@
 
   function updateLightbox(plant, images) {
     lightbox.querySelector("img").src = images[view.index];
-    lightbox.querySelector("img").alt = plant.title;
+    lightbox.querySelector("img").alt = loc(plant, "title");
     lightbox.querySelector(".caption").textContent =
-      plant.title + " – " + (view.index + 1) + " / " + images.length;
+      loc(plant, "title") + " – " + (view.index + 1) + " / " + images.length;
   }
 
   function openLightbox(plant, images) {
@@ -341,12 +376,12 @@
 
     if (slug && !plant) {
       app.innerHTML = "";
-      var back = el("button", { class: "back-link", type: "button", html: ICON.back + " <span>Alle Pflanzen</span>" });
+      var back = el("button", { class: "back-link", type: "button", html: ICON.back + " <span>" + t("Alle Pflanzen", "All plants") + "</span>" });
       back.addEventListener("click", function () { go(null); });
       app.appendChild(back);
       app.appendChild(el("div", { class: "empty" }, [
-        el("h3", { text: "Diese Pflanze gibt es nicht" }),
-        el("p", { text: "„" + slug + "“ steht nicht in der Liste." })
+        el("h3", { text: t("Diese Pflanze gibt es nicht", "This plant doesn't exist") }),
+        el("p", { text: t("„" + slug + "“ steht nicht in der Liste.", "“" + slug + "” isn't on the list.") })
       ]));
       return;
     }
@@ -355,8 +390,8 @@
       renderDetail(plant);
     } else {
       view.slug = null;
-      document.title = "Pflanzen – Fabian Bammes";
-      renderOverview("");
+      document.title = t("Pflanzen", "Plants") + " – Fabian Bammes";
+      renderOverview(suche);
     }
   }
 
@@ -369,6 +404,15 @@
   });
 
   window.addEventListener("popstate", route);
+
+  /* Sprache gewechselt: neu zeichnen, aber am selben Bild und an derselben Stelle bleiben. */
+  document.addEventListener("langchange", function () {
+    if (!plants.length) return;
+    var bild = view.index, y = window.scrollY;
+    route();
+    if (app.showImage) app.showImage(bild);
+    window.scrollTo(0, y);
+  });
 
   /* ---------- Start ---------- */
 
@@ -384,8 +428,9 @@
     .catch(function (err) {
       app.innerHTML = "";
       app.appendChild(el("div", { class: "empty" }, [
-        el("h3", { text: "Die Pflanzenliste liess sich nicht laden" }),
-        el("p", { html: "<code>" + MANIFEST + "</code> fehlt oder ist kaputt. Einmal <code>python tools/build_pflanzen.py</code> laufen lassen und neu hochladen." }),
+        el("h3", { text: t("Die Pflanzenliste ließ sich nicht laden", "The plant list could not be loaded") }),
+        el("p", { html: t("<code>" + MANIFEST + "</code> fehlt oder ist kaputt. Einmal <code>python tools/build_pflanzen.py</code> laufen lassen und neu hochladen.",
+                          "<code>" + MANIFEST + "</code> is missing or broken. Run <code>python tools/build_pflanzen.py</code> once and upload again.") }),
         el("p", { class: "muted", text: String(err) })
       ]));
     });

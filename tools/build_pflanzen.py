@@ -6,6 +6,7 @@ Jede Pflanze ist ein Unterordner:
     Pflanzen/
       Monstera/
         text.txt      <- Text, der auf der Seite steht
+        text.en.txt   <- optional: dasselbe auf Englisch
         1.jpg         <- beliebig viele Bilder
         2.jpg
 
@@ -29,6 +30,7 @@ IGNORIEREN = {"vorlage", "template", "beispiel", "muster"}
 MAX_KANTE = 2000
 TEXT_PRIO = ["text.txt", "info.txt", "beschreibung.txt", "pflanze.txt"]
 BIG_IMAGE_WARN = 3 * 1024 * 1024
+ZU_GROSS = 1024 * 1024          # darueber wird neu komprimiert
 
 
 def natural_key(name: str):
@@ -75,8 +77,14 @@ def parse_text(raw: str):
     return meta, body.strip()
 
 
+def ist_englisch(path: Path) -> bool:
+    """text.en.txt, tagebuch.en.txt ... sind die englischen Fassungen."""
+    return path.name.lower().endswith(".en.txt")
+
+
 def find_text_file(folder: Path):
-    txts = sorted([p for p in folder.iterdir() if p.is_file() and p.suffix.lower() == ".txt"],
+    txts = sorted([p for p in folder.iterdir()
+                   if p.is_file() and p.suffix.lower() == ".txt" and not ist_englisch(p)],
                   key=lambda p: natural_key(p.name))
     if not txts:
         return None
@@ -88,6 +96,39 @@ def find_text_file(folder: Path):
         if p.stem.lower() == folder.name.lower():
             return p
     return txts[0]
+
+
+def englisch(folder: Path, txt, warnings: list, titel_keys=("Title", "Titel")):
+    """Englische Fassung zur deutschen .txt lesen, z. B. text.en.txt neben text.txt.
+
+    Aufbau wie das Original. Die Stichwoerter duerfen englisch sein (Light,
+    Watering, ...), sie erscheinen so in der Tabelle. Titel, Untertitel und
+    Text sind optional - was fehlt, zeigt die Seite auf Deutsch.
+    """
+    if txt is None:
+        return None
+    kandidat = txt.with_name(txt.stem + ".en.txt")
+    if not kandidat.is_file():
+        treffer = [p for p in folder.iterdir()
+                   if p.is_file() and p.name.lower() == txt.stem.lower() + ".en.txt"]
+        if not treffer:
+            return None
+        kandidat = treffer[0]
+
+    meta, body = parse_text(read_text(kandidat))
+    title = ""
+    for k in titel_keys:
+        title = title or meta.pop(k, "")
+    subtitle = ""
+    for k in ("Subtitle", "Untertitel", "Short", "Kurz"):
+        subtitle = subtitle or meta.pop(k, "")
+    for k in ("Latin", "Lateinisch", "Botanical", "Botanisch"):
+        meta.pop(k, None)          # der botanische Name ist in jeder Sprache gleich
+
+    if not (title or subtitle or meta or body):
+        warnings.append("%s/%s ist leer" % (folder.name, kandidat.name))
+        return None
+    return {"title": title, "subtitle": subtitle, "meta": meta, "text": body}
 
 
 def wandle_heic(folder: Path, warnings: list):
@@ -123,8 +164,51 @@ def wandle_heic(folder: Path, warnings: list):
             warnings.append("%s/%s: Umwandlung fehlgeschlagen (%s)" % (folder.name, quelle.name, ex))
 
 
+def verkleinere(folder: Path, warnings: list):
+    """Grosse JPGs auf MAX_KANTE und Qualitaet 82 bringen, damit das Handy nicht ewig laedt.
+
+    Neu gespeichert wird nur, wenn das Bild zu gross ist UND dabei deutlich
+    kleiner wird - so wird ein schon verkleinertes Bild nicht bei jedem
+    Bauen erneut komprimiert.
+    """
+    jpgs = [p for p in folder.iterdir()
+            if p.is_file() and p.suffix.lower() in (".jpg", ".jpeg") and not p.name.startswith(".")]
+    if not jpgs:
+        return
+
+    try:
+        from PIL import Image, ImageOps
+    except ImportError:
+        warnings.append("%s: Pillow fehlt (pip install Pillow), Bilder werden nicht verkleinert"
+                        % folder.name)
+        return
+
+    import io
+    for bild in jpgs:
+        vorher = bild.stat().st_size
+        try:
+            with Image.open(bild) as im:
+                zu_breit = max(im.size) > MAX_KANTE
+                if not zu_breit and vorher <= ZU_GROSS:
+                    continue
+                im = ImageOps.exif_transpose(im).convert("RGB")
+                im.thumbnail((MAX_KANTE, MAX_KANTE), Image.LANCZOS)
+                puffer = io.BytesIO()
+                im.save(puffer, "JPEG", quality=82, optimize=True, progressive=True)
+        except Exception as ex:
+            warnings.append("%s/%s: Verkleinern fehlgeschlagen (%s)" % (folder.name, bild.name, ex))
+            continue
+
+        nachher = puffer.tell()
+        if zu_breit or nachher < vorher * 0.8:
+            bild.write_bytes(puffer.getvalue())
+            print("  ~ %s verkleinert (%.1f MB -> %.1f MB)"
+                  % (bild.name, vorher / 1048576, nachher / 1048576))
+
+
 def collect(folder: Path, warnings: list):
     wandle_heic(folder, warnings)
+    verkleinere(folder, warnings)
 
     images = sorted(
         [p for p in folder.iterdir()
@@ -150,7 +234,7 @@ def collect(folder: Path, warnings: list):
     subtitle = meta.pop("Untertitel", None) or meta.pop("Kurz", None) or ""
     latin = meta.pop("Lateinisch", None) or meta.pop("Botanisch", None) or ""
 
-    return {
+    eintrag = {
         "slug": folder.name,
         "title": title,
         "subtitle": subtitle,
@@ -160,6 +244,10 @@ def collect(folder: Path, warnings: list):
         "images": [url_path(p) for p in images],
         "imageCount": len(images),
     }
+    en = englisch(folder, txt, warnings)
+    if en:
+        eintrag["en"] = en
+    return eintrag
 
 
 def main():
@@ -191,7 +279,8 @@ def main():
     print(f"{OUT_FILE.relative_to(ROOT).as_posix()}: {len(plants)} Pflanze(n), "
           f"{sum(p['imageCount'] for p in plants)} Bild(er)")
     for p in plants:
-        print(f"  - {p['title']:<24} {p['imageCount']} Bild(er)")
+        print(f"  - {p['title']:<24} {p['imageCount']} Bild(er)"
+              + ("" if "en" in p else ", ohne englische Fassung"))
     for w in warnings:
         print(f"  ! {w}", file=sys.stderr)
 

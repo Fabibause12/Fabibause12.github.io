@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Baut werdegang.html aus Werdegang/werdegang.txt.
 
+Gibt es daneben Werdegang/werdegang.en.txt (gleicher Aufbau), steht die
+englische Fassung mit in der Seite und der Sprachknopf schaltet um.
+
 Aufruf:  python tools/build_werdegang.py
 """
 
@@ -11,6 +14,19 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 QUELLE = ROOT / "Werdegang" / "werdegang.txt"
+QUELLE_EN = ROOT / "Werdegang" / "werdegang.en.txt"
+
+ABSCHNITTE = ("Einleitung", "Stationen", "Infokasten", "Kenntnisse", "Schluss")
+# In der englischen Datei duerfen die Abschnitte auch englisch heissen.
+ALIAS = {"introduction": "Einleitung", "intro": "Einleitung",
+         "timeline": "Stationen", "stations": "Stationen",
+         "sidebar": "Infokasten", "info": "Infokasten",
+         "skills": "Kenntnisse", "closing": "Schluss", "outro": "Schluss"}
+
+TEXTE = {
+    "de": {"eyebrow": "Werdegang", "stationen": "Stationen", "kenntnisse": "Womit ich arbeite"},
+    "en": {"eyebrow": "Career", "stationen": "Timeline", "kenntnisse": "What I work with"},
+}
 ZIEL = ROOT / "werdegang.html"
 
 
@@ -50,6 +66,7 @@ def parse(text: str):
 
         if strip.startswith("# "):
             akt_abschnitt = strip[2:].strip()
+            akt_abschnitt = ALIAS.get(akt_abschnitt.lower(), akt_abschnitt)
             abschnitte.setdefault(akt_abschnitt, [])
             akt_eintrag = None
             continue
@@ -64,9 +81,9 @@ def parse(text: str):
 
         if strip.startswith("- "):
             akt_eintrag["punkte"].append(strip[2:].strip())
-        elif re.match(r"^Wo\s*:", strip, re.I):
+        elif re.match(r"^(Wo|Where)\s*:", strip, re.I):
             akt_eintrag["wo"] = strip.split(":", 1)[1].strip()
-        elif re.match(r"^Aktuell\s*:", strip, re.I):
+        elif re.match(r"^(Aktuell|Current)\s*:", strip, re.I):
             akt_eintrag["aktuell"] = strip.split(":", 1)[1].strip().lower() in ("ja", "yes", "true", "x")
         else:
             akt_eintrag["text"].append(strip)
@@ -168,21 +185,54 @@ KOPF = '''<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Werdegang &ndash; Fabian Bammes</title>
-<meta name="description" content="Kurzer Einblick in meinen fachlichen Werdegang.">
+<title data-en="Fabian Bammes &ndash; CV: experimental physics and electron optics">Fabian Bammes &ndash; Werdegang: Experimentalphysik und Elektronenoptik</title>
+<meta name="description" content="Werdegang von Fabian Bammes: Master Physik, Masterarbeit zur Elektronenführung auf dem Chip, FEM-Simulation mit COMSOL, Rasterelektronenmikroskopie. Nach dem Abschluss Ende 2026 Promotion im Bereich Halbleiter- und Quantenbauelemente." data-en-content="CV of Fabian Bammes: master&rsquo;s in physics, thesis on guiding electrons on a chip, FEM simulation with COMSOL, scanning electron microscopy. Looking for a PhD in semiconductor and quantum devices after graduating at the end of 2026.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="Fabian Bammes">
+<meta property="og:title" content="Fabian Bammes &ndash; Werdegang: Experimentalphysik und Elektronenoptik" data-en-content="Fabian Bammes &ndash; CV: experimental physics and electron optics">
+<meta property="og:description" content="Werdegang von Fabian Bammes: Master Physik, Masterarbeit zur Elektronenführung auf dem Chip, FEM-Simulation mit COMSOL, Rasterelektronenmikroskopie. Nach dem Abschluss Ende 2026 Promotion im Bereich Halbleiter- und Quantenbauelemente." data-en-content="CV of Fabian Bammes: master&rsquo;s in physics, thesis on guiding electrons on a chip, FEM simulation with COMSOL, scanning electron microscopy. Looking for a PhD in semiconductor and quantum devices after graduating at the end of 2026.">
+<meta property="og:url" content="https://fabibause12.github.io/werdegang.html">
+<meta property="og:image" content="https://fabibause12.github.io/assets/hero.jpg">
+<meta property="og:image:width" content="2000">
+<meta property="og:image:height" content="823">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#6d3fa0">
-<meta name="robots" content="noindex">
+<link rel="canonical" href="https://fabibause12.github.io/werdegang.html">
+<link rel="alternate" hreflang="de" href="https://fabibause12.github.io/werdegang.html">
+<link rel="alternate" hreflang="en" href="https://fabibause12.github.io/werdegang-en.html">
+<link rel="alternate" hreflang="x-default" href="https://fabibause12.github.io/werdegang.html">
 <link rel="stylesheet" href="./css/style.css">
 <link rel="icon" href="./assets/icon-16.png" sizes="16x16">
 <link rel="icon" href="./assets/icon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="./assets/icon-180.png">
-<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+<script>var d=document.documentElement,s=d.lang,l;try{var t=localStorage.getItem("theme");if(t)d.dataset.theme=t;l=localStorage.getItem("lang");}catch(e){}d.lang=l||(s==="en"||!/^de/i.test(navigator.language||"de")?"en":"de");</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "url": "https://fabibause12.github.io/werdegang.html",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Fabian Bammes",
+    "url": "https://fabibause12.github.io/",
+    "email": "mailto:fabibause12@gmail.com",
+    "jobTitle": "Experimentalphysiker",
+    "description": "Experimentalphysiker mit Schwerpunkt Elektronenoptik und Elektronenführung auf Chips",
+    "knowsAbout": ["Elektronenoptik", "Electron optics", "Elektronenführung", "Electron guiding",
+                   "Elektronenmikroskopie", "Electron microscopy", "Laserphysik", "Attosekundenphysik",
+                   "FEM-Simulation", "COMSOL Multiphysics", "Ultrahochvakuum", "Halbleiter- und Quantenbauelemente",
+                   "Python", "MATLAB"],
+    "knowsLanguage": ["de", "en"]
+  }
+}
+</script>
 </head>
 <body class="cv">
 <!-- Diese Datei wird aus Werdegang/werdegang.txt erzeugt.
      Änderungen hier gehen beim nächsten Bauen verloren!
-     Bearbeite stattdessen Werdegang/werdegang.txt -->
-<a class="skip-link" href="#main">Zum Inhalt springen</a>
+     Bearbeite stattdessen Werdegang/werdegang.txt (und werdegang.en.txt) -->
+<a class="skip-link" href="#main" data-en="Skip to content">Zum Inhalt springen</a>
 
 <header class="site-head">
   <div class="container">
@@ -191,24 +241,26 @@ KOPF = '''<!DOCTYPE html>
       Fabian Bammes
     </a>
 
-    <nav class="nav" id="mainNav" aria-label="Hauptnavigation">
+    <nav class="nav" id="mainNav" aria-label="Hauptnavigation" data-en-aria-label="Main navigation">
       <ul>
-        <li><a href="./index.html">Start</a></li>
-        <li><a href="./pflanzen.html">Pflanzen</a></li>
-        <li><a href="./bienen.html">Bienen</a></li>
-        <li><a href="./werdegang.html" class="active">Werdegang</a></li>
-        <li><a href="./wuerfel.html">Würfel</a></li>
-        <li><a href="./index.html#freunde">Freunde</a></li>
+        <li><a href="./index.html" data-en="Home">Start</a></li>
+        <li><a href="./pflanzen.html" data-en="Plants">Pflanzen</a></li>
+        <li><a href="./bienen.html" data-en="Bees">Bienen</a></li>
+        <li><a href="./werdegang.html" class="active" data-en="Career">Werdegang</a></li>
+        <li><a href="./wuerfel.html" data-en="Dice">Würfel</a></li>
+        <li><a href="./index.html#freunde" data-en="Friends">Freunde</a></li>
         <li><a href="https://www.wann-mensa-heute.de" class="ext" target="_blank" rel="noopener">Mensa</a></li>
       </ul>
     </nav>
+
+    <button class="icon-btn lang-toggle" type="button" aria-label="Switch to English" data-en-aria-label="Auf Deutsch umschalten" data-en="DE">EN</button>
 
     <button class="icon-btn theme-toggle" type="button" aria-label="Dunkles Design">
       <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
     </button>
 
-    <button class="icon-btn nav-toggle" type="button" aria-controls="mainNav" aria-expanded="false" aria-label="Menü">
+    <button class="icon-btn nav-toggle" type="button" aria-controls="mainNav" aria-expanded="false" aria-label="Menü" data-en-aria-label="Menu">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
   </div>
@@ -221,8 +273,8 @@ FUSS = '''</main>
 
 <footer class="site-foot">
   <div class="container">
-    <p>&copy; <span id="year">2026</span> Fabian Bammes &middot; <a href="./impressum.html">Impressum</a></p>
-    <span class="stamp">Gustav Hammer zertifiziert</span>
+    <p>&copy; <span id="year">2026</span> Fabian Bammes &middot; <a href="./impressum.html" data-en="Legal notice">Impressum</a></p>
+    <span class="stamp" data-en="Gustav Hammer certified">Gustav Hammer zertifiziert</span>
   </div>
 </footer>
 
@@ -232,18 +284,20 @@ FUSS = '''</main>
 '''
 
 
-def baue(abschnitte):
-    teile = [KOPF]
+def inhalt(abschnitte, sprache):
+    """Die Abschnitte der Seite in einer Sprache."""
+    txt = TEXTE[sprache]
+    teile = []
 
-    ueberschrift = "Werdegang"
+    ueberschrift = txt["eyebrow"]
     einleitung = abschnitte.get("Einleitung", [])
     if einleitung and einleitung[0]["titel"]:
         ueberschrift = einleitung[0]["titel"]
 
     teile.append('  <section class="section">\n    <div class="container">\n'
                  '      <div class="section-head">\n'
-                 '        <p class="eyebrow">Werdegang</p>\n'
-                 "        <h1>%s</h1>\n" % e(ueberschrift))
+                 '        <p class="eyebrow">%s</p>\n'
+                 "        <h1>%s</h1>\n" % (txt["eyebrow"], e(ueberschrift)))
     teile.append(render_text(einleitung, "cv-intro"))
     teile.append("\n      </div>\n    </div>\n  </section>\n")
 
@@ -252,7 +306,7 @@ def baue(abschnitte):
     if stationen or karten:
         teile.append('  <section class="section section-alt">\n    <div class="container split">\n      <div>\n')
         if stationen:
-            teile.append("        <h2>Stationen</h2>\n")
+            teile.append("        <h2>%s</h2>\n" % txt["stationen"])
             teile.append('        <ol class="timeline">\n')
             teile.append(render_stationen(stationen))
             teile.append("\n        </ol>\n")
@@ -265,7 +319,8 @@ def baue(abschnitte):
     if kenntnisse or schluss:
         teile.append('  <section class="section">\n    <div class="container">\n')
         if kenntnisse:
-            teile.append('      <div class="section-head">\n        <h2>Womit ich arbeite</h2>\n      </div>\n\n')
+            teile.append('      <div class="section-head">\n        <h2>%s</h2>\n      </div>\n\n'
+                         % txt["kenntnisse"])
             teile.append('      <div class="skills">\n')
             teile.append(render_kenntnisse(kenntnisse))
             teile.append("\n      </div>\n")
@@ -273,8 +328,25 @@ def baue(abschnitte):
             teile.append("\n" + render_text(schluss, "cv-note") + "\n")
         teile.append("    </div>\n  </section>\n")
 
-    teile.append(FUSS)
     return "".join(teile)
+
+
+def baue(abschnitte, abschnitte_en=None):
+    if not abschnitte_en:
+        return KOPF + inhalt(abschnitte, "de") + FUSS
+    return (KOPF
+            + '<div data-lang="de">\n' + inhalt(abschnitte, "de") + "</div>\n\n"
+            + '<div data-lang="en" lang="en">\n' + inhalt(abschnitte_en, "en") + "</div>\n"
+            + FUSS)
+
+
+def bericht(abschnitte, quelle):
+    for name in ABSCHNITTE:
+        anzahl = len(abschnitte.get(name, []))
+        print("  %-12s %d Eintrag/Eintraege" % (name, anzahl))
+    for u in [k for k in abschnitte if k not in ABSCHNITTE]:
+        print("  ! %s: Abschnitt '%s' kenne ich nicht - wird ignoriert" % (quelle.name, u),
+              file=sys.stderr)
 
 
 def main():
@@ -283,16 +355,16 @@ def main():
         return 1
 
     abschnitte = parse(lies(QUELLE))
-    ZIEL.write_text(baue(abschnitte), encoding="utf-8")
+    abschnitte_en = parse(lies(QUELLE_EN)) if QUELLE_EN.is_file() else None
+    ZIEL.write_text(baue(abschnitte, abschnitte_en), encoding="utf-8")
 
     print("%s aus %s gebaut" % (ZIEL.name, QUELLE.relative_to(ROOT).as_posix()))
-    for name in ("Einleitung", "Stationen", "Infokasten", "Kenntnisse", "Schluss"):
-        anzahl = len(abschnitte.get(name, []))
-        print("  %-12s %d Eintrag/Eintraege" % (name, anzahl))
-    unbekannt = [k for k in abschnitte
-                 if k not in ("Einleitung", "Stationen", "Infokasten", "Kenntnisse", "Schluss")]
-    for u in unbekannt:
-        print("  ! Abschnitt '%s' kenne ich nicht - wird ignoriert" % u, file=sys.stderr)
+    bericht(abschnitte, QUELLE)
+    if abschnitte_en:
+        print("  englisch aus %s" % QUELLE_EN.relative_to(ROOT).as_posix())
+        bericht(abschnitte_en, QUELLE_EN)
+    else:
+        print("  (keine %s - Seite nur auf Deutsch)" % QUELLE_EN.name)
     return 0
 
 

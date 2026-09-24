@@ -198,6 +198,17 @@ h3 { font-size: 1.2rem; margin: 0 0 .4em; }
   :root:not([data-theme="light"]) .theme-toggle .moon { display: block; }
 }
 
+.lang-toggle {
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+}
+.lang-toggle + .theme-toggle { margin-left: -.5rem; }
+
+/* Bloecke, die es in beiden Sprachen gibt (z. B. der Werdegang) */
+:root:not([lang="en"]) [data-lang="en"],
+:root[lang="en"] [data-lang="de"] { display: none !important; }
+
 .nav-toggle { display: none; }
 
 @media (max-width: 900px) {
@@ -772,7 +783,7 @@ body.no-scroll { overflow: hidden; }
 .lightbox .lb-next { right: 1rem; }
 
 @media (max-width: 900px) {
-  .theme-toggle { margin-left: auto; }
+  .lang-toggle { margin-left: auto; }
 }
 
 /* ---------- Werdegang ---------- */
@@ -1258,6 +1269,28 @@ body.no-scroll { overflow: hidden; }
 .log-section .timeline { max-width: 62ch; }
 .log-section .tl-item p { margin: 0; }
 .log-more { margin-top: 1.6rem; }
+
+/* ---------- Startseite: Neues aus dem Stockbuch ---------- */
+
+.neues-liste { max-width: 62ch; }
+.neues-liste p { margin: 0; }
+
+/* ---------- Pflanzen: Ableger anfragen ---------- */
+
+.ableger-btn { margin-top: 1.6rem; }
+
+/* ---------- 404 ---------- */
+
+.nicht-gefunden { text-align: center; }
+.nicht-gefunden .section-head { margin-inline: auto; }
+.nicht-gefunden .btn-row { justify-content: center; }
+.nicht-gefunden .gross {
+  font-size: clamp(4rem, 14vw, 8rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--accent);
+  margin: 0 0 .5rem;
+}
 
 /* ---------- Bienen: Honig- und Orangetoene ---------- */
 
