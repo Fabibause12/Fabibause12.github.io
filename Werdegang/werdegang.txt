@@ -84,10 +84,9 @@ Wo: Gymnasium · Auslandshalbjahr in Irland
 ## Veröffentlichungen
 ORCID: [0009-0009-8834-6500](https://orcid.org/0009-0009-8834-6500)
 - F. Schmidt-Kaler, M. Seidling, R. Zimmermann, N. Bode, F. Bammes, L. Radtke, P. Hommelhoff: „Planar On-Chip Auto-Ponderomotive Devices for Electron Beam Control“, 37th International Vacuum Nanoelectronics Conference (IVNC), 2024. [doi:10.1109/IVNC63480.2024.10652402](https://doi.org/10.1109/IVNC63480.2024.10652402)
-- F. Schmidt-Kaler, M. Seidling, R. Zimmermann, N. Bode, F. Bammes, L. Radtke, P. Hommelhoff: „Electron beam manipulation with auto-ponderomotive potentials for interaction-free measurements“, BIO Web of Conferences 129 (EMC 2024). [doi:10.1051/bioconf/202412905032](https://doi.org/10.1051/bioconf/202412905032)
+- Manuskript als Koautor bei Physical Review Letters, nach Begutachtung überarbeitet und erneut eingereicht
 
 ## Wissenschaftliches
-- Manuskript als Koautor in Vorbereitung
 - Patentanmeldung zur Elektronenführung mit dreidimensionalen Strukturen
 
 ## Nebenbei
@@ -106,7 +105,7 @@ Elektronenoptik, Elektronenführung auf Chips, Freie Elektronen, Elektronenmikro
 Python, MATLAB, Java, C, C#, LaTeX
 
 ## Simulation
-COMSOL Multiphysics, Elektrostatik, Teilchenbahnen, FEM
+COMSOL Multiphysics, Elektrostatik, Teilchenbahnen
 
 ## Labor
 Rasterelektronenmikroskop, Ultrahochvakuum, Hochspannung, Spitzenätzen, Wire-Bonding
