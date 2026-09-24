@@ -10,6 +10,7 @@
 //    Aktuell: ja      füllt den Punkt auf der Zeitleiste
 //    - ...            Stichpunkt
 //    alles andere     normaler Text, Leerzeile = neuer Absatz
+//    [Text](https://…) wird zum Link
 //    Zeilen mit // werden ignoriert
 //
 //  Danach:  python tools/build_werdegang.py
@@ -44,7 +45,7 @@ Wo: Lehrstuhl für Laserphysik (Prof. Hommelhoff), FAU Erlangen-Nürnberg
 - Bausteine für ein Quanten-Elektronenmikroskop: eine Weiche und ein Ringresonator für Mehrfachdurchgangs-Messungen
 - FEM-Simulation planarer Elektrodengeometrien; eine neue elliptische Form verbessert das Führungspotential deutlich
 - Layout per Skript erzeugt, als Platine gefertigt, gebondet und gegen das Design abgeglichen
-- 3D-gedruckte Elektroden mit oberflächen funktionalisierung
+- 3D-gedruckte Elektroden mit Oberflächenfunktionalisierung
 - Ein neu identifiziertes Führungsregime erstmals vermessen und in Teilchenbahn-Simulationen reproduziert
 
 ## 2025 – 2026 | Tutor im Physik-Department
@@ -55,7 +56,7 @@ Grundpraktikum für Medizinerinnen.
 ## 2023 – 2025 | Studentischer wissenschaftlicher Mitarbeiter
 Wo: Lehrstuhl für Laserphysik (Prof. Hommelhoff), FAU Erlangen-Nürnberg
 - Betrieb und Wartung eines Rasterelektronenmikroskops, Hoch- und Ultrahochvakuum
-- Ätzen von Feldemissionsspitzen, Aufbau eine Simulations pipeline 
+- Ätzen von Feldemissionsspitzen, Aufbau einer Simulationspipeline
 
 ## 2023 | Bachelorarbeit: auto-ponderomotorische S-Kurve
 Wo: Lehrstuhl für Laserphysik (Prof. Hommelhoff), FAU Erlangen-Nürnberg
@@ -80,9 +81,14 @@ Wo: Gymnasium · Auslandshalbjahr in Irland
 
 # Infokasten
 
+## Veröffentlichungen
+ORCID: [0009-0009-8834-6500](https://orcid.org/0009-0009-8834-6500)
+- F. Schmidt-Kaler, M. Seidling, R. Zimmermann, N. Bode, F. Bammes, L. Radtke, P. Hommelhoff: „Planar On-Chip Auto-Ponderomotive Devices for Electron Beam Control“, 37th International Vacuum Nanoelectronics Conference (IVNC), 2024. [doi:10.1109/IVNC63480.2024.10652402](https://doi.org/10.1109/IVNC63480.2024.10652402)
+- F. Schmidt-Kaler, M. Seidling, R. Zimmermann, N. Bode, F. Bammes, L. Radtke, P. Hommelhoff: „Electron beam manipulation with auto-ponderomotive potentials for interaction-free measurements“, BIO Web of Conferences 129 (EMC 2024). [doi:10.1051/bioconf/202412905032](https://doi.org/10.1051/bioconf/202412905032)
+
 ## Wissenschaftliches
 - Manuskript als Koautor in Vorbereitung
-- Patentanmeldung zur electronen führung mit 3 dimensionalen strukturen
+- Patentanmeldung zur Elektronenführung mit dreidimensionalen Strukturen
 
 ## Nebenbei
 Ehrenamtlich als Reisebegleiter für Menschen mit Behinderung unterwegs.
