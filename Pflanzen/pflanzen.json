@@ -1,7 +1,38 @@
 {
-  "generated": "2026-09-24T16:04:15Z",
-  "count": 3,
+  "generated": "2026-09-26T13:20:21Z",
+  "count": 7,
   "plants": [
+    {
+      "slug": "allocasia",
+      "title": "Alocasia",
+      "subtitle": "Pfeilblätter, die aussehen, als hätte jemand weiße Farbe darüber gekippt.",
+      "latin": "Alocasia micholitziana 'Frydek Variegata'",
+      "meta": {
+        "Licht": "Hell, aber ohne direkte Sonne",
+        "Gießen": "Erde leicht feucht halten, Staunässe unbedingt vermeiden",
+        "Standort": "Warm und feucht - bei mir im Bad",
+        "Haustiere": "Giftig für Katzen und Hunde",
+        "Ableger": "Selten, über kleine Knollen beim Umtopfen"
+      },
+      "text": "Die Alocasia ist die Diva unter meinen Pflanzen. Jedes Blatt ist anders\ngezeichnet: Manche sind fast komplett grün, andere nahezu weiß, und die meisten\nirgendwo dazwischen marmoriert.\n\nSie steht bei mir im Bad, weil sie es warm und feucht mag. Zugluft, kalte Füße\noder zu nasse Erde quittiert sie sofort mit hängenden oder gelben Blättern. Wenn\nes ihr gefällt, schiebt sie dafür erstaunlich schnell ein neues Blatt nach dem\nanderen.\n\nDie weißen Blattteile können keine Photosynthese machen und werden deshalb\nschneller braun. Das ist normal und kein Pflegefehler. Beim Umtopfen finden sich\nmanchmal kleine Knollen in der Erde - dann gibt es auch mal eine abzugeben.",
+      "images": [
+        "Pflanzen/allocasia/IMG_0151.jpg",
+        "Pflanzen/allocasia/IMG_0391.jpg"
+      ],
+      "imageCount": 2,
+      "en": {
+        "title": "Alocasia",
+        "subtitle": "Arrow-shaped leaves that look as if someone spilled white paint over them.",
+        "meta": {
+          "Light": "Bright, but no direct sun",
+          "Watering": "Keep the soil slightly moist, never waterlogged",
+          "Location": "Warm and humid - mine lives in the bathroom",
+          "Pets": "Toxic to cats and dogs",
+          "Cuttings": "Rarely, from small corms when repotting"
+        },
+        "text": "The Alocasia is the diva among my plants. Every leaf is patterned differently:\nsome are almost completely green, others nearly white, and most are marbled\nsomewhere in between.\n\nIt lives in my bathroom because it likes it warm and humid. Draughts, cold roots\nor soggy soil are answered immediately with drooping or yellow leaves. When it's\nhappy, though, it pushes out one new leaf after another surprisingly fast.\n\nThe white parts of the leaves can't photosynthesise, so they turn brown sooner.\nThat's normal and not a care mistake. When repotting, small corms sometimes turn\nup in the soil - then there's one to give away."
+      }
+    },
     {
       "slug": "Bogenhanf",
       "title": "Bogenhanf",
@@ -17,9 +48,10 @@
       "text": "Der Bogenhanf ist die genügsamste Pflanze, die ich habe. Er steht auch in einer\ndunklen Ecke noch gut da, braucht kaum Wasser und wächst einfach langsam vor sich\nhin. Früher hieß er Sansevieria, botanisch gehört er inzwischen zu den Drachenbäumen.\n\nUmbringen kann man ihn eigentlich nur auf eine Art: zu viel gießen. Steht er\ndauerhaft nass, fault der Wurzelstock von unten weg. Lieber eine Woche zu spät\nals einen Tag zu früh.\n\nVermehren geht auf zwei Wegen: den Wurzelstock beim Umtopfen teilen, oder ein\nBlatt in Stücke schneiden und antrocknen lassen, bevor es in die Erde kommt. Der\nzweite Weg dauert länger, dafür bekommt man aus einem Blatt mehrere Pflanzen.",
       "images": [
         "Pflanzen/Bogenhanf/IMG_0372.jpg",
-        "Pflanzen/Bogenhanf/IMG_0373.jpg"
+        "Pflanzen/Bogenhanf/IMG_0373.jpg",
+        "Pflanzen/Bogenhanf/IMG_0390.jpg"
       ],
-      "imageCount": 2,
+      "imageCount": 3,
       "en": {
         "title": "Snake plant",
         "subtitle": "The plant for everyone who regularly forgets their plants.",
@@ -60,6 +92,37 @@
       }
     },
     {
+      "slug": "Gummibaum",
+      "title": "Gummibaum",
+      "subtitle": "Glänzende Blätter, gerader Wuchs und kaum Ansprüche.",
+      "latin": "Ficus elastica",
+      "meta": {
+        "Licht": "Hell, pralle Mittagssonne lieber nicht",
+        "Gießen": "Alle ein bis zwei Wochen, wenn die obere Erde trocken ist",
+        "Standort": "Warm, ohne Zugluft - und dann am besten dort stehen lassen",
+        "Haustiere": "Der Milchsaft ist für Katzen und Hunde giftig",
+        "Ableger": "Ja, per Kopfsteckling im Wasserglas"
+      },
+      "text": "Gummibäume habe ich zwei: einen kleinen oben auf dem Regal unter der Dachschräge\nund einen großen, der auf dem Boden steht. Beide machen genau das, was sie sollen:\njedes Jahr ein Stück höher werden und dabei gut aussehen. Das Einzige, was er übel nimmt, ist ein Umzug - wer ihn ständig\nherumstellt, bekommt zur Strafe ein paar gelbe Blätter.\n\nDie großen Blätter sammeln Staub, deshalb wische ich sie ab und zu mit einem\nfeuchten Tuch ab. Danach glänzen sie wieder wie neu.\n\nBeim Abschneiden tritt weißer Milchsaft aus. Der klebt und reizt die Haut, also\nkurz abtupfen oder mit lauwarmem Wasser abspülen. Die abgeschnittene Spitze\nbewurzelt im Wasserglas nach ein paar Wochen - wenn du einen willst, sag Bescheid.",
+      "images": [
+        "Pflanzen/Gummibaum/IMG_0387.jpg",
+        "Pflanzen/Gummibaum/IMG_0388.jpg"
+      ],
+      "imageCount": 2,
+      "en": {
+        "title": "Rubber plant",
+        "subtitle": "Glossy leaves, straight growth and hardly any demands.",
+        "meta": {
+          "Light": "Bright, but better no harsh midday sun",
+          "Watering": "Every one to two weeks, once the top of the soil is dry",
+          "Location": "Warm, no draughts - and then just leave it there",
+          "Pets": "The milky sap is toxic to cats and dogs",
+          "Cuttings": "Yes, as a tip cutting in a glass of water"
+        },
+        "text": "I have two rubber plants: a small one on top of the shelf under the sloping\nceiling and a big one standing on the floor. Both do exactly what they're\nsupposed to: grow a bit taller every year and look good while doing it. The only thing it holds against you is moving - keep shifting it around\nand it punishes you with a few yellow leaves.\n\nThe big leaves collect dust, so every now and then I wipe them with a damp\ncloth. Afterwards they shine like new.\n\nCutting it releases a white milky sap. It's sticky and irritates the skin, so dab\nit off or rinse it with lukewarm water. The cut-off tip roots in a glass of water\nafter a few weeks - if you want one, just let me know."
+      }
+    },
+    {
       "slug": "Monstera",
       "title": "Monstera",
       "subtitle": "Das Fensterblatt, das jeden Raum größer aussehen lässt.",
@@ -74,9 +137,10 @@
       "text": "Die Monstera ist die unkomplizierteste Mitbewohnerin, die ich habe. Sie verzeiht es,\nwenn man mal eine Woche vergisst zu gießen, und beschwert sich nur mit hängenden\nBlättern - nach dem nächsten Guss steht sie wieder da, als wäre nichts gewesen.\n\nAbleger sind einfach: Ich schneide ein Stück Stamm direkt unter einer Luftwurzel ab,\nstelle es für zwei bis drei Wochen ins Wasserglas, und sobald die Wurzeln zwei\nZentimeter lang sind, kommt es in normale Blumenerde.\n\nWenn du eine willst, sag einfach Bescheid - Nachschub ist reichlich vorhanden.",
       "images": [
         "Pflanzen/Monstera/IMG_0370.jpg",
-        "Pflanzen/Monstera/IMG_0371.jpg"
+        "Pflanzen/Monstera/IMG_0371.jpg",
+        "Pflanzen/Monstera/IMG_0389.jpg"
       ],
-      "imageCount": 2,
+      "imageCount": 3,
       "en": {
         "title": "Monstera",
         "subtitle": "The Swiss cheese plant that makes every room look bigger.",
@@ -88,6 +152,66 @@
           "Cuttings": "Yes, as a stem cutting in a glass of water"
         },
         "text": "The Monstera is the least complicated flatmate I have. She forgives you for\nforgetting to water her for a week and only complains with drooping leaves -\nafter the next watering she stands tall again as if nothing had happened.\n\nCuttings are easy: I cut off a piece of stem just below an aerial root, put it in\na glass of water for two to three weeks, and as soon as the roots are two\ncentimetres long, it goes into normal potting soil.\n\nIf you want one, just let me know - there's plenty to go around."
+      }
+    },
+    {
+      "slug": "Monstera adensonii",
+      "title": "Monstera adansonii",
+      "subtitle": "Die kleine Schwester der Monstera, mit Löchern statt Schlitzen.",
+      "latin": "Monstera adansonii",
+      "meta": {
+        "Licht": "Hell, ohne pralle Sonne",
+        "Gießen": "Einmal pro Woche, im Winter seltener",
+        "Standort": "Warm, gern mit Moosstab zum Hochklettern",
+        "Haustiere": "Für Katzen und Hunde leicht giftig",
+        "Ableger": "Ja, jederzeit - ein Stück Ranke mit Knoten im Wasserglas"
+      },
+      "text": "Die Monstera adansonii heißt auch Monkey Mask, und wer die Blätter sieht, weiß\nwarum: Jedes einzelne ist voller ovaler Löcher, als hätte jemand Schweizer Käse\ndaraus gemacht. Bei mir klettert sie an einem Moosstab nach oben und ist\ninzwischen deutlich breiter geworden, als ich es ihr zugetraut hätte.\n\nSie wächst schnell und ist dabei angenehm unkompliziert. Wenn sie zu buschig wird,\nschneide ich ein paar Triebe ab - direkt unter einem Knoten, dann ins Wasserglas,\nund nach zwei bis drei Wochen sind Wurzeln dran.\n\nGenau deshalb gibt es von ihr fast immer Ableger. Wenn du einen willst, sag\neinfach Bescheid.",
+      "images": [
+        "Pflanzen/Monstera%20adensonii/IMG_0385.jpg"
+      ],
+      "imageCount": 1,
+      "en": {
+        "title": "Monstera adansonii",
+        "subtitle": "The Monstera's little sister, with holes instead of slits.",
+        "meta": {
+          "Light": "Bright, no harsh sun",
+          "Watering": "Once a week, less often in winter",
+          "Location": "Warm, ideally with a moss pole to climb",
+          "Pets": "Mildly toxic to cats and dogs",
+          "Cuttings": "Yes, any time - a piece of vine with a node in a glass of water"
+        },
+        "text": "The Monstera adansonii is also called Monkey Mask, and one look at the leaves\ntells you why: every single one is full of oval holes, as if someone had turned\nit into Swiss cheese. Mine climbs up a moss pole and has grown much wider than I\never expected.\n\nIt grows fast and is pleasantly uncomplicated. When it gets too bushy, I cut off\na few shoots - just below a node, into a glass of water, and after two to three\nweeks there are roots.\n\nThat's exactly why there are almost always cuttings of it. If you want one, just\nlet me know."
+      }
+    },
+    {
+      "slug": "String of Hearts",
+      "title": "Leuchterblume",
+      "subtitle": "Meterlange Ranken voller kleiner Herzen, auch bekannt als String of Hearts.",
+      "latin": "Ceropegia woodii",
+      "meta": {
+        "Licht": "Hell, ein bisschen Sonne verträgt sie gut",
+        "Gießen": "Sparsam, alle zwei bis drei Wochen - die Blätter speichern Wasser",
+        "Standort": "Hoch oben, damit die Ranken frei hängen können",
+        "Haustiere": "Gilt als ungiftig für Katzen und Hunde",
+        "Ableger": "Ja, ein Stück Ranke auf feuchte Erde legen"
+      },
+      "text": "Die Leuchterblume ist die Pflanze, bei der Besuch immer zweimal hinschaut. Aus\neinem kleinen Topf hängen meterlange, dünne Ranken, an denen lauter kleine\nherzförmige Blätter sitzen - grau-grün marmoriert oben, violett darunter.\n\nSie ist eigentlich eine Sukkulente und damit genau das Gegenteil von\nanspruchsvoll. Das Einzige, was sie wirklich umbringt, ist zu viel Wasser.\nLieber einmal zu spät gießen als einmal zu oft.\n\nAbleger sind denkbar einfach: Ich lege ein Stück Ranke auf einen Topf mit feuchter\nErde, und nach ein paar Wochen wachsen an den Blattknoten Wurzeln. Da die Ranken\nsowieso ständig zu lang werden, habe ich fast immer welche übrig.",
+      "images": [
+        "Pflanzen/String%20of%20Hearts/IMG_0386.jpg"
+      ],
+      "imageCount": 1,
+      "en": {
+        "title": "String of hearts",
+        "subtitle": "Metre-long trails full of tiny hearts.",
+        "meta": {
+          "Light": "Bright, a bit of sun is fine",
+          "Watering": "Sparingly, every two to three weeks - the leaves store water",
+          "Location": "Somewhere high, so the trails can hang freely",
+          "Pets": "Considered non-toxic to cats and dogs",
+          "Cuttings": "Yes, lay a piece of trail on moist soil"
+        },
+        "text": "The string of hearts is the plant visitors always look at twice. Metre-long,\nthin trails hang out of a small pot, covered in little heart-shaped leaves -\nmarbled grey-green on top, purple underneath.\n\nIt is actually a succulent, which makes it the opposite of demanding. The only\nthing that really kills it is too much water. Better to water once too late\nthan once too often.\n\nCuttings couldn't be easier: I lay a piece of trail on a pot of moist soil, and\nafter a few weeks roots grow from the leaf nodes. Since the trails keep getting\ntoo long anyway, I almost always have some to spare."
       }
     }
   ]

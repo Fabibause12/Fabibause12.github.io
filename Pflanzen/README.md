@@ -85,7 +85,7 @@ oder liegen lassen, wie du magst.
 ### Ordner, die ignoriert werden
 
 * alles, was mit `_` oder `.` anfängt
-* die Namen `Vorlage`, `Template`, `Beispiel` und `Muster`
+* alles, was mit `Vorlage`, `Template`, `Beispiel` oder `Muster` anfängt – also auch Kopien wie `Vorlage - Kopie (2)`
 
 Dort kannst du dir also in Ruhe eine Blaupause zum Kopieren hinlegen, ohne dass
 sie auf der Seite auftaucht.
