@@ -8,3 +8,6 @@
 # Python-Zwischendateien vom Bauen
 __pycache__/
 *.pyc
+
+# Aussortierte Fotos, die nicht auf die Seite sollen
+Pflanzen/*/_aussortiert/

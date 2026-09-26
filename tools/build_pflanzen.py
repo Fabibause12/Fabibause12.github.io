@@ -27,6 +27,13 @@ OUT_FILE = PFLANZEN_DIR / "pflanzen.json"
 IMAGE_EXT = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".avif", ".bmp", ".svg"}
 HEIC_EXT = {".heic", ".heif"}
 IGNORIEREN = {"vorlage", "template", "beispiel", "muster"}
+
+
+def uebersprungen(name):
+    """Versteckte Ordner und Vorlagen, auch Kopien wie "Vorlage - Kopie (2)"."""
+    if name.startswith((".", "_")):
+        return True
+    return any(name.lower().startswith(v) for v in IGNORIEREN)
 MAX_KANTE = 2000
 TEXT_PRIO = ["text.txt", "info.txt", "beschreibung.txt", "pflanze.txt"]
 BIG_IMAGE_WARN = 3 * 1024 * 1024
@@ -256,12 +263,10 @@ def main():
 
     if PFLANZEN_DIR.is_dir():
         folders = sorted([p for p in PFLANZEN_DIR.iterdir()
-                          if p.is_dir()
-                          and not p.name.startswith((".", "_"))
-                          and p.name.lower() not in IGNORIEREN],
+                          if p.is_dir() and not uebersprungen(p.name)],
                          key=lambda p: natural_key(p.name))
         for p in sorted(PFLANZEN_DIR.iterdir()):
-            if p.is_dir() and (p.name.startswith("_") or p.name.lower() in IGNORIEREN):
+            if p.is_dir() and uebersprungen(p.name) and not p.name.startswith("."):
                 print("  (uebersprungen: %s)" % p.name)
         for folder in folders:
             plants.append(collect(folder, warnings))
