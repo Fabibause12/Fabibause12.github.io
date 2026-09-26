@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-24T16:04:15Z",
+  "generated": "2026-09-26T13:19:50Z",
   "count": 1,
   "colonies": [
     {
@@ -12,7 +12,7 @@
         "Eingezogen": "28. April 2026",
         "Herkunft": "Nachschwarm von Veronika, ungefähr 1,5 kg",
         "Königin": "Zum ersten Mal am 6. Juni 2026 gesehen, goldbrauner Leib, sonst schwarz",
-        "Varroa": "Milchsäure im Mai, Ameisensäure im Juli",
+        "Varroa": "Milchsäure im Mai, Ameisensäure im Juli und ab dem 23. September",
         "Vorrat": "Ende August 2026 rund 25 kg eingelagert"
       },
       "text": "Maria ist ein Nachschwarm, den ich Ende April 2026 bei Veronika in Effeltrich\nabgeholt habe. Ungefähr anderthalb Kilo Bienen, eine Nacht in der Garage des\nNachbarn zwischengeparkt, am nächsten Tag vor der Beute ausgekippt. Nach gut einer\nStunde waren alle drin – dieser Moment, in dem sich der ganze Haufen in Bewegung\nsetzt und nach oben ins Flugloch läuft, ist immer noch mein liebster Teil.\n\nDie Bienen wohnen in einer Dadant-Beute auf zwei Zargen (Rähmchen), die nach und nach dazukommen, \nwenn das Volk sie auch ausbauen kann.\nBei Maria ging das schnell: Anfang Mai die ersten zwei Rähmchen zu einem Drittel\nausgebaut, Mitte Mai schon so viel Betrieb, dass drei Waben auf einmal dazu konnten.\nMitte Juni hing die zehnte und letzte Wabe dieses Jahres im Kasten.\n\nDie Königin habe ich lange nicht zu Gesicht bekommen. Am Brutbild sieht man ja, dass\nsie da ist – gleichmäßig verdeckelte Flächen, Stifte auf fast jeder Wabe. Am 6. Juni\nsaß sie dann doch auf Wabe fünf: goldbrauner Leib, ansonsten schwarz. Seitdem finde\nich sie regelmäßig wieder.\n\n\nGeerntet habe ich in diesem Jahr nichts. Ein Schwarm darf im ersten Sommer alles\nbehalten, was er einträgt. Ende August waren mit zufütternung rund 25 Kilo eingelagert, \ndas Brutnest sah gut aus, und damit darf sie in ihren ersten Winter.",
@@ -26,6 +26,16 @@
       ],
       "imageCount": 6,
       "log": [
+        {
+          "datum": "25.09.2026",
+          "text": "Den Bienen geht es sichtlich gut, sie genießen die Sonne. Verdunstung geprüft: 45 ml in zwei Tagen, rund 22 ml am Tag – passt. Die Säure bleibt bis Anfang Oktober drauf.",
+          "en": "The bees are clearly doing well and enjoying the sun. Checked the evaporation: 45 ml in two days, about 22 ml a day – just right. The acid stays on until early October."
+        },
+        {
+          "datum": "23.09.2026",
+          "text": "Zweite Behandlung mit Ameisensäure, 290 ml mit dem großen Docht. Die erste im Juli wurde zu früh abgebrochen, wie stark der Befall ist, bleibt deshalb unklar. Diesmal läuft sie 10 bis 14 Tage durch.",
+          "en": "Second formic acid treatment, 290 ml with the large wick. The first one in July was stopped too early, so how bad the infestation is remains unclear. This time it runs for 10 to 14 days."
+        },
         {
           "datum": "29.08.2026",
           "text": "Komplette Durchsicht. Rund 25 kg sind eingelagert, damit ist die Winterfütterung so gut wie durch.",
@@ -166,7 +176,7 @@
           "Moved in": "28 April 2026",
           "Origin": "Secondary swarm from Veronika, about 1.5 kg",
           "Queen": "First seen on 6 June 2026, golden-brown abdomen, otherwise black",
-          "Varroa": "Lactic acid in May, formic acid in July",
+          "Varroa": "Lactic acid in May, formic acid in July and from 23 September",
           "Stores": "About 25 kg stored by the end of August 2026"
         },
         "text": "Maria is a secondary swarm that I picked up from Veronika in Effeltrich at the end\nof April 2026. Roughly one and a half kilos of bees, parked overnight in the\nneighbour's garage, tipped out in front of the hive the next day. After a good\nhour they were all inside – that moment when the whole heap starts moving and\nmarches up into the entrance is still my favourite part.\n\nThe bees live in a Dadant hive with two boxes, and the frames are added one by one\nas soon as the colony can actually draw them out.\nWith Maria that went quickly: at the beginning of May the first two frames were a\nthird drawn, and by mid-May there was so much going on that three combs could go\nin at once. By mid-June the tenth and last comb of the year was hanging in the box.\n\nFor a long time I didn't get to see the queen. Of course the brood pattern shows\nthat she's there – evenly capped areas, eggs on almost every comb. On 6 June she\nwas finally sitting on comb five: golden-brown abdomen, otherwise black. Since\nthen I find her again regularly.\n\n\nI didn't harvest anything this year. A swarm gets to keep everything it brings in\nduring its first summer. By the end of August, with some extra feeding, about\n25 kilos were stored, the brood nest looked good, and so she's ready for her\nfirst winter."
