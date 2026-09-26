@@ -126,6 +126,54 @@
     }
   });
 
+  /* ---------- Zertifikat ----------
+     Der Stempel unten rechts oeffnet ein kleines Popup mit den Details,
+     die Gustav zur Pruefung geschrieben hat. */
+
+  var ZERTIFIKAT_BIS = "24.09.2027";
+
+  function zertifikatHtml() {
+    return '<button type="button" class="zert-close" aria-label="' + t("Schließen", "Close") + '">&times;</button>' +
+      '<p class="zert-kicker">' + t("Offizielles Zertifikat", "Official certificate") + '</p>' +
+      '<h2 id="zertTitel">' + t("Gustav Hammer zertifiziert", "Gustav Hammer certified") + ' &#10004;&#65039;</h2>' +
+      '<p>' + t("Diese Website wurde von Gustav Hammer geprüft und für sehr schön befunden. Sie ist zertifiziert bis zum",
+                "This website has been inspected by Gustav Hammer and found to be very nice. It is certified until") +
+      ' <strong>' + datum(ZERTIFIKAT_BIS) + '</strong>.</p>' +
+      '<p class="zert-sub">' + t("Umgesetzte Anmerkungen des Prüfers:", "Inspector's remarks, now addressed:") + '</p>' +
+      '<ul>' +
+        '<li>' + t("Seine Website hat jetzt die Domain", "His website now lives at") +
+          ' <a href="https://gustav-hammer.de/" target="_blank" rel="noopener">gustav-hammer.de</a>.</li>' +
+        '<li>' + t("scherehoch.de gibt es leider nicht mehr :(", "scherehoch.de sadly no longer exists :(") + '</li>' +
+      '</ul>';
+  }
+
+  function zeigeZertifikat() {
+    var dlg = document.getElementById("zertifikat");
+    if (!dlg) {
+      dlg = document.createElement("dialog");
+      dlg.id = "zertifikat";
+      dlg.className = "zert";
+      dlg.setAttribute("aria-labelledby", "zertTitel");
+      dlg.addEventListener("click", function (ev) {
+        /* Klick auf den abgedunkelten Hintergrund oder das X schliesst */
+        if (ev.target === dlg || ev.target.closest(".zert-close")) dlg.close();
+      });
+      document.body.appendChild(dlg);
+    }
+    dlg.innerHTML = zertifikatHtml();
+    if (typeof dlg.showModal === "function") dlg.showModal();
+    else dlg.setAttribute("open", "");
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll(".stamp"), function (stamp) {
+    stamp.setAttribute("role", "button");
+    stamp.setAttribute("tabindex", "0");
+    stamp.addEventListener("click", zeigeZertifikat);
+    stamp.addEventListener("keydown", function (ev) {
+      if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); zeigeZertifikat(); }
+    });
+  });
+
   /* Die Sprache hat das Skript im <head> schon gesetzt, hier werden nur die Texte getauscht. */
   setLang(currentLang(), false);
 
