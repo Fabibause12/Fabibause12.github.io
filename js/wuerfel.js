@@ -1,4 +1,4 @@
-/* Wuerfelspiele: Kniffel, Maexchen und ein freier Wuerfelbecher.
+/* Wuerfelspiele: Kniffel, Maexchen, Bank und ein freier Wuerfelbecher.
    Alles laeuft im Browser, nichts wird gespeichert. */
 (function () {
   "use strict";
@@ -652,6 +652,373 @@
   }
 
   /* =====================================================
+     Bank
+     ===================================================== */
+
+  var G_SICHER = 3;           /* so viele Wuerfe pro Runde, bei denen die Sieben 70 bringt */
+
+  var gSpieler = [], gRunde = 1, gRundenMax = 15, gTopf = 0, gWuerfe = 0,
+      gAktiv = 0, gStarter = 0, gWuerfel = [null, null], gLaeuft = false,
+      gMeldung = null,
+      gEigene = false,        /* mit echten Wuerfeln: die Summe wird angetippt */
+      gZurueckListe = [],     /* Staende vor jedem Wurf und jedem Einzahlen */
+      gVorListe = [],         /* zurueckgenommene Staende, fuer den Vorwaerts-Pfeil */
+      gHoch = 0;              /* hoechster Bankstand der ganzen Partie */
+
+  var gNames = el("#gNames"), gSetup = el("#gSetup"), gBoard = el("#gBoard"),
+      gDice = el("#gDice"), gList = el("#gList"), gResult = el("#gResult"),
+      gEingabe = el("#gEingabe");
+
+  namenAufsetzen(gNames, 2, 2);
+  el("#gAdd").addEventListener("click", function () { namenDazu(gNames, 2); });
+  el("#gStart").addEventListener("click", gStart);
+  el("#gQuit").addEventListener("click", gZurueck);
+  el("#gRoll").addEventListener("click", gKnopf);
+  el("#gBack").addEventListener("click", gRueckgaengig);
+  el("#gFwd").addEventListener("click", gVorwaerts);
+
+  function gStart() {
+    gRundenMax = parseInt(el("#gRounds").value, 10) || 15;
+    gEigene = el("#gMode").value === "eigene";
+    gZurueckListe = [];
+    gVorListe = [];
+    gSpieler = namenLesen(gNames).map(function (name) {
+      return {
+        name: name, punkte: 0, drin: false, zuletzt: 0,
+        /* Statistik fuer den Schluss */
+        wuerfe: 0, pasch: 0, sieben: 0, killer: 0, best: 0, leer: 0
+      };
+    });
+    gHoch = 0;
+    gRunde = 1;
+    gStarter = 0;
+    gLaeuft = true;
+    gResult.hidden = true;
+    gResult.innerHTML = "";
+    gSetup.hidden = true;
+    gBoard.hidden = false;
+    gNeueRunde();
+    gZeichne();
+  }
+
+  function gZurueck() {
+    gLaeuft = false;
+    gBoard.hidden = true;
+    gResult.hidden = true;
+    gSetup.hidden = false;
+  }
+
+  function gNeueRunde() {
+    gTopf = 0;
+    gWuerfe = 0;
+    gWuerfel = [null, null];
+    gSpieler.forEach(function (s) { s.drin = false; s.zuletzt = 0; });
+    gAktiv = gStarter;
+    gMeldung = { art: "start" };
+  }
+
+  /* Naechster Spieler, der in dieser Runde noch nicht eingezahlt hat. */
+  function gNaechster(von) {
+    var i = von;
+    for (var n = 0; n < gSpieler.length; n++) {
+      i = (i + 1) % gSpieler.length;
+      if (!gSpieler[i].drin) return i;
+    }
+    return von;
+  }
+
+  /* Runde vorbei (Sieben oder alle drin): ohne Zwischenschritt weiter mit
+     der naechsten, nach der letzten gleich zum Ergebnis. Was passiert ist,
+     steht danach als Hinweis ueber der neuen Runde. */
+  function gRundeZu(art) {
+    var leer = gSpieler.filter(function (s) { return !s.drin; });
+    leer.forEach(function (s) { s.leer++; });
+    var namen = leer.map(function (s) { return s.name; });
+    if (gRunde >= gRundenMax) {
+      gEnde();
+      return;
+    }
+    gRunde++;
+    gStarter = (gStarter + 1) % gSpieler.length;
+    gNeueRunde();
+    gMeldung = { art: art, leer: namen };
+  }
+
+  function gKnopf() {
+    if (!gLaeuft || gEigene) return;
+    var a = wurf(6), b = wurf(6);
+    gWurf(a + b, a === b, [a, b]);
+  }
+
+  /* Der ganze Spielstand als Kopie; die Spieler werden einzeln kopiert. */
+  function gStand() {
+    return {
+      topf: gTopf, wuerfe: gWuerfe, aktiv: gAktiv, wuerfel: gWuerfel.slice(),
+      runde: gRunde, starter: gStarter, hoch: gHoch, meldung: gMeldung,
+      spieler: gSpieler.map(function (s) {
+        var kopie = {};
+        Object.keys(s).forEach(function (k) { kopie[k] = s[k]; });
+        return kopie;
+      })
+    };
+  }
+
+  function gSetzen(v) {
+    gTopf = v.topf;
+    gWuerfe = v.wuerfe;
+    gAktiv = v.aktiv;
+    gWuerfel = v.wuerfel;
+    gRunde = v.runde;
+    gStarter = v.starter;
+    gHoch = v.hoch;
+    gMeldung = v.meldung;
+    gSpieler = v.spieler;
+  }
+
+  /* Vor jeder Aktion merken; eine neue Aktion macht das Vorwaerts ungueltig. */
+  function gMerken() {
+    gZurueckListe.push(gStand());
+    gVorListe = [];
+  }
+
+  function gRueckgaengig() {
+    if (!gLaeuft || !gZurueckListe.length) return;
+    gVorListe.push(gStand());
+    gSetzen(gZurueckListe.pop());
+    gZeichne();
+  }
+
+  function gVorwaerts() {
+    if (!gLaeuft || !gVorListe.length) return;
+    gZurueckListe.push(gStand());
+    gSetzen(gVorListe.pop());
+    gZeichne();
+  }
+
+  gEingabe.addEventListener("click", function (ev) {
+    var btn = ev.target.closest("[data-summe]");
+    if (!btn || btn.disabled) return;
+    var wert = btn.dataset.summe;
+    if (wert === "pasch") gWurf(0, true);
+    else gWurf(+wert, false);
+  });
+
+  /* Ein Wurf, digital oder eingetippt: Summe und ob es ein Pasch war. */
+  function gWurf(s, pasch, wuerfel) {
+    gMerken();
+    if (wuerfel) gWuerfel = wuerfel;
+    gWuerfe++;
+
+    var werfer = gSpieler[gAktiv];
+    werfer.wuerfe++;
+    if (s === 7) werfer.sieben++;
+
+    if (gWuerfe <= G_SICHER) {
+      gTopf += s === 7 ? 70 : s;
+      gMeldung = { art: s === 7 ? "siebzig" : "plus", wert: s === 7 ? 70 : s };
+    } else if (s === 7) {
+      werfer.killer++;
+      gRundeZu("sieben");
+      gZeichne();
+      return;
+    } else if (pasch) {
+      /* Gezaehlt werden nur Paesche, die die Bank verdoppeln - so
+         stimmt die Statistik auch, wenn Summen eingetippt werden. */
+      werfer.pasch++;
+      gTopf *= 2;
+      gMeldung = { art: "pasch" };
+    } else {
+      gTopf += s;
+      gMeldung = { art: "plus", wert: s };
+    }
+    gHoch = Math.max(gHoch, gTopf);
+
+    gAktiv = gNaechster(gAktiv);
+    gZeichne();
+    animiere(gDice);
+  }
+
+  function gBank(i) {
+    var sp = gSpieler[i];
+    if (!gLaeuft || sp.drin || gTopf <= 0) return;
+    gMerken();
+    sp.punkte += gTopf;
+    sp.zuletzt = gTopf;
+    sp.best = Math.max(sp.best, gTopf);
+    sp.drin = true;
+
+    if (gSpieler.every(function (s) { return s.drin; })) {
+      gRundeZu("alle");
+    } else {
+      gMeldung = { art: "bank", name: sp.name, wert: gTopf };
+      if (i === gAktiv) gAktiv = gNaechster(gAktiv);
+    }
+    gZeichne();
+  }
+
+  gList.addEventListener("click", function (ev) {
+    var btn = ev.target.closest("[data-bank]");
+    if (btn && !btn.disabled) gBank(+btn.dataset.bank);
+  });
+
+  function gHinweis() {
+    var m = gMeldung || {};
+    if (m.art === "start") {
+      return t("Die ersten drei Würfe sind sicher – eine Sieben bringt 70 Punkte.",
+               "The first three rolls are safe – a seven is worth 70 points.");
+    }
+    if (m.art === "siebzig") return t("Sieben! 70 Punkte in die Bank.", "Seven! 70 points into the bank.");
+    if (m.art === "plus") return "+" + m.wert + t(" für die Bank.", " for the bank.");
+    if (m.art === "pasch") return t("Pasch! Die Bank verdoppelt sich.", "Doubles! The bank doubles.");
+    if (m.art === "bank") {
+      return m.name + t(" kassiert ", " banks ") + m.wert + t(" Punkte.", " points.");
+    }
+    if (m.art === "sieben") {
+      return t("Sieben – die Bank war weg. ", "Seven – the bank was lost. ") +
+        (m.leer.length
+          ? t("Leer ausgegangen: ", "Left empty-handed: ") + m.leer.join(", ") + ". "
+          : "") +
+        t("Neue Runde.", "New round.");
+    }
+    if (m.art === "alle") {
+      return t("Alle hatten eingezahlt. Neue Runde.", "Everyone had banked. New round.");
+    }
+    return "";
+  }
+
+  function gZeichne() {
+    var sp = gSpieler[gAktiv];
+    el("#gRound").textContent = String(gRunde);
+    el("#gRoundMax").textContent = String(gRundenMax);
+    el("#gWho").textContent = sp.name + t(" würfelt", " rolls");
+
+    var gefaehrlich = gWuerfe >= G_SICHER;
+    var rolls = el("#gRolls");
+    rolls.classList.toggle("gefahr", gefaehrlich);
+    rolls.textContent = gefaehrlich
+      ? t("Sieben beendet die Runde", "A seven ends the round")
+      : (G_SICHER - gWuerfe) + (G_SICHER - gWuerfe === 1
+        ? t(" sicherer Wurf übrig", " safe roll left")
+        : t(" sichere Würfe übrig", " safe rolls left"));
+
+    el("#gPot").textContent = String(gTopf);
+    el("#gHint").textContent = gHinweis();
+
+    var roll = el("#gRoll");
+    roll.disabled = !gLaeuft;
+    roll.hidden = gEigene;
+
+    el("#gBack").disabled = !gLaeuft || !gZurueckListe.length;
+    el("#gFwd").disabled = !gLaeuft || !gVorListe.length;
+
+    /* Mit eigenen Wuerfeln liegen die Wuerfel auf dem Tisch, nicht auf dem Bildschirm. */
+    gDice.hidden = gEigene;
+    gDice.innerHTML = wuerfelHtml(gWuerfel[0], 6) + wuerfelHtml(gWuerfel[1], 6);
+    gZeichneEingabe();
+
+    gList.innerHTML = gSpieler.map(function (s, i) {
+      var klasse = s.drin ? "drin" : (i === gAktiv ? "now" : "");
+      var aus = !gLaeuft || s.drin || gTopf <= 0;
+      return '<li class="' + klasse + '">' +
+        '<span class="wer">' + esc(s.name) +
+        (s.drin ? '<small>+' + s.zuletzt + "</small>" : "") + "</span>" +
+        "<strong>" + s.punkte + "</strong>" +
+        '<button class="btn ' + (aus ? "btn-quiet" : "btn-primary") + '" type="button" data-bank="' + i + '"' +
+        (aus ? " disabled" : "") + ">" + (s.drin ? t("Drin", "Banked") : "Bank") + "</button></li>";
+    }).join("");
+  }
+
+  /* Summen 2 bis 12 und ein Pasch-Knopf. Ab dem vierten Wurf beendet die
+     Sieben die Runde (rot), und 2 und 12 gehen nur noch als Pasch. */
+  function gZeichneEingabe() {
+    gEingabe.hidden = !gEigene || !gLaeuft;
+    if (gEingabe.hidden) return;
+    var gefaehrlich = gWuerfe >= G_SICHER, html = "";
+    for (var s = 2; s <= 12; s++) {
+      var aus = gefaehrlich && (s === 2 || s === 12);
+      html += '<button type="button" class="summe' + (gefaehrlich && s === 7 ? " gefahr" : "") +
+        '" data-summe="' + s + '"' + (aus ? " disabled" : "") + ">" + s + "</button>";
+    }
+    html += '<button type="button" class="summe pasch" data-summe="pasch"' +
+      (gefaehrlich ? "" : ' disabled title="' + t("In den ersten drei Würfen zählt ein Pasch seine Augen.",
+        "In the first three rolls doubles just count their pips.") + '"') + ">" +
+      t("Pasch", "Doubles") + "</button>";
+    el("#gSummen").innerHTML = html;
+  }
+
+  function gEnde() {
+    gLaeuft = false;
+    gErgebnis();
+    gResult.hidden = false;
+    gBoard.hidden = true;
+    gResult.scrollIntoView({ block: "nearest" });
+  }
+
+  /* Wer hat bei einem Wert vorn? Bei Gleichstand alle, bei null niemand. */
+  function gSpitze(feld) {
+    var max = Math.max.apply(null, gSpieler.map(function (s) { return s[feld]; }));
+    if (max <= 0) return null;
+    return {
+      wert: max,
+      namen: gSpieler.filter(function (s) { return s[feld] === max; })
+        .map(function (s) { return esc(s.name); }).join(", ")
+    };
+  }
+
+  function gStatistik(liste) {
+    var kacheln = [
+      { feld: "pasch", titel: t("Meiste Päsche", "Most doubles"), zusatz: t("mal die Bank per Pasch verdoppelt", "times doubled the bank") },
+      { feld: "sieben", titel: t("Meiste Siebenen", "Most sevens"), zusatz: t("Siebenen gewürfelt", "sevens rolled") },
+      { feld: "killer", titel: t("Bank gesprengt", "Busted the bank"), zusatz: t("mal die Runde mit einer Sieben beendet", "rounds ended with a seven") },
+      { feld: "best", titel: t("Größter Coup", "Biggest haul"), zusatz: t("Punkte auf einmal eingezahlt", "points banked at once") },
+      { feld: "leer", titel: t("Pechvogel", "Unluckiest"), zusatz: t("mal leer ausgegangen", "times left empty-handed") }
+    ];
+
+    var html = '<h4 class="stat-titel">' + t("Statistik", "Stats") + '</h4><div class="stat-grid">';
+    kacheln.forEach(function (k) {
+      var top = gSpitze(k.feld);
+      html += '<div class="stat-kachel"><span class="bank-label">' + k.titel + "</span>" +
+        (top
+          ? "<strong>" + top.namen + "</strong><span>" + top.wert + (k.zusatz ? " " + k.zusatz : "") + "</span>"
+          : "<strong>–</strong><span>" + t("niemand", "nobody") + "</span>") +
+        "</div>";
+    });
+    html += '<div class="stat-kachel"><span class="bank-label">' + t("Höchste Bank", "Highest bank") +
+      "</span><strong>" + gHoch + "</strong><span>" + t("Punkte im Topf", "points in the pot") + "</span></div></div>";
+
+    html += '<div class="sheet-wrap"><table class="sheet stat-tabelle"><thead><tr><th scope="col">' +
+      t("Spieler", "Player") + '</th><th scope="col">' + t("Würfe", "Rolls") +
+      '</th><th scope="col">' + t("Päsche", "Doubles") + '</th><th scope="col">' + t("Siebenen", "Sevens") +
+      '</th><th scope="col">' + t("Bester Coup", "Best haul") + '</th><th scope="col">' + t("Leer aus", "Empty-handed") +
+      "</th></tr></thead><tbody>";
+    liste.forEach(function (s) {
+      html += '<tr><th scope="row">' + esc(s.name) + "</th><td>" + s.wuerfe + "</td><td>" + s.pasch +
+        "</td><td>" + s.sieben + "</td><td>" + s.best + "</td><td>" + s.leer + "</td></tr>";
+    });
+    return html + "</tbody></table></div>";
+  }
+
+  function gErgebnis() {
+    var liste = gSpieler.slice().sort(function (a, b) { return b.punkte - a.punkte; });
+    var gleichstand = liste.length > 1 && liste[0].punkte === liste[1].punkte;
+    var html = '<p class="eyebrow">' + t("Feierabend", "Game over") + "</p><h3>" +
+      (gleichstand
+        ? t("Gleichstand mit ", "A tie at ") + liste[0].punkte + t(" Punkten", " points")
+        : esc(liste[0].name) + t(" gewinnt mit ", " wins with ") + liste[0].punkte + t(" Punkten", " points")) +
+      '</h3><ol class="rank-list">';
+    liste.forEach(function (r) {
+      html += "<li><span>" + esc(r.name) + "</span><strong>" + r.punkte + "</strong></li>";
+    });
+    html += "</ol>" + gStatistik(liste) + '<div class="btn-row" style="justify-content:flex-start">' +
+      '<button class="btn btn-primary" type="button" data-g="neu">' + t("Neues Spiel", "New game") + "</button></div>";
+    gResult.innerHTML = html;
+  }
+
+  gResult.addEventListener("click", function (ev) {
+    if (ev.target.closest('[data-g="neu"]')) gZurueck();
+  });
+
+  /* =====================================================
      Wuerfelbecher
      ===================================================== */
 
@@ -829,6 +1196,9 @@
       if (!kResult.hidden) kErgebnis();
     }
     if (mPhase !== "aus") mZeichne();
+    namenFrischen(gNames, 2);
+    if (gSpieler.length && !gBoard.hidden) gZeichne();
+    if (!gResult.hidden) gErgebnis();
     bZeichneSumme();
     bZeichneVerteilung();
   });
