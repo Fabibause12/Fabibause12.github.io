@@ -401,7 +401,51 @@ h3 { font-size: 1.2rem; margin: 0 0 .4em; }
   font-weight: 600;
   letter-spacing: .04em;
   text-transform: uppercase;
+  cursor: pointer;
+  transition: background .15s;
 }
+.stamp:hover,
+.stamp:focus-visible { background: var(--accent-soft); }
+
+/* Zertifikat-Popup zum Stempel */
+.zert {
+  width: min(92vw, 420px);
+  padding: 1.8rem 1.6rem 1.5rem;
+  border: 2px dashed var(--accent);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-lg);
+}
+.zert::backdrop { background: rgba(10, 20, 12, .55); }
+.zert h2 {
+  margin: 0 0 .8rem;
+  font-family: var(--serif);
+  font-size: 1.45rem;
+}
+.zert p { margin: 0 0 .8rem; line-height: 1.55; }
+.zert ul { margin: 0; padding-left: 1.2rem; line-height: 1.55; }
+.zert a { color: var(--accent); }
+.zert-kicker {
+  color: var(--accent);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.zert-sub { color: var(--text-muted); font-size: .92rem; }
+.zert-close {
+  position: absolute;
+  top: .5rem;
+  right: .7rem;
+  border: 0;
+  background: none;
+  color: var(--text-muted);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.zert-close:hover { color: var(--text); }
 
 /* ---------- Pflanzen: Uebersicht ---------- */
 
