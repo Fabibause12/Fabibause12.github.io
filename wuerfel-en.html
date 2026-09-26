@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title data-en="Dice games – Fabian Bammes" data-de="Würfelspiele &amp;ndash; Fabian Bammes">Dice games – Fabian Bammes</title>
-<meta name="description" data-de-content="Kniffel mit Punkteblock, Mäxchen zum Bluffen und ein freier Würfelbecher. Läuft ohne Anmeldung direkt im Browser." content="Kniffel with a score sheet, Mäxchen for bluffing and a free dice cup. Runs right in the browser, no sign-up." data-en-content="Kniffel with a score sheet, Mäxchen for bluffing and a free dice cup. Runs right in the browser, no sign-up.">
+<meta name="description" data-de-content="Kniffel mit Punkteblock, Mäxchen zum Bluffen, Annas Würfelspiel zum Zocken und ein freier Würfelbecher. Läuft ohne Anmeldung direkt im Browser." content="Kniffel with a score sheet, Mäxchen for bluffing, Anna’s dice game for pushing your luck and a free dice cup. Runs right in the browser, no sign-up." data-en-content="Kniffel with a score sheet, Mäxchen for bluffing, Anna’s dice game for pushing your luck and a free dice cup. Runs right in the browser, no sign-up.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Fabian Bammes">
 <meta property="og:title" data-de-content="Würfelspiele – Fabian Bammes" content="Dice games – Fabian Bammes" data-en-content="Dice games – Fabian Bammes">
-<meta property="og:description" data-de-content="Kniffel mit Punkteblock, Mäxchen zum Bluffen und ein freier Würfelbecher. Läuft ohne Anmeldung direkt im Browser." content="Kniffel with a score sheet, Mäxchen for bluffing and a free dice cup. Runs right in the browser, no sign-up." data-en-content="Kniffel with a score sheet, Mäxchen for bluffing and a free dice cup. Runs right in the browser, no sign-up.">
+<meta property="og:description" data-de-content="Kniffel mit Punkteblock, Mäxchen zum Bluffen, Annas Würfelspiel zum Zocken und ein freier Würfelbecher. Läuft ohne Anmeldung direkt im Browser." content="Kniffel with a score sheet, Mäxchen for bluffing, Anna’s dice game for pushing your luck and a free dice cup. Runs right in the browser, no sign-up." data-en-content="Kniffel with a score sheet, Mäxchen for bluffing, Anna’s dice game for pushing your luck and a free dice cup. Runs right in the browser, no sign-up.">
 <meta property="og:url" content="https://fabibause12.github.io/wuerfel-en.html">
 <meta property="og:image" content="https://fabibause12.github.io/assets/hero.jpg">
 <meta property="og:image:width" content="2000">
@@ -69,16 +69,18 @@
       <div class="section-head">
         <p class="eyebrow" data-en="Killing time" data-de="Zeit totschlagen">Killing time</p>
         <h1 data-en="Dice games" data-de="Würfelspiele">Dice games</h1>
-        <p data-en="One device, several people, taking turns. Kniffel keeps the score sheet by itself, and in Mäxchen only the player whose turn it is sees the dice. Nothing is saved – reloading the page ends every game." data-de="
+        <p data-en="One device, several people, taking turns. Kniffel keeps the score sheet by itself, in Mäxchen only the player whose turn it is sees the dice, and Anna’s dice game keeps track of the pot. Nothing is saved – reloading the page ends every game." data-de="
           Ein Gerät, mehrere Leute, reihum. Kniffel führt den Punkteblock selbst,
-          bei Mäxchen sieht nur der die Würfel, der gerade dran ist. Nichts wird
+          bei Mäxchen sieht nur der die Würfel, der gerade dran ist, und bei Annas
+          Würfelspiel rechnet die Seite den Topf mit. Nichts wird
           gespeichert &amp;ndash; ein Neuladen der Seite beendet jede Partie.
-        ">One device, several people, taking turns. Kniffel keeps the score sheet by itself, and in Mäxchen only the player whose turn it is sees the dice. Nothing is saved – reloading the page ends every game.</p>
+        ">One device, several people, taking turns. Kniffel keeps the score sheet by itself, in Mäxchen only the player whose turn it is sees the dice, and Anna’s dice game keeps track of the pot. Nothing is saved – reloading the page ends every game.</p>
       </div>
 
       <div class="game-tabs" role="tablist" data-de-aria-label="Spiel wählen" aria-label="Choose a game" data-en-aria-label="Choose a game">
         <button type="button" role="tab" id="tab-kniffel" data-game="kniffel" aria-controls="panel-kniffel" aria-selected="true">Kniffel</button>
         <button type="button" role="tab" id="tab-maexchen" data-game="maexchen" aria-controls="panel-maexchen" aria-selected="false">Mäxchen</button>
+        <button type="button" role="tab" id="tab-bank" data-game="bank" aria-controls="panel-bank" aria-selected="false" data-en="Anna’s dice game" data-de="Annas Würfelspiel">Anna’s dice game</button>
         <button type="button" role="tab" id="tab-becher" data-game="becher" aria-controls="panel-becher" aria-selected="false" data-en="Dice cup" data-de="Würfelbecher">Dice cup</button>
       </div>
 
@@ -174,6 +176,87 @@
             <li data-en="When the bluff is called: if the real roll is at least as high as the announcement, the caller loses a life. Otherwise the announcer loses one." data-de="Beim Aufdecken gilt: Ist der echte Wurf mindestens so hoch wie die Ansage, verliert der Aufdecker ein Leben. Sonst verliert der Ansager eines.">When the bluff is called: if the real roll is at least as high as the announcement, the caller loses a life. Otherwise the announcer loses one.</li>
             <li data-en="After an announced Mäxchen the bluff has to be called. If it was true, the caller loses two lives." data-de="Nach einem angesagten Mäxchen muss aufgedeckt werden. War es wahr, kostet das den Aufdecker zwei Leben.">After an announced Mäxchen the bluff has to be called. If it was true, the caller loses two lives.</li>
             <li data-en="At zero lives you’re out. The loser starts the new round, and the announcements start again from zero." data-de="Bei null Leben ist man raus. Die neue Runde beginnt der Verlierer, die Ansage startet wieder bei null.">At zero lives you’re out. The loser starts the new round, and the announcements start again from zero.</li>
+          </ul>
+        </details>
+      </div>
+
+      <!-- ================= Bank ================= -->
+      <div class="game-panel" id="panel-bank" role="tabpanel" aria-labelledby="tab-bank" hidden>
+
+        <div class="card" id="gSetup">
+          <h2 data-en="Anna’s dice game" data-de="Annas Würfelspiel">Anna’s dice game</h2>
+          <p class="muted" data-en="Two to six players, two dice, one shared pot. Bank in time – or lose it all on a seven." data-de="Zwei bis sechs Spieler, zwei Würfel, ein gemeinsamer Topf. Rechtzeitig einkassieren &amp;ndash; oder bei einer Sieben alles verlieren.">Two to six players, two dice, one shared pot. Bank in time – or lose it all on a seven.</p>
+          <div class="name-list" id="gNames"></div>
+          <label class="pick">
+            <span data-en="Rounds" data-de="Runden">Rounds</span>
+            <select id="gRounds">
+              <option value="10">10</option>
+              <option value="15" selected>15</option>
+              <option value="20">20</option>
+            </select>
+          </label>
+          <label class="pick">
+            <span data-en="Dice" data-de="Würfel">Dice</span>
+            <select id="gMode">
+              <option value="digital" data-en="rolled on this device" data-de="auf dem Gerät würfeln">rolled on this device</option>
+              <option value="eigene" selected data-en="own dice, tap the sum" data-de="eigene Würfel, Summe antippen">own dice, tap the sum</option>
+            </select>
+          </label>
+          <div class="btn-row" style="justify-content:flex-start">
+            <button class="btn btn-quiet" type="button" id="gAdd" data-en="Add player" data-de="Spieler hinzufügen">Add player</button>
+            <button class="btn btn-primary" type="button" id="gStart" data-en="Start playing" data-de="Losspielen">Start playing</button>
+          </div>
+        </div>
+
+        <div id="gBoard" hidden>
+          <div class="card turn-card">
+            <div class="turn-bar">
+              <div>
+                <p class="eyebrow"><span data-en="Round" data-de="Runde">Round</span> <span id="gRound">1</span> <span data-en="of" data-de="von">of</span> <span id="gRoundMax">15</span></p>
+                <h3 id="gWho">&ndash;</h3>
+              </div>
+              <p class="rolls" id="gRolls" aria-live="polite"></p>
+              <div class="verlauf">
+                <button class="icon-btn" type="button" id="gBack" data-de-aria-label="Zurück" aria-label="Back" data-en-aria-label="Back" data-de-title="Zurück" title="Back" data-en-title="Back"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+                <button class="icon-btn" type="button" id="gFwd" data-de-aria-label="Vorwärts" aria-label="Forward" data-en-aria-label="Forward" data-de-title="Vorwärts" title="Forward" data-en-title="Forward"><svg viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+              </div>
+            </div>
+
+            <div class="bank-pot">
+              <span class="bank-label" data-en="In the bank" data-de="In der Bank">In the bank</span>
+              <strong id="gPot">0</strong>
+            </div>
+
+            <div class="dice-row" id="gDice"></div>
+            <p class="hint" id="gHint" aria-live="polite"></p>
+
+            <div class="bank-eingabe" id="gEingabe" hidden>
+              <p class="bank-label" data-en="What was rolled? Tap the sum." data-de="Was wurde gewürfelt? Summe antippen.">What was rolled? Tap the sum.</p>
+              <div class="summen-grid" id="gSummen" role="group" data-de-aria-label="Gewürfelte Summe" aria-label="Rolled sum" data-en-aria-label="Rolled sum"></div>
+            </div>
+
+            <div class="btn-row" style="justify-content:flex-start">
+              <button class="btn btn-primary" type="button" id="gRoll" data-en="Roll" data-de="Würfeln">Roll</button>
+              <button class="btn btn-quiet" type="button" id="gQuit" data-en="Cancel" data-de="Abbrechen">Cancel</button>
+            </div>
+          </div>
+
+          <ul class="bank-list" id="gList"></ul>
+          <p class="hint" data-en="Anyone who hasn’t banked yet can tap “Bank” at any time – not only the player whose turn it is." data-de="Wer noch nicht eingezahlt hat, darf jederzeit auf &amp;bdquo;Bank&amp;ldquo; tippen &amp;ndash; nicht nur, wer gerade dran ist.">Anyone who hasn’t banked yet can tap “Bank” at any time – not only the player whose turn it is.</p>
+        </div>
+
+        <div class="card result" id="gResult" hidden></div>
+
+        <details class="rules">
+          <summary data-en="Rules as they apply here" data-de="Regeln, wie sie hier gelten">Rules as they apply here</summary>
+          <ul>
+            <li data-en="Every round starts with an empty bank. Players take turns rolling two dice, and every roll goes into the one shared bank." data-de="Jede Runde beginnt mit leerer Bank. Reihum wird mit zwei Würfeln geworfen, jeder Wurf landet in der gemeinsamen Bank.">Every round starts with an empty bank. Players take turns rolling two dice, and every roll goes into the one shared bank.</li>
+            <li data-en="The first three rolls of a round are safe: a seven is worth 70 points, everything else – doubles included – counts its pips." data-de="Die ersten drei Würfe einer Runde sind sicher: Eine Sieben bringt 70 Punkte, alles andere &amp;ndash; auch ein Pasch &amp;ndash; zählt seine Augen.">The first three rolls of a round are safe: a seven is worth 70 points, everything else – doubles included – counts its pips.</li>
+            <li data-en="From the fourth roll on, doubles double the bank and a seven ends the round. Anyone who hasn’t banked by then gets nothing." data-de="Ab dem vierten Wurf verdoppelt ein Pasch die Bank, und eine Sieben beendet die Runde. Wer bis dahin nicht eingezahlt hat, geht leer aus.">From the fourth roll on, doubles double the bank and a seven ends the round. Anyone who hasn’t banked by then gets nothing.</li>
+            <li data-en="“Bank” adds the current bank to your own score. After that you sit out until the end of the round, and the bank keeps growing for the others." data-de="&amp;bdquo;Bank&amp;ldquo; schreibt dir den aktuellen Stand gut. Danach setzt du bis zum Rundenende aus, für die anderen wächst die Bank weiter.">“Bank” adds the current bank to your own score. After that you sit out until the end of the round, and the bank keeps growing for the others.</li>
+            <li data-en="The round is also over once everyone has banked. The next round is started by the next player in line." data-de="Die Runde endet auch, sobald alle eingezahlt haben. Die nächste beginnt der Nächste in der Reihe.">The round is also over once everyone has banked. The next round is started by the next player in line.</li>
+            <li data-en="After the last round, whoever has the most points wins." data-de="Nach der letzten Runde gewinnt, wer die meisten Punkte hat.">After the last round, whoever has the most points wins.</li>
+            <li data-en="With your own dice you roll at the table and tap the sum. From the fourth roll on, doubles go on the “Doubles” button – that’s why 2 and 12 are greyed out then. The arrows at the top step back and forward, for example after a wrong entry." data-de="Mit eigenen Würfeln wird am Tisch geworfen und die Summe angetippt. Ab dem vierten Wurf kommt ein Pasch auf den Knopf &amp;bdquo;Pasch&amp;ldquo; &amp;ndash; deshalb sind 2 und 12 dann ausgegraut. Mit den Pfeilen oben geht es einen Schritt zurück und wieder vor, etwa nach einem Vertipper.">With your own dice you roll at the table and tap the sum. From the fourth roll on, doubles go on the “Doubles” button – that’s why 2 and 12 are greyed out then. The arrows at the top step back and forward, for example after a wrong entry.</li>
           </ul>
         </details>
       </div>
