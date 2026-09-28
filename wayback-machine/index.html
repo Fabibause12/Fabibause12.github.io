@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Easteregg: die Startseite, wie sie 1998 ausgesehen haette. Absichtlich nicht verlinkt. -->
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>~*~ FaBiAnS HoMePaGe ~*~ Willkommen!!!</title>
+<link rel="icon" href="../assets/icon-16.png" sizes="16x16">
+<style>
+  /* Sternenhimmel-Kachel, wie frueher als stars.gif */
+  body {
+    margin: 0;
+    padding: 12px;
+    background-color: #000018;
+    background-image:
+      radial-gradient(1px 1px at 10px 20px, #fff 99%, transparent),
+      radial-gradient(1px 1px at 60px 80px, #ff0 99%, transparent),
+      radial-gradient(2px 2px at 110px 40px, #fff 99%, transparent),
+      radial-gradient(1px 1px at 150px 130px, #0ff 99%, transparent),
+      radial-gradient(1px 1px at 30px 150px, #fff 99%, transparent),
+      radial-gradient(1px 1px at 90px 110px, #f0f 99%, transparent);
+    background-size: 170px 170px;
+    color: #ffff00;
+    font-family: "Comic Sans MS", "Comic Sans", "Chalkboard SE", cursive;
+    font-size: 16px;
+    cursor: crosshair;
+  }
+  a { color: #00ffff; }
+  a:visited { color: #ff66ff; }
+  a:hover { color: #ff0000; background: #ffff00; }
+  .seite { max-width: 760px; margin: 0 auto; }
+
+  table.rahmen {
+    width: 100%;
+    border: 4px ridge #c0c0c0;
+    background: #000080;
+    border-collapse: separate;
+  }
+  table.rahmen td { padding: 8px; vertical-align: top; }
+  td.menue {
+    width: 170px;
+    background: #008080;
+    border: 3px outset #c0c0c0;
+    font-family: "Times New Roman", Times, serif;
+  }
+  td.menue a { display: block; margin: 4px 0; font-weight: bold; }
+
+  h1 {
+    margin: 6px 0;
+    text-align: center;
+    font-family: Impact, "Arial Black", sans-serif;
+    font-size: 40px;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #f00, #f80, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: regenbogen 3s linear infinite;
+  }
+  @keyframes regenbogen { to { background-position: 200% 0; } }
+
+  h2 {
+    color: #ff00ff;
+    font-family: "Times New Roman", Times, serif;
+    text-decoration: underline;
+    margin: 18px 0 6px;
+  }
+
+  .blink { animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { visibility: hidden; } }
+
+  hr.bunt {
+    height: 6px;
+    border: 0;
+    background: linear-gradient(90deg, red, orange, yellow, lime, cyan, blue, magenta);
+  }
+
+  .baustelle {
+    margin: 10px auto;
+    padding: 8px;
+    text-align: center;
+    font-family: "Arial Black", Arial, sans-serif;
+    color: #000;
+    background: repeating-linear-gradient(45deg, #ffcc00 0 16px, #000 16px 32px);
+    border: 3px solid #000;
+  }
+  .baustelle span { background: #ffcc00; padding: 2px 8px; }
+
+  marquee, .laufschrift {
+    display: block;
+    background: #c0c0c0;
+    color: #000080;
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    border: 2px inset #fff;
+    padding: 3px 0;
+  }
+
+  .zaehler {
+    display: inline-block;
+    padding: 2px;
+    background: #000;
+    border: 2px inset #888;
+  }
+  .zaehler b {
+    display: inline-block;
+    width: 16px;
+    margin: 0 1px;
+    background: #222;
+    color: #0f0;
+    font-family: "Courier New", monospace;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .knopf {
+    display: inline-block;
+    width: 88px;
+    height: 31px;
+    margin: 3px;
+    box-sizing: border-box;
+    border: 2px outset #c0c0c0;
+    background: #c0c0c0;
+    color: #000 !important;
+    font: bold 10px/12px Verdana, Arial, sans-serif;
+    text-align: center;
+    text-decoration: none;
+    padding-top: 2px;
+    vertical-align: middle;
+  }
+  .knopf:hover { background: #ffff00; }
+
+  .award {
+    border: 3px double #ffd700;
+    background: #400040;
+    color: #ffd700;
+    padding: 8px;
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+  }
+
+  .fuss {
+    text-align: center;
+    font-size: 12px;
+    font-family: "Times New Roman", Times, serif;
+    color: #c0c0c0;
+  }
+
+  marquee { width: 100%; overflow: hidden; }
+
+  @media (max-width: 560px) {
+    table.rahmen, table.rahmen tbody, table.rahmen tr, table.rahmen td {
+      display: block;
+      width: auto;
+      box-sizing: border-box;
+    }
+    td.menue { margin-bottom: 4px; }
+    h1 { font-size: 26px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    h1, .blink { animation: none; }
+  }
+</style>
+</head>
+<body>
+<div class="seite">
+
+<h1>~*~ FaBiAnS HoMePaGe ~*~</h1>
+
+<marquee scrollamount="6">+++ HERZLICH WILLKOMMEN auf meiner Homepage im World Wide Web!!! +++ Neu: jetzt mit BIENEN!!! +++ Bitte trag dich ins Gästebuch ein +++ Diese Seite ist GUSTAV HAMMER ZERTIFIZIERT +++</marquee>
+
+<div class="baustelle"><span>!!! UNDER CONSTRUCTION !!! Diese Seite ist noch im Aufbau !!!</span></div>
+
+<table class="rahmen" cellspacing="4">
+<tr>
+<td class="menue">
+  <b><u>NAVIGATION</u></b><br>
+  <a href="../index.html">&gt;&gt; Startseite</a>
+  <a href="../pflanzen.html">&gt;&gt; Meine Pflanzen</a>
+  <a href="../bienen.html">&gt;&gt; Meine Bienen</a>
+  <a href="../werdegang.html">&gt;&gt; Lebenslauf</a>
+  <a href="../wuerfel.html">&gt;&gt; Spiele!!!</a>
+  <a href="#links">&gt;&gt; Coole Links</a>
+  <a href="mailto:fabibause12@gmail.com?subject=Eintrag%20ins%20G%C3%A4stebuch">&gt;&gt; Gästebuch</a>
+  <br>
+  <center>
+    <font size="2">Du bist Besucher Nr.</font><br>
+    <span class="zaehler" id="zaehler"><b>0</b><b>0</b><b>0</b><b>0</b><b>0</b><b>1</b></span>
+  </center>
+  <br>
+  <div class="award">
+    <b>*** AWARD ***</b><br>
+    <font size="2">Gustav Hammer zertifiziert<br>gültig bis 24.09.2027</font>
+  </div>
+</td>
+
+<td>
+  <center>
+    <font size="5" color="#00ff00"><b class="blink">NEU!!!</b></font>
+    <font size="4" color="#ffffff">Hallo und herzlich willkommen auf meiner Homepage!</font>
+  </center>
+
+  <hr class="bunt">
+
+  <h2>Wer bin ich?</h2>
+  <p>
+    Ich heiße <b>Fabian</b> und bin Experimentalphysiker. Ich bringe freie
+    Elektronen dazu, über Chips zu fliegen. Nebenbei imkere
+    ich, gehe bouldern und habe viele Pflanzen.
+  </p>
+
+  <h2>Was gibt es hier?</h2>
+  <ul>
+    <li><a href="../pflanzen.html">Pflanzen</a> &ndash; Ableger zum Abholen!</li>
+    <li><a href="../bienen.html">Bienen</a> &ndash; das Volk heißt Maria <font color="#ff0000"><b class="blink">NEU</b></font></li>
+    <li><a href="../wuerfel.html">Würfelspiele</a> &ndash; Kniffel und Mäxchen</li>
+    <li><a href="../werdegang.html">Mein Lebenslauf</a> &ndash; für die Ernsten</li>
+  </ul>
+
+  <hr class="bunt">
+
+  <h2 id="links">Coole Links</h2>
+  <p>Hier sind die Homepages von meinen Freunden. Schaut da auch mal vorbei!!</p>
+  <center>
+    <a class="knopf" href="https://gustav-hammer.de/" target="_blank" rel="noopener">GUSTAV<br>HAMMER</a>
+    <a class="knopf" href="https://l4553.de/" target="_blank" rel="noopener">L4553<br>.de</a>
+    <a class="knopf" href="https://www.bier-meile.com" target="_blank" rel="noopener">BIER-<br>MEILE</a>
+    <a class="knopf" href="https://trws-music.com/" target="_blank" rel="noopener">TRWS<br>MUSIC</a>
+    <a class="knopf" href="https://gustav-hammer.de/wann-mensa-heute" target="_blank" rel="noopener">WANN<br>MENSA?</a>
+  </center>
+
+  <br>
+  <center>
+    [ &lt;&lt; <a href="https://l4553.de/" target="_blank" rel="noopener">Voriger</a> |
+    <a href="../index.html">Freundes-Webring</a> |
+    <a href="https://gustav-hammer.de/" target="_blank" rel="noopener">Nächster</a> &gt;&gt; ]
+  </center>
+
+  <hr class="bunt">
+
+  <center>
+    <a href="mailto:fabibause12@gmail.com"><font size="4"><b>&#9993; SCHREIB MIR EINE E-MAIL! &#9993;</b></font></a>
+  </center>
+</td>
+</tr>
+</table>
+
+<br>
+<div class="laufschrift">&nbsp;Letzte Aktualisierung: 12.03.1998 &middot; Zugriffe heute: 3</div>
+<br>
+
+<p class="fuss">
+  Diese Seite ist optimiert für <b>Netscape Navigator 4.0</b> bei einer Auflösung von 800x600.<br>
+  Am besten mit 256 Farben ansehen. &copy; 1998 Fabian<br><br>
+  <a href="../index.html">&lt;&lt;&lt; Zurück in die Gegenwart &lt;&lt;&lt;</a>
+</p>
+
+</div>
+
+<script>
+  /* Besucherzaehler: zaehlt pro Browser hoch, der erste Besuch ist Nr. 1. */
+  (function () {
+    var n = 1;
+    try {
+      n = (parseInt(localStorage.getItem("wayback-zaehler"), 10) || 0) + 1;
+      localStorage.setItem("wayback-zaehler", n);
+    } catch (e) { /* privates Fenster */ }
+    var ziffern = ("000000" + n).slice(-6).split("");
+    document.getElementById("zaehler").innerHTML = "<b>" + ziffern.join("</b><b>") + "</b>";
+  })();
+</script>
+</body>
+</html>
