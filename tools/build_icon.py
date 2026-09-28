@@ -96,6 +96,6 @@ ziel = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(".")
 ziel.mkdir(parents=True, exist_ok=True)
 bild.resize((512, 512), Image.NEAREST).save(ziel / "logo.png")
 bild.resize((180, 180), Image.NEAREST).convert("RGB").save(ziel / "icon-180.png")
-bild.resize((32, 32), Image.LANCZOS).save(ziel / "icon-32.png")
-bild.resize((16, 16), Image.LANCZOS).save(ziel / "icon-16.png")
+# Tab-Icon fuer alle Seiten, liegt im Hauptordner (16 und 32 px in einer Datei).
+bild.resize((32, 32), Image.LANCZOS).save(ziel.parent / "favicon.ico", sizes=[(16, 16), (32, 32)])
 print("fertig:", ziel)
