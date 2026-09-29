@@ -201,12 +201,12 @@ KOPF = '''<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title data-en="Fabian Bammes &ndash; CV: experimental physics and electron optics">Fabian Bammes &ndash; Werdegang: Experimentalphysik und Elektronenoptik</title>
-<meta name="description" content="Werdegang von Fabian Bammes: Master Physik, Masterarbeit zur Elektronenführung auf dem Chip, FEM-Simulation mit COMSOL, Rasterelektronenmikroskopie. Nach dem Abschluss Ende 2026 Promotion im Bereich Halbleiter- und Quantenbauelemente." data-en-content="CV of Fabian Bammes: master&rsquo;s in physics, thesis on guiding electrons on a chip, FEM simulation with COMSOL, scanning electron microscopy. Looking for a PhD in semiconductor and quantum devices after graduating at the end of 2026.">
+<meta name="description" content="Werdegang von Fabian Bammes: Master Physik, Masterarbeit zur Elektronenführung auf dem Chip, FEM-Simulation mit COMSOL, Rasterelektronenmikroskopie." data-en-content="CV of Fabian Bammes: master&rsquo;s in physics, thesis on guiding electrons on a chip, FEM simulation with COMSOL, scanning electron microscopy.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
 <meta property="og:site_name" content="Fabian Bammes">
 <meta property="og:title" content="Fabian Bammes &ndash; Werdegang: Experimentalphysik und Elektronenoptik" data-en-content="Fabian Bammes &ndash; CV: experimental physics and electron optics">
-<meta property="og:description" content="Werdegang von Fabian Bammes: Master Physik, Masterarbeit zur Elektronenführung auf dem Chip, FEM-Simulation mit COMSOL, Rasterelektronenmikroskopie. Nach dem Abschluss Ende 2026 Promotion im Bereich Halbleiter- und Quantenbauelemente." data-en-content="CV of Fabian Bammes: master&rsquo;s in physics, thesis on guiding electrons on a chip, FEM simulation with COMSOL, scanning electron microscopy. Looking for a PhD in semiconductor and quantum devices after graduating at the end of 2026.">
+<meta property="og:description" content="Werdegang von Fabian Bammes: Master Physik, Masterarbeit zur Elektronenführung auf dem Chip, FEM-Simulation mit COMSOL, Rasterelektronenmikroskopie." data-en-content="CV of Fabian Bammes: master&rsquo;s in physics, thesis on guiding electrons on a chip, FEM simulation with COMSOL, scanning electron microscopy.">
 <meta property="og:url" content="https://fabibause12.github.io/werdegang.html">
 <meta property="og:image" content="https://fabibause12.github.io/assets/hero.jpg">
 <meta property="og:image:width" content="2000">
