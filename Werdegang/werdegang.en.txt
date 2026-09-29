@@ -18,8 +18,7 @@ Experimental physicist specialising in electron optics. I research the control o
 free electrons with chip-based electrode structures – a topic that has been with
 me since my bachelor's thesis. For me the path goes from simulation through the
 layout on the chip and fabrication all the way to measurements in the electron
-microscope. After that I would like to do a PhD in the field of semiconductor and
-quantum devices.
+microscope.
 
 
 # Timeline

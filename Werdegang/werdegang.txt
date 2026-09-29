@@ -28,8 +28,7 @@
 Experimentalphysiker mit Schwerpunkt Elektronenoptik. Ich forsche an der Kontrolle freier Elektronen durch
 chipbasierte Elektrodenstrukturen – ein Thema, das mich seit der Bachelorarbeit
 begleitet. Der Weg geht bei mir von der Simulation über das Layout auf dem Chip
-und die Fertigung bis zur Messung im Elektronenmikroskop. Danach möchte ich im
-Bereich Halbleiter- und Quantenbauelemente promovieren.
+und die Fertigung bis zur Messung im Elektronenmikroskop.
 
 
 # Stationen
