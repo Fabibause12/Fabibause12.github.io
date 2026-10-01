@@ -1514,6 +1514,261 @@ body.bienen .plant-title {
 }
 body.bienen .badge { background: color-mix(in srgb, var(--honig) 85%, #000); }
 
+/* ---------- Bienen: Bienenjahr-Balken und Legende ---------- */
+
+body.bienen {
+  --ev-schwarm:        #c98200;
+  --ev-koenigin:       #8a56c2;
+  --ev-fuetterung:     #3e8a4c;
+  --ev-behandlung:     #c4432b;
+  --ev-milben:         #7b6650;
+  --ev-restentmilbung: #3878bd;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) body.bienen {
+    --ev-schwarm:        #ffc233;
+    --ev-koenigin:       #c39cf0;
+    --ev-fuetterung:     #73c983;
+    --ev-behandlung:     #ff8a70;
+    --ev-milben:         #c9b49b;
+    --ev-restentmilbung: #7fb6f2;
+  }
+}
+
+:root[data-theme="dark"] body.bienen {
+  --ev-schwarm:        #ffc233;
+  --ev-koenigin:       #c39cf0;
+  --ev-fuetterung:     #73c983;
+  --ev-behandlung:     #ff8a70;
+  --ev-milben:         #c9b49b;
+  --ev-restentmilbung: #7fb6f2;
+}
+
+.art-schwarm        { --ev: var(--ev-schwarm); }
+.art-koenigin       { --ev: var(--ev-koenigin); }
+.art-fuetterung     { --ev: var(--ev-fuetterung); }
+.art-behandlung     { --ev: var(--ev-behandlung); }
+.art-milben         { --ev: var(--ev-milben); }
+.art-restentmilbung { --ev: var(--ev-restentmilbung); }
+
+.jahr-balken {
+  --reihen: 1;
+  --ev-gr: 22px;
+  position: sticky;
+  top: calc(var(--kopf, 62px) + .5rem);
+  z-index: 20;
+  margin-bottom: 2rem;
+  padding: .7rem 1.1rem .45rem;
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid color-mix(in srgb, var(--honig) 35%, var(--line));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.jb-kopf {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.jb-titel { color: var(--text-muted); }
+.jb-datum { color: var(--accent); font-variant-numeric: tabular-nums; }
+
+.jb-bahn {
+  position: relative;
+  margin: 0 11px;
+  padding-top: calc(var(--reihen) * (var(--ev-gr) + 2px) + 4px);
+}
+
+.jb-marken { position: absolute; inset: 0 0 auto 0; height: calc(var(--reihen) * (var(--ev-gr) + 2px)); }
+
+.jb-ev {
+  display: inline-grid;
+  place-items: center;
+  width: var(--ev-gr, 22px);
+  height: var(--ev-gr, 22px);
+  padding: 0;
+  border: 1.5px solid var(--ev, var(--text-muted));
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--ev, var(--text-muted));
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease, color .15s ease;
+}
+.jb-ev svg { width: 64%; height: 64%; }
+.jb-marken .jb-ev {
+  position: absolute;
+  bottom: calc(var(--reihe, 0) * (var(--ev-gr) + 2px));
+  transform: translateX(-50%);
+}
+.jb-ev.geplant { opacity: .5; border-style: dashed; }
+.jb-marken .jb-ev:hover,
+.jb-marken .jb-ev:focus-visible,
+.jb-marken .jb-ev.an {
+  background: var(--ev, var(--text-muted));
+  color: var(--surface);
+  transform: translateX(-50%) scale(1.15);
+  z-index: 1;
+}
+
+.jb-spur {
+  position: relative;
+  height: 12px;
+  border-radius: 99px;
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 1px var(--line);
+  overflow: hidden;
+}
+.jb-vergangen {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--honig) 25%, transparent), color-mix(in srgb, var(--honig) 55%, transparent));
+}
+.jb-band {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  border-radius: 99px;
+  background: var(--ev);
+  opacity: .85;
+}
+.jb-band.art-fuetterung { top: 6px; bottom: 2px; opacity: .7; }
+.jb-band.art-behandlung { top: 2px; bottom: 6px; }
+.jb-band.offen {
+  background: repeating-linear-gradient(90deg, var(--ev) 0 4px, transparent 4px 7px);
+}
+.jb-heute {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  margin-left: -1px;
+  background: var(--accent);
+}
+
+.jb-zeiger {
+  position: absolute;
+  bottom: 14px;
+  height: calc(12px + 8px);
+  width: 0;
+  pointer-events: none;
+  transition: left .12s linear;
+}
+.jb-zeiger::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -1.5px;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--text);
+}
+.jb-zeiger::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text);
+  box-shadow: 0 0 0 2px var(--surface);
+}
+
+.jb-monate {
+  position: relative;
+  height: 14px;
+  font-size: .68rem;
+  color: var(--text-muted);
+}
+.jb-monate span {
+  position: absolute;
+  top: 1px;
+  padding-left: 3px;
+  border-left: 1px solid var(--line);
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+/* Liste links, Legende unten rechts daneben */
+.log-raster {
+  display: grid;
+  grid-template-columns: minmax(0, 62ch) minmax(220px, 290px);
+  justify-content: space-between;
+  gap: 2.5rem;
+}
+.log-section .tl-item { scroll-margin-top: calc(var(--kopf, 62px) + var(--balken-unten, 140px)); }
+.log-section .tl-item.aktiv .tl-when { text-decoration: underline 2px var(--honig); text-underline-offset: 4px; }
+
+.jb-legende {
+  align-self: end;
+  position: sticky;
+  bottom: 1.5rem;
+  padding: 1rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+.jb-legende .eyebrow { margin: 0 0 .6rem; }
+.jb-legende ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
+.jb-legende li { display: flex; align-items: flex-start; gap: .6rem; line-height: 1.3; }
+.jb-legende li .jb-ev { flex: none; cursor: default; }
+.jb-legende strong { display: block; font-size: .9rem; }
+.jb-legende small { display: block; font-size: .78rem; color: var(--text-muted); }
+.jb-legende .lg-extra { align-items: center; padding-top: .35rem; border-top: 1px dashed var(--line); }
+.jb-legende .lg-extra + .lg-extra { border-top: 0; padding-top: 0; }
+.lg-zeiger {
+  flex: none;
+  position: relative;
+  width: 22px;
+  height: 22px;
+}
+.lg-zeiger::before {
+  content: "";
+  position: absolute;
+  left: 9.5px;
+  top: 5px;
+  bottom: 0;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--text);
+}
+.lg-zeiger::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text);
+}
+
+@media (max-width: 820px) {
+  .log-raster { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+  .jb-legende { position: static; align-self: start; }
+  .jb-legende ul { grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); }
+}
+
+@media (max-width: 560px) {
+  .jahr-balken { --ev-gr: 18px; padding: .55rem .7rem .35rem; margin-bottom: 1.5rem; }
+  .jb-kopf { font-size: .72rem; }
+  .jb-monate { font-size: .6rem; }
+  .jb-monate span:nth-child(even) { visibility: hidden; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .jb-zeiger, .jb-ev { transition: none; }
+}
+
 /* ---------- Seitenfarben: Startseite (grau) ---------- */
 
 body.start {
