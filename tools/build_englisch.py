@@ -28,8 +28,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 BASIS = "https://fabibause12.github.io/"
 
-SEITEN = ["index.html", "pflanzen.html", "bienen.html", "werdegang.html",
-          "wuerfel.html", "impressum.html"]
+SEITEN = ["index.html", "werdegang.html", "privat.html", "pflanzen.html", "bienen.html",
+          "wuerfel.html", "freunde.html", "impressum.html"]
+# Bewusst nicht in der Sitemap (tragen ausserdem <meta name="robots" content="noindex">):
+# die Freunde-Seite ist nirgends verlinkt, die Wuerfel nur ueber "Privat".
+NICHT_IN_SITEMAP = {"wuerfel.html", "freunde.html"}
 ATTRIBUTE = ["aria-label", "alt", "title", "placeholder", "label", "content"]
 LEER = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link",
         "meta", "source", "track", "wbr"}
@@ -192,8 +195,9 @@ def main():
         fertig.append(seite)
         print("%s -> %s" % (seite, ziel.name))
 
-    (ROOT / "sitemap.xml").write_text(sitemap(fertig), encoding="utf-8")
-    print("sitemap.xml: %d Adressen" % (2 * len(fertig)))
+    gelistet = [s for s in fertig if s not in NICHT_IN_SITEMAP]
+    (ROOT / "sitemap.xml").write_text(sitemap(gelistet), encoding="utf-8")
+    print("sitemap.xml: %d Adressen" % (2 * len(gelistet)))
     return 0
 
 

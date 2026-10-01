@@ -9,6 +9,8 @@ on:
       - 'Werdegang/**'
       - 'tools/**'
       - 'index.html'
+      - 'privat.html'
+      - 'freunde.html'
       - 'pflanzen.html'
       - 'bienen.html'
       - 'wuerfel.html'

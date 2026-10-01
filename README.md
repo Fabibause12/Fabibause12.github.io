@@ -16,12 +16,17 @@ reinem HTML, CSS und JavaScript, ohne Framework und ohne Build-Werkzeug im Brows
 
 | Seite | Inhalt | Quelle |
 |---|---|---|
-| `index.html` | Startseite | von Hand |
+| `index.html` | Startseite: Forschung, Über mich, kurzer Hinweis auf „Privat“ | von Hand |
 | `werdegang.html` | Werdegang, Veröffentlichungen, Kenntnisse | erzeugt aus `Werdegang/werdegang.txt` |
+| `privat.html` | Übersicht Pflanzen, Bienen, Würfel und die letzten Tagebucheinträge | von Hand |
 | `pflanzen.html` | Pflanzen mit Galerie | lädt `Pflanzen/pflanzen.json` |
 | `bienen.html` | Bienenvolk Maria mit Durchsichten | lädt `Bienen/bienen.json` |
 | `wuerfel.html` | Kniffel, Mäxchen, Würfelbecher | von Hand, Logik in `js/wuerfel.js` |
 | `impressum.html`, `404.html` | Kleingedrucktes | von Hand |
+| `freunde.html` | Links zu Freunden – absichtlich nirgends verlinkt, `noindex`, nicht in der Sitemap | von Hand, Bild-Rotation in `js/freunde.js` |
+
+Im Menü stehen nur **Start**, **Werdegang** und **Privat**. Die Freunde-Seite ist nur über
+ihren direkten Link erreichbar; Würfel und Freunde tragen `noindex` und fehlen in der Sitemap.
 
 Jede Seite gibt es auf Deutsch und Englisch. Der Knopf **EN/DE** oben rechts schaltet
 um, merkt sich die Wahl und wechselt auch die Adresse (`pflanzen.html` ↔
@@ -78,10 +83,10 @@ python -m http.server 8000
 
 ```
 css/style.css        ein Stylesheet für alles, hell und dunkel
-js/site.js           Theme- und Sprachumschalter, Menü
+js/site.js           Theme- und Sprachumschalter, Menü, Zertifikat-Stempel
 js/pflanzen.js       Pflanzenübersicht und Galerie
 js/bienen.js         Volk, Galerie, Tagebuch
-js/neues.js          letzte Tagebucheinträge auf der Startseite
+js/neues.js          letzte Tagebucheinträge auf der Privat-Seite
 js/wuerfel.js        Würfelspiele
 tools/               Build-Skripte (Python, nur Standardbibliothek + Pillow)
 ```

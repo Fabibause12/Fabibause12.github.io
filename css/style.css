@@ -407,6 +407,14 @@ h3 { font-size: 1.2rem; margin: 0 0 .4em; }
 .stamp:hover,
 .stamp:focus-visible { background: var(--accent-soft); }
 
+/* Zweiter Stempel: nur im dunklen Design zu sehen */
+.stamps { display: inline-flex; flex-wrap: wrap; gap: .6rem; }
+.stamp-dunkel { display: none; }
+:root[data-theme="dark"] .stamp-dunkel { display: inline-flex; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .stamp-dunkel { display: inline-flex; }
+}
+
 /* Zertifikat-Popup zum Stempel */
 .zert {
   width: min(92vw, 420px);
@@ -434,6 +442,13 @@ h3 { font-size: 1.2rem; margin: 0 0 .4em; }
   text-transform: uppercase;
 }
 .zert-sub { color: var(--text-muted); font-size: .92rem; }
+.zert-zitat {
+  margin: 0 0 .8rem;
+  padding-left: .9rem;
+  border-left: 3px solid var(--accent);
+  font-style: italic;
+  line-height: 1.55;
+}
 .zert-close {
   position: absolute;
   top: .5rem;
