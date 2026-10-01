@@ -1,14 +1,14 @@
-# Ereignisse für den Balken über den Durchsichten.
-# Eine Zeile pro Ereignis:  Datum | Art | Text | English text (optional)
-# Zeiträume mit Bindestrich:  22.07.2026 - 28.07.2026 | behandlung | Ameisensäure
-# Arten: schwarm, koenigin, fuetterung, behandlung, milben, restentmilbung
-# Was in der Zukunft liegt, wird als geplant (blass) gezeichnet.
+# Ereignisse für den Bienenjahr-Balken:  Datum[ - Datum] | Art | Text | English (optional)
+# Wird aus Obsidian erzeugt (tools/obsidian_bienen.py) - Änderungen bitte dort machen.
 
 28.04.2026 | schwarm | Nachschwarm eingefangen | Caught the secondary swarm
 30.04.2026 - 04.06.2026 | fuetterung | Aufbaufütterung 1:1 | Build-up feeding 1:1
 08.05.2026 | behandlung | Milchsäure | Lactic acid
+17.05.2026 | milben | 1 Milbe
 26.05.2026 | milben | 2 Milben in 4 Tagen | 2 mites in 4 days
 06.06.2026 | koenigin | Königin zum ersten Mal gesehen | Saw the queen for the first time
+15.06.2026 | milben | 3 Milben, Zählung ungenau
+22.06.2026 - 01.07.2026 | fuetterung | Fütterung, 2 Gaben
 22.06.2026 | milben | 12 Milben, 2,4 pro Tag | 12 mites, 2.4 per day
 16.07.2026 - 29.08.2026 | fuetterung | Winterfütterung 2:1, rund 25 kg eingelagert | Winter feeding 2:1, about 25 kg stored
 22.07.2026 - 28.07.2026 | behandlung | Ameisensäure, zu früh abgebrochen | Formic acid, stopped too early

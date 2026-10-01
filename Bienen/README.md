@@ -1,3 +1,24 @@
+# Aus Obsidian aktualisieren
+
+Die Stockkarten werden in Obsidian geführt, eine Notiz pro Volk im Ordner
+`Privat/Bienen` (Vorlage: `_Vorlage Volk.md`). Ein Doppelklick auf
+`Website aktualisieren.cmd` im selben Ordner holt dieses Repo nach
+`Dokumente\Fabibause12.github.io`, lässt `tools/obsidian_bienen.py` laufen, baut die
+`bienen.json` neu und lädt nach Rückfrage hoch. Von Hand geht es so:
+
+```bash
+python tools/obsidian_bienen.py "<Obsidian-Vault>/Privat/Bienen" --probe   # nur anzeigen
+python tools/obsidian_bienen.py "<Obsidian-Vault>/Privat/Bienen"
+python tools/build_bienen.py
+```
+
+Das Skript schreibt `text.txt` (aus „Steckbrief“ und „Website-Text“), `tagebuch.txt`
+und `ereignisse.txt`. Schon vorhandene Tagebuchzeilen bleiben stehen, die englischen
+Dateien werden nicht angefasst – neue Einträge erscheinen auf Englisch deutsch, bis
+sie in `tagebuch.en.txt` stehen. Alles Weitere steht oben im Skript.
+
+Die Abschnitte unten beschreiben die Dateien, die dabei entstehen.
+
 # Ein Volk hinzufügen
 
 Ein Volk = ein Ordner. Genau wie bei den Pflanzen.

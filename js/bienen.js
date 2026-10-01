@@ -306,15 +306,13 @@
   }
 
   /* Das Bienenjahr laeuft hier von Maerz bis Ende Februar: Auswintern bis Winterruhe. */
-  function bienenjahr(volk) {
-    var neueste = zeit(volk.log[0].datum);
-    var d = new Date(isNaN(neueste) ? heute() : neueste);
-    var jahr = d.getUTCFullYear() - (d.getUTCMonth() < 2 ? 1 : 0);
-    return { jahr: jahr, von: Date.UTC(jahr, 2, 1), bis: Date.UTC(jahr + 1, 2, 1) };
+  function bienenjahr(ms) {
+    var d = new Date(isNaN(ms) ? heute() : ms);
+    return d.getUTCFullYear() - (d.getUTCMonth() < 2 ? 1 : 0);
   }
 
-  function jahrBalken(volk, springen) {
-    var spanne = bienenjahr(volk);
+  function jahrBalken(volk, springen, jahr) {
+    var spanne = { jahr: jahr, von: Date.UTC(jahr, 2, 1), bis: Date.UTC(jahr + 1, 2, 1) };
     var englisch = i18n.lang() === "en";
     var jetzt = heute();
 
@@ -341,7 +339,8 @@
     }
 
     var ereignisse = (volk.events || []).filter(function (e) {
-      return ARTEN[e.art] && !isNaN(zeit(e.datum));
+      var von = zeit(e.datum), bis = isNaN(zeit(e.bis)) ? von : zeit(e.bis);
+      return ARTEN[e.art] && !isNaN(von) && bis >= spanne.von && von < spanne.bis;
     });
 
     ereignisse.forEach(function (e) {
@@ -416,7 +415,7 @@
       });
     }
 
-    return { node: balken, reihen: reihen, stelle: stelle };
+    return { node: balken, jahr: jahr, reihen: reihen, stelle: stelle };
   }
 
   /* ---------- Tagebuch ---------- */
@@ -426,7 +425,7 @@
   function logSection(volk) {
     var liste = el("ol", { class: "timeline" });
     var englisch = i18n.lang() === "en";
-    var balken = jahrBalken(volk, springen);
+    var balken = jahrBalken(volk, springen, bienenjahr(zeit(volk.log[0].datum)));
     var knopf = null;
 
     function fuellen() {
@@ -481,6 +480,14 @@
         }
       }
       Array.prototype.forEach.call(items, function (li, idx) { li.classList.toggle("aktiv", idx === aktiv); });
+
+      /* Ueber mehrere Jahre: der Balken wechselt zum Bienenjahr der Durchsicht. */
+      if (bienenjahr(ms) !== balken.jahr) {
+        var neu = jahrBalken(volk, springen, bienenjahr(ms));
+        balken.node.replaceWith(neu.node);
+        balken = neu;
+        balken.reihen();
+      }
       balken.stelle(ms);
     }
 
