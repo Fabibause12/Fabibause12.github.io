@@ -1,6 +1,6 @@
-/* Startseite: Bei jedem Laden zeigt der Rahmen neben den Freunde-Karten
+/* Freunde-Seite: Bei jedem Laden zeigt der Rahmen neben den Freunde-Karten
    eine zufaellige Seite aus dem Umfeld. Ohne JavaScript bleibt das
-   Mensa-Bild aus dem HTML stehen. */
+   Gustav-Hammer-Bild aus dem HTML stehen. */
 (function () {
   "use strict";
 
@@ -10,13 +10,6 @@
   var t = window.i18n.t;
 
   var SEITEN = [
-    {
-      url: "https://gustav-hammer.de/wann-mensa-heute",
-      bild: "./KKK.jpeg", breite: 600, hoehe: 450,
-      alt: ["Link zu Wann Mensa heute?", "Link to Wann Mensa heute?"],
-      text: ["Wann Mensa heute? – die wichtigste Frage des Tages",
-             "Wann Mensa heute? – the most important question of the day"]
-    },
     {
       url: "https://gustav-hammer.de/",
       bild: "./assets/freunde/gustav-hammer.jpg", breite: 800, hoehe: 600,

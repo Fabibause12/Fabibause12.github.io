@@ -2,7 +2,7 @@
 
 > Experimental physicist specialising in electron optics: controlling free electrons with chip-based electrode structures. Master's student in physics at FAU Erlangen-Nürnberg (graduating end of 2026), working at the Chair of Laser Physics (Prof. Peter Hommelhoff).
 
-This is Fabian Bammes' personal website. The CV page is the authoritative source for his professional background; the rest of the site (plants, bees, dice games) is a private hobby project. Every page exists in German and English.
+This is Fabian Bammes' personal website. The CV page is the authoritative source for his professional background; the rest of the site (plants, bees) is a private hobby project. Every page exists in German and English.
 
 ## Profile
 
@@ -35,4 +35,3 @@ This is Fabian Bammes' personal website. The CV page is the authoritative source
 
 - [Plants](https://fabibause12.github.io/pflanzen-en.html): house plants and cuttings (hobby)
 - [Bees](https://fabibause12.github.io/bienen-en.html): a bee colony with an inspection diary (hobby)
-- [Dice games](https://fabibause12.github.io/wuerfel-en.html): browser dice games (hobby)

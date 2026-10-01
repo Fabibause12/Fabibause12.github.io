@@ -126,15 +126,26 @@
     }
   });
 
-  /* ---------- Zertifikat ----------
-     Der Stempel unten rechts oeffnet ein kleines Popup mit den Details,
-     die Gustav zur Pruefung geschrieben hat. */
+  /* ---------- Zertifikate ----------
+     Die Stempel unten rechts oeffnen ein kleines Popup mit den Details.
+     Gustav hat die Seite geprueft; Dr. Marco Knipfer zertifiziert nur das
+     dunkle Design, sein Stempel erscheint deshalb nur im Dark Mode. */
 
   var ZERTIFIKAT_BIS = "24.09.2027";
 
-  function zertifikatHtml() {
-    return '<button type="button" class="zert-close" aria-label="' + t("Schließen", "Close") + '">&times;</button>' +
-      '<p class="zert-kicker">' + t("Offizielles Zertifikat", "Official certificate") + '</p>' +
+  function zertifikatHtml(art) {
+    var kopf = '<button type="button" class="zert-close" aria-label="' + t("Schließen", "Close") + '">&times;</button>' +
+      '<p class="zert-kicker">' + t("Offizielles Zertifikat", "Official certificate") + '</p>';
+    if (art === "knipfer") {
+      return kopf +
+        '<h2 id="zertTitel">' + t("Dr. Marco Knipfer zertifiziert", "Dr. Marco Knipfer certified") + ' &#10004;&#65039;</h2>' +
+        '<blockquote class="zert-zitat">' +
+          t("&bdquo;Es gibt einen Dark Mode, dann ist es auch Dr. Marco Knipfer zertifiziert.&ldquo;",
+            "&ldquo;There&rsquo;s a dark mode, so it&rsquo;s Dr. Marco Knipfer certified too.&rdquo;") +
+        '</blockquote>' +
+        '<p class="zert-sub">' + t("Gilt, solange das Licht aus ist.", "Valid as long as the lights are off.") + '</p>';
+    }
+    return kopf +
       '<h2 id="zertTitel">' + t("Gustav Hammer zertifiziert", "Gustav Hammer certified") + ' &#10004;&#65039;</h2>' +
       '<p>' + t("Diese Website wurde von Gustav Hammer geprüft und für sehr schön befunden. Sie ist zertifiziert bis zum",
                 "This website has been inspected by Gustav Hammer and found to be very nice. It is certified until") +
@@ -146,8 +157,7 @@
         '<li>' + t("scherehoch.de gibt es leider nicht mehr :(", "scherehoch.de sadly no longer exists :(") + '</li>' +
       '</ul>';
   }
-
-  function zeigeZertifikat() {
+  function zeigeZertifikat(art) {
     var dlg = document.getElementById("zertifikat");
     if (!dlg) {
       dlg = document.createElement("dialog");
@@ -160,7 +170,7 @@
       });
       document.body.appendChild(dlg);
     }
-    dlg.innerHTML = zertifikatHtml();
+    dlg.innerHTML = zertifikatHtml(art);
     if (typeof dlg.showModal === "function") dlg.showModal();
     else dlg.setAttribute("open", "");
   }
@@ -168,9 +178,10 @@
   Array.prototype.forEach.call(document.querySelectorAll(".stamp"), function (stamp) {
     stamp.setAttribute("role", "button");
     stamp.setAttribute("tabindex", "0");
-    stamp.addEventListener("click", zeigeZertifikat);
+    var art = stamp.getAttribute("data-zert");
+    stamp.addEventListener("click", function () { zeigeZertifikat(art); });
     stamp.addEventListener("keydown", function (ev) {
-      if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); zeigeZertifikat(); }
+      if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); zeigeZertifikat(art); }
     });
   });
 
