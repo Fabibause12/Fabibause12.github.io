@@ -3,8 +3,8 @@
 Die Stockkarten werden in Obsidian geführt, eine Notiz pro Volk im Ordner
 `Privat/Bienen` (Vorlage: `_Vorlage Volk.md`). Ein Doppelklick auf
 `Website aktualisieren.cmd` im selben Ordner holt dieses Repo nach
-`Dokumente\Fabibause12.github.io`, lässt `tools/obsidian_bienen.py` laufen, baut die
-`bienen.json` neu und lädt nach Rückfrage hoch. Von Hand geht es so:
+`Dokumente\Fabibause12.github.io`, lässt `tools/obsidian_bienen.py` laufen und lädt nach Rückfrage
+hoch. Die `bienen.json` baut danach die GitHub-Action. Von Hand geht es so:
 
 ```bash
 python tools/obsidian_bienen.py "<Obsidian-Vault>/Privat/Bienen" --probe   # nur anzeigen
