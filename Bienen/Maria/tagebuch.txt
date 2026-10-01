@@ -1,5 +1,5 @@
 # Eine Durchsicht pro Zeile:  Datum | Was war
-# Zeilen mit # werden nicht angezeigt. Sortiert wird automatisch, neueste zuerst.
+# Wird aus Obsidian erzeugt (tools/obsidian_bienen.py). Vorhandene Zeilen bleiben stehen.
 
 28.04.2026 | Nachschwarm von Veronika eingefangen, ungefähr 1,5 kg. Über Nacht in der Garage des Nachbarn abgestellt.
 29.04.2026 | In der Schwarmkiste blieb alles ruhig. Nach dem Einlogieren waren nach gut einer Stunde alle Bienen in der Dadant-Beute.

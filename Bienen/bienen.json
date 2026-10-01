@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-01T11:43:22Z",
+  "generated": "2026-10-01T12:12:46Z",
   "count": 1,
   "colonies": [
     {
@@ -198,6 +198,11 @@
           "en": "Lactic acid"
         },
         {
+          "datum": "17.05.2026",
+          "art": "milben",
+          "text": "1 Milbe"
+        },
+        {
           "datum": "26.05.2026",
           "art": "milben",
           "text": "2 Milben in 4 Tagen",
@@ -208,6 +213,17 @@
           "art": "koenigin",
           "text": "Königin zum ersten Mal gesehen",
           "en": "Saw the queen for the first time"
+        },
+        {
+          "datum": "15.06.2026",
+          "art": "milben",
+          "text": "3 Milben, Zählung ungenau"
+        },
+        {
+          "datum": "22.06.2026",
+          "art": "fuetterung",
+          "text": "Fütterung, 2 Gaben",
+          "bis": "01.07.2026"
         },
         {
           "datum": "22.06.2026",
