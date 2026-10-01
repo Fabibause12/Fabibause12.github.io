@@ -7,6 +7,7 @@ Bienen/
   Maria/
     text.txt        <- Eckdaten und der Text, der auf der Seite steht
     tagebuch.txt    <- optional: die Durchsichten
+    ereignisse.txt  <- optional: Symbole im Bienenjahr-Balken
     1.jpg           <- Bild 1 (das erste ist das Titelbild)
     2.jpg
 ```
@@ -47,6 +48,23 @@ Eine Durchsicht pro Zeile, Datum und Text mit einem senkrechten Strich getrennt:
 Sortiert wird automatisch, die neueste Durchsicht steht oben. Zeilen, die mit `#`
 anfangen, sind Notizen für dich und tauchen auf der Seite nicht auf. Die Datei darf
 auch `durchsichten.txt` oder `log.txt` heißen.
+
+## Die ereignisse.txt (optional)
+
+Über den Durchsichten steht ein Balken für das Bienenjahr (März bis Februar). Beim
+Scrollen durch die Durchsichten läuft ein Zeiger mit. Welche Symbole im Balken
+auftauchen, steht in der `ereignisse.txt`:
+
+```
+28.04.2026 | schwarm | Nachschwarm eingefangen | Caught the secondary swarm
+22.07.2026 - 28.07.2026 | behandlung | Ameisensäure | Formic acid
+15.12.2026 | restentmilbung | Restentmilbung
+```
+
+Datum (oder Zeitraum mit Bindestrich), Art, Text und optional der englische Text.
+Arten: `schwarm`, `koenigin`, `fuetterung`, `behandlung`, `milben`, `restentmilbung`.
+Zeiträume werden als Band gezeichnet, alles in der Zukunft blass als geplant. Ein Klick
+auf ein Symbol springt zur passenden Durchsicht.
 
 ## Englische Fassung (optional)
 

@@ -9,6 +9,7 @@ Jedes Volk ist ein Unterordner:
         tagebuch.txt    <- optional: eine Durchsicht pro Zeile
         text.en.txt     <- optional: Eckdaten und Text auf Englisch
         tagebuch.en.txt <- optional: Durchsichten auf Englisch (gleiche Daten)
+        ereignisse.txt  <- optional: Ereignisse fuer den Bienenjahr-Balken
         1.jpg           <- beliebig viele Bilder
         2.jpg
 
@@ -31,6 +32,9 @@ BIENEN_DIR = ROOT / "Bienen"
 OUT_FILE = BIENEN_DIR / "bienen.json"
 
 TAGEBUCH_NAMEN = ["tagebuch.txt", "durchsichten.txt", "log.txt"]
+EREIGNIS_NAMEN = ["ereignisse.txt", "events.txt"]
+EREIGNIS_ARTEN = {"schwarm", "koenigin", "fuetterung", "behandlung", "milben", "restentmilbung"}
+EREIGNIS = re.compile(r"^\s*(\S+)(?:\s*-\s*(\S+))?\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*(?:\|\s*(.+?)\s*)?$")
 DATUM = re.compile(r"^\s*(\d{1,2}[.\-/]\d{1,2}[.\-/]\d{2,4}|\d{4}-\d{2}-\d{2})\s*[|;\t]\s*(.+)$")
 
 
@@ -85,6 +89,31 @@ def lies_tagebuch(folder: Path, warnings: list):
     return eintraege
 
 
+def lies_ereignisse(folder: Path, warnings: list):
+    """Zeilen 'Datum[ - Datum] | Art | Text | English' fuer den Balken, aelteste zuerst."""
+    datei = next((folder / n for n in EREIGNIS_NAMEN if (folder / n).is_file()), None)
+    if datei is None:
+        return []
+    raus = []
+    for nr, zeile in enumerate(basis.read_text(datei).splitlines(), 1):
+        if not zeile.strip() or zeile.lstrip().startswith("#"):
+            continue
+        treffer = EREIGNIS.match(zeile)
+        art = treffer.group(3).lower() if treffer else ""
+        if not treffer or sortier_datum(treffer.group(1)) == (0, 0, 0) or art not in EREIGNIS_ARTEN:
+            warnings.append("%s/%s Zeile %d: kein 'Datum | Art | Text' - uebersprungen"
+                            % (folder.name, datei.name, nr))
+            continue
+        ereignis = {"datum": treffer.group(1), "art": art, "text": treffer.group(4)}
+        if treffer.group(2):
+            ereignis["bis"] = treffer.group(2)
+        if treffer.group(5):
+            ereignis["en"] = treffer.group(5)
+        raus.append(ereignis)
+    raus.sort(key=lambda e: sortier_datum(e["datum"]))
+    return raus
+
+
 def sortier_datum(text: str):
     """'17.05.2026' oder '2026-05-17' in etwas Sortierbares verwandeln."""
     teile = re.split(r"[.\-/]", text)
@@ -117,7 +146,7 @@ def collect(folder: Path, warnings: list):
     txt = None
     kandidaten = [p for p in folder.iterdir()
                   if p.is_file() and p.suffix.lower() == ".txt"
-                  and p.name.lower() not in TAGEBUCH_NAMEN
+                  and p.name.lower() not in TAGEBUCH_NAMEN + EREIGNIS_NAMEN
                   and not basis.ist_englisch(p)]
     if kandidaten:
         txt = basis.find_text_file(folder) if len(kandidaten) == 1 else sorted(
@@ -148,6 +177,7 @@ def collect(folder: Path, warnings: list):
         "images": [basis.url_path(p) for p in images],
         "imageCount": len(images),
         "log": lies_tagebuch(folder, warnings),
+        "events": lies_ereignisse(folder, warnings),
     }
     en = basis.englisch(folder, txt, warnings, ("Title", "Titel", "Name"))
     if en:

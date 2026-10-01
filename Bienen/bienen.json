@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-29T08:29:04Z",
+  "generated": "2026-10-01T09:57:15Z",
   "count": 1,
   "colonies": [
     {
@@ -26,6 +26,16 @@
       ],
       "imageCount": 6,
       "log": [
+        {
+          "datum": "01.10.2026",
+          "text": "53 Milben auf der Windel, also rund 10,6 pro Tag – gut doppelt so viele wie bei der Behandlung im Juli.",
+          "en": "53 mites on the board, so about 10.6 per day – more than twice as many as during the treatment in July."
+        },
+        {
+          "datum": "26.09.2026",
+          "text": "Windel eingelegt, um den Milbenfall unter der Ameisensäure zu zählen.",
+          "en": "Put in the mite board to count the mite drop under the formic acid."
+        },
         {
           "datum": "25.09.2026",
           "text": "Den Bienen geht es sichtlich gut, sie genießen die Sonne. Verdunstung geprüft: 45 ml in zwei Tagen, rund 22 ml am Tag – passt. Die Säure bleibt bis Anfang Oktober drauf.",
@@ -165,6 +175,84 @@
           "datum": "28.04.2026",
           "text": "Nachschwarm von Veronika eingefangen, ungefähr 1,5 kg. Über Nacht in der Garage des Nachbarn abgestellt.",
           "en": "Caught a secondary swarm from Veronika, about 1.5 kg. Left it overnight in the neighbour's garage."
+        }
+      ],
+      "events": [
+        {
+          "datum": "28.04.2026",
+          "art": "schwarm",
+          "text": "Nachschwarm eingefangen",
+          "en": "Caught the secondary swarm"
+        },
+        {
+          "datum": "30.04.2026",
+          "art": "fuetterung",
+          "text": "Aufbaufütterung 1:1",
+          "bis": "04.06.2026",
+          "en": "Build-up feeding 1:1"
+        },
+        {
+          "datum": "08.05.2026",
+          "art": "behandlung",
+          "text": "Milchsäure",
+          "en": "Lactic acid"
+        },
+        {
+          "datum": "26.05.2026",
+          "art": "milben",
+          "text": "2 Milben in 4 Tagen",
+          "en": "2 mites in 4 days"
+        },
+        {
+          "datum": "06.06.2026",
+          "art": "koenigin",
+          "text": "Königin zum ersten Mal gesehen",
+          "en": "Saw the queen for the first time"
+        },
+        {
+          "datum": "22.06.2026",
+          "art": "milben",
+          "text": "12 Milben, 2,4 pro Tag",
+          "en": "12 mites, 2.4 per day"
+        },
+        {
+          "datum": "16.07.2026",
+          "art": "fuetterung",
+          "text": "Winterfütterung 2:1, rund 25 kg eingelagert",
+          "bis": "29.08.2026",
+          "en": "Winter feeding 2:1, about 25 kg stored"
+        },
+        {
+          "datum": "22.07.2026",
+          "art": "behandlung",
+          "text": "Ameisensäure, zu früh abgebrochen",
+          "bis": "28.07.2026",
+          "en": "Formic acid, stopped too early"
+        },
+        {
+          "datum": "28.07.2026",
+          "art": "milben",
+          "text": "28 Milben, 4,6 pro Tag",
+          "en": "28 mites, 4.6 per day"
+        },
+        {
+          "datum": "23.09.2026",
+          "art": "behandlung",
+          "text": "Ameisensäure, 10 bis 14 Tage",
+          "bis": "05.10.2026",
+          "en": "Formic acid, 10 to 14 days"
+        },
+        {
+          "datum": "01.10.2026",
+          "art": "milben",
+          "text": "53 Milben, 10,6 pro Tag",
+          "en": "53 mites, 10.6 per day"
+        },
+        {
+          "datum": "15.12.2026",
+          "art": "restentmilbung",
+          "text": "Restentmilbung in der brutfreien Zeit",
+          "en": "Winter mite treatment in the brood-free period"
         }
       ],
       "en": {
