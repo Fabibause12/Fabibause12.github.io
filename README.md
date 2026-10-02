@@ -3,9 +3,9 @@
 Persönliche Webseite von **Fabian Bammes**, Experimentalphysiker (Elektronenoptik) am
 Lehrstuhl für Laserphysik der FAU Erlangen-Nürnberg.
 
-**Live:** <https://fabibause12.github.io> · English: <https://fabibause12.github.io/index-en.html>
-· Werdegang / CV: [Deutsch](https://fabibause12.github.io/werdegang.html) ·
-[English](https://fabibause12.github.io/werdegang-en.html) ·
+**Live:** <https://fabian-bammes.de> · English: <https://fabian-bammes.de/index-en.html>
+· Werdegang / CV: [Deutsch](https://fabian-bammes.de/werdegang.html) ·
+[English](https://fabian-bammes.de/werdegang-en.html) ·
 ORCID: [0009-0009-8834-6500](https://orcid.org/0009-0009-8834-6500)
 
 Fachlich steht alles im Werdegang. Der Rest ist ein privates Nebenprojekt: Pflanzen
@@ -96,4 +96,4 @@ nur Theme und Sprache.
 
 ## Kontakt
 
-fabibause12@gmail.com
+kontakt@fabian-bammes.de

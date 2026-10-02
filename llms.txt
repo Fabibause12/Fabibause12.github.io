@@ -6,9 +6,9 @@ This is Fabian Bammes' personal website. The CV page is the authoritative source
 
 ## Profile
 
-- [CV (English)](https://fabibause12.github.io/werdegang-en.html): education, master's thesis, research positions, publications, skills
-- [CV (German)](https://fabibause12.github.io/werdegang.html): same content in German
-- [Home page (English)](https://fabibause12.github.io/index-en.html): short introduction and contact
+- [CV (English)](https://fabian-bammes.de/werdegang-en.html): education, master's thesis, research positions, publications, skills
+- [CV (German)](https://fabian-bammes.de/werdegang.html): same content in German
+- [Home page (English)](https://fabian-bammes.de/index-en.html): short introduction and contact
 - [ORCID 0009-0009-8834-6500](https://orcid.org/0009-0009-8834-6500): publication record
 - [FAU staff page](https://www.laserphysics.nat.fau.eu/person/fabian-bammes/): official page at the Chair of Laser Physics
 
@@ -29,9 +29,9 @@ This is Fabian Bammes' personal website. The CV page is the authoritative source
 
 ## Contact
 
-- Email: fabibause12@gmail.com
+- Email: kontakt@fabian-bammes.de
 
 ## Optional
 
-- [Plants](https://fabibause12.github.io/pflanzen-en.html): house plants and cuttings (hobby)
-- [Bees](https://fabibause12.github.io/bienen-en.html): a bee colony with an inspection diary (hobby)
+- [Plants](https://fabian-bammes.de/pflanzen-en.html): house plants and cuttings (hobby)
+- [Bees](https://fabian-bammes.de/bienen-en.html): a bee colony with an inspection diary (hobby)

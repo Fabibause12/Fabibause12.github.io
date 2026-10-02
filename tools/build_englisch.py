@@ -26,7 +26,7 @@ from html.parser import HTMLParser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-BASIS = "https://fabibause12.github.io/"
+BASIS = "https://fabian-bammes.de/"
 
 SEITEN = ["index.html", "werdegang.html", "privat.html", "pflanzen.html", "bienen.html",
           "wuerfel.html", "freunde.html", "impressum.html"]
