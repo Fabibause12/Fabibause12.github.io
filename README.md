@@ -96,4 +96,4 @@ nur Theme und Sprache.
 
 ## Kontakt
 
-fabibause12@gmail.com
+kontakt@fabian-bammes.de

@@ -230,7 +230,7 @@ KOPF = '''<!DOCTYPE html>
     "@type": "Person",
     "name": "Fabian Bammes",
     "url": "https://fabian-bammes.de/",
-    "email": "mailto:fabibause12@gmail.com",
+    "email": "mailto:kontakt@fabian-bammes.de",
     "jobTitle": "Experimentalphysiker",
     "affiliation": {"@type": "Organization", "name": "Lehrstuhl für Laserphysik, FAU Erlangen-Nürnberg",
                     "url": "https://www.laserphysics.nat.fau.eu/"},
