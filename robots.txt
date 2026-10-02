@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fabibause12.github.io/sitemap.xml
+Sitemap: https://fabian-bammes.de/sitemap.xml
