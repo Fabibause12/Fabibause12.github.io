@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-04T15:54:17Z",
+  "generated": "2026-11-25T16:44:44Z",
   "count": 1,
   "colonies": [
     {
@@ -26,6 +26,10 @@
       ],
       "imageCount": 6,
       "log": [
+        {
+          "datum": "26.10.2026",
+          "text": "Milben Brett Auszählung seit 15."
+        },
         {
           "datum": "04.10.2026",
           "text": "Ameisensäure nach elf Tagen abgenommen. Mittelgroßes Brutnest auf Wabe 5, die Honigvorräte sind unangetastet und reichlich.",
@@ -288,6 +292,11 @@
           "art": "milben",
           "text": "53 Milben, 10,6 pro Tag",
           "en": "53 mites, 10.6 per day"
+        },
+        {
+          "datum": "26.10.2026",
+          "art": "milben",
+          "text": "Total 4-> 0.4/tag"
         },
         {
           "datum": "25.12.2026",
