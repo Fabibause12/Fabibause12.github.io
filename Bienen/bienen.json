@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-25T17:41:34Z",
+  "generated": "2026-11-25T17:49:46Z",
   "count": 1,
   "colonies": [
     {
@@ -26,6 +26,10 @@
       ],
       "imageCount": 6,
       "log": [
+        {
+          "datum": "21.11.2026",
+          "text": "Mit Stethoskope abgehört Bienen ruhig aber hörbar."
+        },
         {
           "datum": "26.10.2026",
           "text": "Milben Brett Auszählung seit 15."

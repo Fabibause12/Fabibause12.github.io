@@ -33,9 +33,13 @@ und die Fertigung bis zur Messung im Elektronenmikroskop.
 
 # Stationen
 
-## 2023 – 2026 | Master Physik
-Wo: FAU Erlangen-Nürnberg · Abschluss Ende 2026
+## ab Dezember 2026 | Wissenschaftlicher Mitarbeiter
+Wo: Arbeitsgruppe Prof. Hommelhoff, LMU München · Arbeitsort Erlangen
 Aktuell: ja
+Forschung zur Elektronenführung auf dem Chip, direkt im Anschluss an die Masterarbeit.
+
+## 2023 – 2026 | Master Physik
+Wo: FAU Erlangen-Nürnberg · Abschluss im Oktober 2026
 Schwerpunkte in Attosekundenphysik, Advanced Theoretical und Advanced
 Experimental Physics, Complex Systems II und III, dazu ein Seminar zu
 Quantenkommunikation und eine Vorlesung Neutrinophysik.
