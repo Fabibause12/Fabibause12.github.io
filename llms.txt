@@ -1,6 +1,6 @@
 # Fabian Bammes
 
-> Experimental physicist specialising in electron optics: controlling free electrons with chip-based electrode structures. Master's student in physics at FAU Erlangen-Nürnberg (graduating end of 2026), working at the Chair of Laser Physics (Prof. Peter Hommelhoff).
+> Experimental physicist specialising in electron optics: controlling free electrons with chip-based electrode structures. Physics master's degree at FAU Erlangen-Nürnberg completed in October 2026; research associate in Prof. Peter Hommelhoff's group (LMU Munich, based in Erlangen) from December 2026.
 
 This is Fabian Bammes' personal website. The CV page is the authoritative source for his professional background; the rest of the site (plants, bees) is a private hobby project. Every page exists in German and English.
 

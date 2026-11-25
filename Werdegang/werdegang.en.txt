@@ -23,9 +23,13 @@ microscope.
 
 # Timeline
 
-## 2023 – 2026 | Master's in Physics
-Where: FAU Erlangen-Nürnberg · graduating end of 2026
+## from December 2026 | Research associate
+Where: Hommelhoff group, LMU Munich · based in Erlangen
 Current: yes
+Research on guiding electrons on a chip, directly following the master's thesis.
+
+## 2023 – 2026 | Master's in Physics
+Where: FAU Erlangen-Nürnberg · completed October 2026
 Focus on attosecond physics, Advanced Theoretical and Advanced Experimental
 Physics, Complex Systems II and III, plus a seminar on quantum communication and
 a lecture on neutrino physics.
